@@ -1,0 +1,21 @@
+.segment.selectedOption {
+  background: #f5c542;
+  color: black;
+}
+
+.segment.optionSegments {
+  color: black;
+}
+
+.textArea {
+  max-width: 100%;
+  font-size: 70%;
+}
+
+.segContainer {
+  margin: 0.5rem;
+}
+
+#questionTitleHeader {
+  color: white;
+}

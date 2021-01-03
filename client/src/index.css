@@ -1,0 +1,22 @@
+#middle {
+  height: 80%;
+  width: 80%;
+  background-color: black;
+  border-radius: 10px;
+  opacity: 85%;
+  padding: 5%;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 250%;
+}
+
+body {
+  background: url('https://wallpaperaccess.com/full/2653021.jpg') no-repeat
+    center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
