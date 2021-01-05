@@ -17,12 +17,6 @@ const MultiQuestionOptions = ({
     multiFreeResponseSelectAction(subQId, val.target.value);
   };
 
-  //   const dropdownChange = (subQId, val) => {
-  //     console.log(subQId, val.target.innerText);
-  //     console.log(val);
-  //     multiFreeResponseSelectAction(subQId, val.target.innerText);
-  //   };
-
   const getOptions = (options) => {
     options.forEach((o) => {
       o.key = o.value;
@@ -73,6 +67,7 @@ const MultiQuestionOptions = ({
               </Header>
               <input
                 name={qOption.value}
+                defaultValue={qOption.value}
                 onChange={(val) => onTextChange(qOption.id, val)}
               ></input>
             </div>
