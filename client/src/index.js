@@ -16,6 +16,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path='/start' render={() => <App comp='start' />} />
           <Route exact path='/confirm' render={() => <App comp='confirm' />} />
+          <Route exact path='/review' render={() => <App comp='review' />} />
         </Switch>
       </section>
     </Provider>

@@ -1,11 +1,5 @@
-export const SET_ALERT = 'SET_ALERT';
-export const REMOVE_ALERT = 'REMOVE_ALERT';
-export const SELECTED_OPTION = 'SELECT_OPTION';
-
-export const NEXT_QUESTION = 'NEXT_QUESTION';
-export const PREV_QUESTION = 'PREV_QUESTION';
-
-export const NEW_NEXT_QUESTION = 'NEW_NEXT_QUESTION';
-export const NEW_SELECT_OPTION = 'NEW_SELECT_OPTION';
-export const MFRO_SELECT = 'MFRO_SELECT';
-export const NEW_PREVIOUS_QUESTION = 'NEW_PREVIOUS_QUESTION';
+export const SELECT_MC_SATA = 'SELECT_MC_SATA';
+export const DROPDOWN_SELECT = 'DROPDOWN_SELECT';
+export const UPDATE_FR = 'UPDATE_FR';
+export const NEXT_BLOCK = 'NEXT_BLOCK';
+export const PREV_BLOCK = 'PREV_BLOCK';

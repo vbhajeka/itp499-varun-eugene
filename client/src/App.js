@@ -1,35 +1,47 @@
-import './App.css';
 import 'semantic-ui-css/semantic.min.css';
+import './App.css';
 import './index.css';
 
-import QuestionGrid from './components/QuestionGrid';
 import { TestComp } from './components/TestComp';
 import ConfirmPage from './components/ConfirmPage';
+import QuestionBlock from './components/QuestionBlock';
+import ReviewBlock from './components/ReviewBlock';
 
-import { Segment, Image } from 'semantic-ui-react';
+import { Segment, Image, Header } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 
-function App({ comp }) {
-  let temp;
+function App({ comp, ping }) {
+  let visible_comp;
 
   console.log(comp);
 
   switch (comp) {
     case 'start':
-      console.log('asdfasdfasdf');
-      temp = <TestComp></TestComp>;
+      visible_comp = <TestComp></TestComp>;
       break;
     case 'confirm':
-      temp = <ConfirmPage></ConfirmPage>;
+      visible_comp = <ConfirmPage></ConfirmPage>;
+      break;
+    case 'review':
+      visible_comp = <ReviewBlock />;
       break;
     default:
-      temp = <QuestionGrid />;
+      visible_comp = <QuestionBlock />;
   }
 
   return (
     <div className='App'>
       <div id='artificial-background'>
+        <Segment style={{ width: '100%' }} id='topBar' className='bars'>
+          <Header style={{ color: 'white' }} size={'large'}>
+            <Image
+              src='https://i.pinimg.com/originals/db/a9/cf/dba9cfe0c637d9a2427893359233d261.jpg'
+              avatar
+            ></Image>
+            HIPPO Survey
+          </Header>
+        </Segment>
         <div
           id='middle'
           className='center'
@@ -40,23 +52,26 @@ function App({ comp }) {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          {temp}
-          <div id='placeholder'>
-            <p>
-              asdfasdfasdfa a a a a a a a a a a a a aa a a a a a
-              aaaaaaaaaaasdfasdfasdfasfsfsfdsafsdfsfasfd"
-            </p>
-          </div>
-          <Segment id='bottomBar'>
-            <Image
-              src='https://static.onecms.io/wp-content/uploads/sites/6/2019/11/revenge-of-the-sith-2000.jpg'
-              avatar
-            ></Image>
-            Dr. Obi-wan Kenobi
-          </Segment>
+          {visible_comp}
         </div>
       </div>
+      <Segment style={{ width: '100%' }} id='bottomBar' className='bars'>
+        <Segment inverted color={'orange'} style={{ float: 'right' }}>
+          <Image
+            src='https://static.onecms.io/wp-content/uploads/sites/6/2019/11/revenge-of-the-sith-2000.jpg'
+            avatar
+          ></Image>
+          Dr. Marc Safran
+        </Segment>
+      </Segment>
     </div>
   );
 }
-export default connect(null, null)(App);
+
+const mapStateToProps = (state) => {
+  return {
+    ping: state.blocks.ping,
+  };
+};
+
+export default connect(mapStateToProps, {})(App);

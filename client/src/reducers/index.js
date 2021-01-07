@@ -1,11 +1,8 @@
 import { combineReducers } from 'redux';
 
-import selectReducer from './selectReducer';
-import questionBankReducer from './questionBankReducer.js';
-import surveyReducer from './surveyReducer';
+//import surveyReducer from './surveyReducer';
+import blockReducer from './blockReducer';
 
 export default combineReducers({
-  survey: surveyReducer,
-  questionBankReducer,
-  selectReducer,
+  blocks: blockReducer,
 });

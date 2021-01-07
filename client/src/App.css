@@ -36,18 +36,38 @@
     transform: rotate(360deg);
   }
 }
+#topBar {
+  top: 0;
+  vertical-align: bottom;
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+  padding-right: 2rem;
+  position: absolute;
+  right: 0;
+  opacity: 85%;
+  border-radius: 0;
+}
 
 #bottomBar {
+  bottom: 0;
   vertical-align: bottom;
-  background-color: white;
-  border-radius: 10px;
-  color: black;
+  background-color: black;
+  color: white;
   font-weight: bolder;
   text-align: right;
   padding-right: 2rem;
+  position: absolute;
+  right: 0;
+  opacity: 85%;
+  border-radius: 0;
 }
 
-#placeholder {
-  height: 73%;
-  overflow: scroll;
+.buttonSegEnabled {
+  cursor: pointer;
+}
+
+.buttonSegDisabled {
+  cursor: auto;
 }
