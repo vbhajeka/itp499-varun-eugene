@@ -33,7 +33,7 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
               question: q.question_header,
               value: q.value,
             };
-            body.answers.push(entry);
+            body.answers.push(JSON.stringify(entry));
           }
         });
       }
