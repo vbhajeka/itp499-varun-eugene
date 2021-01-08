@@ -170,6 +170,11 @@ const QuestionBlock = ({
                         <Header size={'tiny'}>{q.question_header}</Header>
                         <p>{q.question_desc}</p>
                         {q.img !== '' && <Image src={q.img} fluid />}
+                        {q.long_question_desc != null &&
+                          q.long_question_desc.length > 0 &&
+                          q.long_question_desc.map((desc) => (
+                            <p key={desc}>{desc}</p>
+                          ))}
                       </Container>
                     </Grid.Column>
                     <Grid.Column width={8} textAlign={'right'}>
