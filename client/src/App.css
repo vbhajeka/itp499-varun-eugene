@@ -46,7 +46,7 @@
   padding-right: 2rem;
   position: absolute;
   right: 0;
-  /* opacity: 85%; */
+  opacity: 0.85;
   border-radius: 0;
 }
 
@@ -60,7 +60,7 @@
   padding-right: 2rem;
   position: absolute;
   right: 0;
-  /* opacity: 85%; */
+  opacity: 0.85;
   border-radius: 0;
 }
 
