@@ -6,8 +6,11 @@ const path = require('path');
 const app = express();
 
 // connect DB
-//connectDB();
-otherDB();
+connectDB();
+//otherDB();
+
+// init middleware
+app.use(express.json({ extended: false }));
 
 //app.get('/', (req, res) => res.send('API running'));
 
@@ -16,6 +19,7 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
+app.use('/api/submitSurvey', require('./routes/api/submitSurvey'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

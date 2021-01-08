@@ -3,3 +3,5 @@ export const DROPDOWN_SELECT = 'DROPDOWN_SELECT';
 export const UPDATE_FR = 'UPDATE_FR';
 export const NEXT_BLOCK = 'NEXT_BLOCK';
 export const PREV_BLOCK = 'PREV_BLOCK';
+
+export const SUBMIT_SURVEY = 'SUBMIT_SURVEY';

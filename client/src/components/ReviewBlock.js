@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 import { Container, Header, Grid, Table, Segment } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
-const ReviewBlock = ({ ping, blocks }) => {
+import { submitAction } from '../actions/blockActions';
+
+const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
   console.log(ping);
 
   const getVals = (values) => {
@@ -14,6 +16,30 @@ const ReviewBlock = ({ ping, blocks }) => {
       retVal += `${v}, `;
     });
     return retVal.substring(0, retVal.length - 2);
+  };
+
+  const reviewClicked = () => {
+    console.log('beginning review actions');
+    let body = {
+      surveyID: surveyID,
+      answers: [],
+    };
+    blocks.forEach((block) => {
+      if (block.enabled) {
+        block.questions.forEach((q) => {
+          if (q.enabled && q.value.length !== 0) {
+            let entry = {
+              block: block.block_header,
+              question: q.question_header,
+              value: q.value,
+            };
+            body.answers.push(entry);
+          }
+        });
+      }
+    });
+    console.log(body);
+    submitAction(body);
   };
 
   return (
@@ -82,7 +108,7 @@ const ReviewBlock = ({ ping, blocks }) => {
                 style={{ margin: '2%' }}
                 inverted
                 color={'green'}
-                //onClick={() => reviewClicked()}
+                onClick={() => reviewClicked()}
                 className={'buttonSegEnabled'}
               >
                 Submit
@@ -100,7 +126,8 @@ const mapStateToProps = (state) => {
   return {
     ping: state.blocks.ping,
     blocks: state.blocks.blocks,
+    surveyID: state.blocks.surveyID,
   };
 };
 
-export default connect(mapStateToProps, {})(ReviewBlock);
+export default connect(mapStateToProps, { submitAction })(ReviewBlock);

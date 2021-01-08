@@ -4,6 +4,7 @@ import {
   UPDATE_FR,
   NEXT_BLOCK,
   PREV_BLOCK,
+  SUBMIT_SURVEY,
 } from '../actions/types';
 
 import { realState } from './realState';
@@ -352,6 +353,8 @@ export default function reducer(state = realState, action) {
       return { ...nextBlockActionBody(state, payload) };
     case PREV_BLOCK:
       return { ...prevBlockActionBody(state, payload) };
+    case SUBMIT_SURVEY:
+      return state;
     default:
       return state;
   }

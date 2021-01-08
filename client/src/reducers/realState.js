@@ -1,5 +1,6 @@
 export const realState = {
   ping: true,
+  surveyID: 'as341s',
   current: 'basic_details',
   blocks: [
     // basic_details
@@ -1836,23 +1837,12 @@ export const realState = {
           options: [
             {
               value: 'Yes',
-              children: ['5', '9', '6', '7', '8'],
+              children: ['5', '6', '7', '8'],
               blocks_enabled: [],
             },
             { value: 'No', children: [], blocks_enabled: [] },
           ],
           value: [],
-        },
-        {
-          id: '9',
-          question_header: 'Acetabular Lesion Location',
-          question_desc: 'Use this image to answer the next question',
-          enabled: false,
-          required: false,
-          type: 'IMG',
-          value: [],
-          img:
-            'https://redcap.stanford.edu/surveys/index.php?pid=21691&__passthru=DataEntry%2Fimage_view.php&doc_id_hash=c29c36c994ecdc13b826e4512112785fa8c0594c&id=1165309&instance=1&s=3YFJPJAHNE',
         },
         {
           id: '5',
@@ -1862,6 +1852,8 @@ export const realState = {
           enabled: false,
           required: true,
           type: 'SATA',
+          img:
+            'https://redcap.stanford.edu/surveys/index.php?pid=21691&__passthru=DataEntry%2Fimage_view.php&doc_id_hash=c29c36c994ecdc13b826e4512112785fa8c0594c&id=1165309&instance=1&s=3YFJPJAHNE',
           options: [
             { value: '1', children: [], blocks_enabled: [] },
             { value: '2', children: [], blocks_enabled: [] },
@@ -2079,23 +2071,12 @@ export const realState = {
           options: [
             {
               value: 'Yes',
-              children: ['8', '9', '10', '11'],
+              children: ['9', '10', '11'],
               blocks_enabled: [],
             },
             { value: 'No', children: [], blocks_enabled: [] },
           ],
           value: [],
-        },
-        {
-          id: '8',
-          question_header: 'Articular Cartilage Location',
-          question_desc: 'Use this image to answer the next question',
-          enabled: false,
-          required: false,
-          type: 'IMG',
-          value: [],
-          img:
-            'https://redcap.stanford.edu/surveys/index.php?pid=21691&__passthru=DataEntry%2Fimage_view.php&doc_id_hash=8b0e9330e9f70fbb9d7c05edaa0923c709e054c5&id=1165310&instance=1&s=3YFJPJAHNE',
         },
         {
           id: '9',
@@ -2105,6 +2086,8 @@ export const realState = {
           enabled: false,
           required: true,
           type: 'SATA',
+          img:
+            'https://redcap.stanford.edu/surveys/index.php?pid=21691&__passthru=DataEntry%2Fimage_view.php&doc_id_hash=8b0e9330e9f70fbb9d7c05edaa0923c709e054c5&id=1165310&instance=1&s=3YFJPJAHNE',
           options: [
             { value: 'A Front', children: [], blocks_enabled: [] },
             { value: 'C Front', children: [], blocks_enabled: [] },
@@ -3615,23 +3598,12 @@ export const realState = {
           options: [
             {
               value: 'Yes',
-              children: ['5', '9', '6', '7', '8'],
+              children: ['5', '6', '7', '8'],
               blocks_enabled: [],
             },
             { value: 'No', children: [], blocks_enabled: [] },
           ],
           value: [],
-        },
-        {
-          id: '9',
-          question_header: 'Acetabular Lesion Location',
-          question_desc: 'Use this image to answer the next question',
-          enabled: false,
-          required: false,
-          type: 'IMG',
-          value: [],
-          img:
-            'https://redcap.stanford.edu/surveys/index.php?pid=21691&__passthru=DataEntry%2Fimage_view.php&doc_id_hash=c29c36c994ecdc13b826e4512112785fa8c0594c&id=1165309&instance=1&s=3YFJPJAHNE',
         },
         {
           id: '5',
@@ -3641,6 +3613,8 @@ export const realState = {
           enabled: false,
           required: true,
           type: 'SATA',
+          img:
+            'https://redcap.stanford.edu/surveys/index.php?pid=21691&__passthru=DataEntry%2Fimage_view.php&doc_id_hash=c29c36c994ecdc13b826e4512112785fa8c0594c&id=1165309&instance=1&s=3YFJPJAHNE',
           options: [
             { value: '1', children: [], blocks_enabled: [] },
             { value: '2', children: [], blocks_enabled: [] },
@@ -3858,23 +3832,12 @@ export const realState = {
           options: [
             {
               value: 'Yes',
-              children: ['8', '9', '10', '11'],
+              children: ['9', '10', '11'],
               blocks_enabled: [],
             },
             { value: 'No', children: [], blocks_enabled: [] },
           ],
           value: [],
-        },
-        {
-          id: '8',
-          question_header: 'Articular Cartilage Location',
-          question_desc: 'Use this image to answer the next question',
-          enabled: false,
-          required: false,
-          type: 'IMG',
-          value: [],
-          img:
-            'https://redcap.stanford.edu/surveys/index.php?pid=21691&__passthru=DataEntry%2Fimage_view.php&doc_id_hash=8b0e9330e9f70fbb9d7c05edaa0923c709e054c5&id=1165310&instance=1&s=3YFJPJAHNE',
         },
         {
           id: '9',
@@ -3884,6 +3847,8 @@ export const realState = {
           enabled: false,
           required: true,
           type: 'SATA',
+          img:
+            'https://redcap.stanford.edu/surveys/index.php?pid=21691&__passthru=DataEntry%2Fimage_view.php&doc_id_hash=8b0e9330e9f70fbb9d7c05edaa0923c709e054c5&id=1165310&instance=1&s=3YFJPJAHNE',
           options: [
             { value: 'A Front', children: [], blocks_enabled: [] },
             { value: 'C Front', children: [], blocks_enabled: [] },

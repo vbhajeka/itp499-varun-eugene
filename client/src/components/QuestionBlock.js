@@ -134,7 +134,8 @@ const QuestionBlock = ({
         id='header'
         style={{
           backgroundColor: 'white',
-          padding: '3%',
+          padding: '2%',
+          paddingBottom: '1.5%',
           borderRadius: '10px',
         }}
       >
@@ -168,6 +169,7 @@ const QuestionBlock = ({
                       <Container text fluid style={{ maxWidth: '30%' }}>
                         <Header size={'tiny'}>{q.question_header}</Header>
                         <p>{q.question_desc}</p>
+                        {q.img !== '' && <Image src={q.img} fluid />}
                       </Container>
                     </Grid.Column>
                     <Grid.Column width={8} textAlign={'right'}>
@@ -191,7 +193,6 @@ const QuestionBlock = ({
                               key={o.value}
                               style={{
                                 width: '45%',
-                                //margin: '0% 1% 0%',
                                 margin: '1%',
                                 fontSize: '1.1rem',
                               }}
@@ -234,7 +235,6 @@ const QuestionBlock = ({
                             ></input>
                           </Container>
                         )}
-                        {q.type === 'IMG' && <Image src={q.img} fluid />}
                       </Container>
                     </Grid.Column>
                   </Grid.Row>
