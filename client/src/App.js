@@ -6,8 +6,10 @@ import { TestComp } from './components/TestComp';
 import ConfirmPage from './components/ConfirmPage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
+import { ImgComp } from './components/ImgComp';
 
 import { Segment, Image, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -25,6 +27,9 @@ function App({ comp, ping }) {
       break;
     case 'review':
       visible_comp = <ReviewBlock />;
+      break;
+    case 'img':
+      visible_comp = <ImgComp />;
       break;
     default:
       visible_comp = <QuestionBlock />;
@@ -56,9 +61,36 @@ function App({ comp, ping }) {
         </div>
       </div>
       <Segment style={{ width: '100%' }} id='bottomBar' className='bars'>
-        <Segment inverted color={'orange'} style={{ float: 'right' }}>
+        <Link to='/start'>
+          <Segment
+            inverted
+            color={'orange'}
+            style={{ float: 'left', width: '15%', textAlign: 'center' }}
+          >
+            Logout
+          </Segment>
+        </Link>
+        <Segment
+          inverted
+          color={'blue'}
+          style={{
+            float: 'right',
+            width: '15%',
+            verticalAlign: 'middle',
+            textAlign: 'center',
+            marginTop: 0,
+          }}
+        >
           <Image
-            src='https://static.onecms.io/wp-content/uploads/sites/6/2019/11/revenge-of-the-sith-2000.jpg'
+            style={{
+              float: 'left',
+              height: '2em',
+              width: '2em',
+              textAlign: 'center',
+              verticalAlign: 'middle',
+              marginTop: 0,
+            }}
+            src='https://ortho.stanford.edu/sports-medicine/marc-safran-profile/_jcr_content/main/panel_builder/panel_1/image.img.320.high.jpg/marc-safran.jpg'
             avatar
           ></Image>
           Dr. Marc Safran

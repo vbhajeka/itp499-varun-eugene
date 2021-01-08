@@ -8,6 +8,7 @@ import {
   Segment,
   Dropdown,
   Progress,
+  Image,
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
@@ -109,10 +110,10 @@ const QuestionBlock = ({
   };
 
   const getProgress = () => {
-    return (
+    return Math.floor(
       (blocks.indexOf(blocks.find((b) => b.block_id === block_id)) /
         blocks.length) *
-      100
+        100
     );
   };
 
@@ -233,6 +234,7 @@ const QuestionBlock = ({
                             ></input>
                           </Container>
                         )}
+                        {q.type === 'IMG' && <Image src={q.img} fluid />}
                       </Container>
                     </Grid.Column>
                   </Grid.Row>
