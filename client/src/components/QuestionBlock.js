@@ -76,7 +76,7 @@ const QuestionBlock = ({
       blocks.find((b) => b.block_id === block_id)
     );
 
-    if (blocks_seen != undefined) {
+    if (blocks_seen !== undefined) {
       for (let i = curr_index; i < blocks.length; i++) {
         const this_block = blocks[i];
         if (this_block.enabled && !blocks_seen.includes(blocks[i].block_id)) {
