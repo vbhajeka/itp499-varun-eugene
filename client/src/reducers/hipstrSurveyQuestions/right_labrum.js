@@ -156,7 +156,7 @@ export const right_labrum =
           { value: 'Biomet', children: ['12'], blocks_enabled: [] },
           { value: 'Conmed', children: ['13'], blocks_enabled: [] },
           {
-            value: 'Smith & Nephew / Arthrocare',
+            value: 'Smith & Nephew',
             children: ['14'],
             blocks_enabled: [],
           },
@@ -274,9 +274,8 @@ export const right_labrum =
       },
       {
         id: '14',
-        question_header: 'Smith & Nephew / Arthrocare Implant System',
-        question_desc:
-          'What was the Smith & Nephew / Arthrocare Implant System?',
+        question_header: 'Smith & Nephew Implant System',
+        question_desc: 'What was the Smith & Nephew Implant System?',
         enabled: false,
         required: true,
         type: 'MC',
@@ -297,9 +296,8 @@ export const right_labrum =
       },
       {
         id: '62',
-        question_header: 'Other Smith & Nephew / Arthrocare Implant System',
-        question_desc:
-          'What was the Other Smith & Nephew / Arthrocare Implant System?',
+        question_header: 'Other Smith & Nephew Implant System',
+        question_desc: 'What was the Other Smith & Nephew Implant System?',
         enabled: false,
         required: true,
         type: 'FR',
@@ -365,7 +363,7 @@ export const right_labrum =
         question_desc: 'How many anchors were used?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'DDS',
         options: [
           { value: '1', children: [], blocks_enabled: [] },
           { value: '2', children: [], blocks_enabled: [] },

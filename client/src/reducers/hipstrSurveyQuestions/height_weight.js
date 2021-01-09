@@ -16,7 +16,7 @@ export const height_weight =
         options: [
           {
             value: 'Yes',
-            children: ['4', '5', '6', '43', '44'],
+            children: ['4', '5', '43', '44'],
             blocks_enabled: [],
           },
           {

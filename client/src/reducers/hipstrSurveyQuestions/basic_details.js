@@ -36,6 +36,7 @@ export const basic_details =
               'left_femur',
               'left_capsule',
               'other_left_details',
+              'left_diagnosis',
             ],
           },
           {
@@ -48,6 +49,7 @@ export const basic_details =
               'right_femur',
               'right_capsule',
               'other_right_details',
+              'right_diagnosis',
             ],
           },
         ],

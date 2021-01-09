@@ -33,6 +33,7 @@ const QuestionBlock = ({
   block_id,
   blocks,
   current_block,
+  blocks_seen,
   ping,
 }) => {
   // set current block & questions
@@ -71,18 +72,34 @@ const QuestionBlock = ({
     let unfinished = blocks.filter(
       (b) => b.required && b.enabled && nextDisabled(b.block_id)
     );
+    let curr_index = blocks.indexOf(
+      blocks.find((b) => b.block_id === block_id)
+    );
+
+    if (blocks_seen != undefined) {
+      for (let i = curr_index; i < blocks.length; i++) {
+        const this_block = blocks[i];
+        if (this_block.enabled && !blocks_seen.includes(blocks[i].block_id)) {
+          return false;
+        }
+      }
+    }
     return unfinished.length > 0 ? false : true;
   };
 
   const nextDisabled = (b_id = block_id) => {
-    console.log('checking to enable next');
+    console.log('checking to enable next', b_id);
     let currBlock = blocks.find((b) => b.block_id === b_id);
     let unfinished = currBlock.questions.filter(
       (q) =>
         q.required && q.enabled && (q.value === null || q.value.length === 0)
     );
-    console.log(unfinished.length > 0 ? 'not done' : 'all done');
-    return unfinished.length > 0 ? true : false;
+    console.log(
+      unfinished === undefined || unfinished.length > 0
+        ? 'not done'
+        : 'all done'
+    );
+    return unfinished === undefined || unfinished.length > 0 ? true : false;
   };
 
   const nextDisabledVar = nextDisabled();
@@ -309,6 +326,7 @@ const mapStateToProps = (state) => {
 
     block_id: state.blocks.current,
     blocks: state.blocks.blocks,
+    blocks_seen: state.blocks.blocks_seen,
   };
 };
 

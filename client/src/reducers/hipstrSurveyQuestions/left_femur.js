@@ -141,7 +141,7 @@ export const left_femur =
         id: '9',
         question_header: 'Articular Cartilage Location',
         question_desc:
-          'Using the diagram, comment on the area of GREATEST Articular Cartilage Damage?',
+          'Select on the areas of GREATEST Articular Cartilage Damage?',
         enabled: false,
         required: true,
         type: 'SATA',
@@ -161,8 +161,7 @@ export const left_femur =
       },
       {
         id: '10',
-        question_header: 'Beck Classification',
-        question_desc: 'Select Beck Classification:',
+        question_header: 'Select Beck Classification:',
         long_question_desc: [
           'Normal - Macroscopically sound cartilage',
           'Malacia - Roughening of surface, fibrillation',

@@ -92,7 +92,7 @@ export const left_acetabulum_articular_cartilage = {
       id: '5',
       question_header: 'Acetabular Lesion Location',
       question_desc:
-        'Using the diagram, comment on the area of GREATEST Articular Cartilage Damage?',
+        'Select on the areas of GREATEST Articular Cartilage Damage',
       enabled: false,
       required: true,
       type: 'SATA',
@@ -114,7 +114,7 @@ export const left_acetabulum_articular_cartilage = {
       question_desc: 'From the rim to the edge of Cotyloid Fossa',
       enabled: false,
       required: true,
-      type: 'SATA',
+      type: 'MC',
       options: [
         { value: '< 1/3', children: [], blocks_enabled: [] },
         { value: '1/3 to 2/3', children: [], blocks_enabled: [] },
@@ -124,8 +124,7 @@ export const left_acetabulum_articular_cartilage = {
     },
     {
       id: '7',
-      question_header: 'Beck Classification',
-      question_desc: 'Select Beck Classification:',
+      question_header: 'Select Beck Classification:',
       long_question_desc: [
         'Normal - Macroscopically sound cartilage',
         'Malacia - Roughening of surface, fibrillation',

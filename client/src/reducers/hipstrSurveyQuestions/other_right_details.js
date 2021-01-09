@@ -1,6 +1,6 @@
 export const other_right_details = {
   block_id: 'other_right_details',
-  block_header: 'Other Right Details',
+  block_header: 'Additional Right Hip Details',
   block_description: 'Select any further details observed on the right side',
   enabled: false,
   required: true,
@@ -10,7 +10,7 @@ export const other_right_details = {
       question_header: 'Other Right Details',
       question_desc: 'Select any further details observed on the right side',
       enabled: true,
-      required: true,
+      required: false,
       type: 'SATA',
       options: [
         { value: 'Arthroscopy', children: [], blocks_enabled: [] },

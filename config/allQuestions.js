@@ -1095,7 +1095,7 @@ export const leftLabramDetails = [
         value: 'Conmed',
       },
       {
-        value: 'Smith & Nephew / Arthrocare',
+        value: 'Smith & Nephew',
       },
       {
         value: 'Stryker / Pivot',
@@ -1121,8 +1121,8 @@ export const leftLabramDetails = [
         children: ['conmed implant system'],
       },
       {
-        value: 'Smith & Nephew / Arthrocare',
-        children: ['Smith & Nephew / Arthrocare implant sytem'],
+        value: 'Smith & Nephew',
+        children: ['Smith & Nephew implant sytem'],
       },
       {
         value: 'Stryker / Pivot',
@@ -1210,7 +1210,7 @@ export const leftLabramDetails = [
   {
     type: 'MC',
     header: 'Left Labrum Abnormality',
-    text: 'Smith & Nephew / Arthrocare Implant System?',
+    text: 'Smith & Nephew Implant System?',
     value: [],
     required: true,
     options: [
@@ -2077,7 +2077,7 @@ export const rightLabramDetails = [
         value: 'Conmed',
       },
       {
-        value: 'Smith & Nephew / Arthrocare',
+        value: 'Smith & Nephew',
       },
       {
         value: 'Stryker / Pivot',
@@ -2103,8 +2103,8 @@ export const rightLabramDetails = [
         children: ['conmed implant system'],
       },
       {
-        value: 'Smith & Nephew / Arthrocare',
-        children: ['Smith & Nephew / Arthrocare implant sytem'],
+        value: 'Smith & Nephew',
+        children: ['Smith & Nephew implant sytem'],
       },
       {
         value: 'Stryker / Pivot',
@@ -2192,7 +2192,7 @@ export const rightLabramDetails = [
   {
     type: 'MC',
     header: 'Right Labrum Abnormality',
-    text: 'Smith & Nephew / Arthrocare Implant System?',
+    text: 'Smith & Nephew Implant System?',
     value: [],
     required: true,
     options: [

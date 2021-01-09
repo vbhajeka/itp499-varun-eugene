@@ -40,11 +40,7 @@ function App({ comp, ping }) {
       <div id='artificial-background'>
         <Segment style={{ width: '100%' }} id='topBar' className='bars'>
           <Header style={{ color: 'white' }} size={'large'}>
-            <Image
-              src='https://i.pinimg.com/originals/db/a9/cf/dba9cfe0c637d9a2427893359233d261.jpg'
-              avatar
-            ></Image>
-            HIPPO Survey
+            HIPSTR Survey
           </Header>
         </Segment>
         <div

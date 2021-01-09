@@ -1,8 +1,10 @@
-import { Grid, Segment, Header, Container } from 'semantic-ui-react';
+import { Grid, Segment, Image, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import '../index.css';
 import { Fragment } from 'react';
+
+import { logo } from '../images/logo';
 
 export const TestComp = () => {
   return (
@@ -19,11 +21,12 @@ export const TestComp = () => {
                   textAlign: 'center',
                 }}
               >
-                Treatment of hip pathology through a minimally invasive
-                approach. This technique is sometimes used to help in the
-                treatment of various joint disorders and has gained popularity
-                because of the small incisions used and shorter recovery times
-                when compared with conventional surgical techniques
+                <Image
+                  src={logo}
+                  alt='Red dot'
+                  centered
+                  style={{ marginTop: '4%' }}
+                />
               </div>
             </Grid.Column>
           </Grid.Row>
