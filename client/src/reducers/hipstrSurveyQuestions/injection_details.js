@@ -21,7 +21,7 @@ export const injection_details = {
       id: '1',
       question_header: 'Injection Type',
       question_desc: 'Select the Injection Type',
-      enabled: true,
+      enabled: false,
       required: false,
       type: 'MC',
       options: [

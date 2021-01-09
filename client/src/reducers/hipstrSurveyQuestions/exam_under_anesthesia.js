@@ -25,7 +25,7 @@ export const exam_under_anesthesia_left = {
       question_desc: 'Enter range',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'DDS',
       options: [
         { value: '180', children: [], blocks_enabled: [] },
         { value: '150 to 179', children: [], blocks_enabled: [] },
@@ -43,7 +43,7 @@ export const exam_under_anesthesia_left = {
       question_desc: 'Enter range',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'DDS',
       options: [
         { value: '90', children: [], blocks_enabled: [] },
         { value: '75 to 89', children: [], blocks_enabled: [] },
@@ -65,7 +65,7 @@ export const exam_under_anesthesia_left = {
       question_desc: 'Enter range',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'DDS',
       options: [
         { value: '120', children: [], blocks_enabled: [] },
         { value: '105 to 119', children: [], blocks_enabled: [] },
@@ -113,7 +113,7 @@ export const exam_under_anesthesia_right = {
       question_desc: 'Enter range',
       enabled: false,
       required: false,
-      type: 'MC',
+      type: 'DDS',
       options: [
         { value: '180', children: [], blocks_enabled: [] },
         { value: '150 to 179', children: [], blocks_enabled: [] },
@@ -131,7 +131,7 @@ export const exam_under_anesthesia_right = {
       question_desc: 'Enter range',
       enabled: false,
       required: false,
-      type: 'MC',
+      type: 'DDS',
       options: [
         { value: '90', children: [], blocks_enabled: [] },
         { value: '75 to 89', children: [], blocks_enabled: [] },
@@ -153,7 +153,7 @@ export const exam_under_anesthesia_right = {
       question_desc: 'Enter range',
       enabled: false,
       required: false,
-      type: 'MC',
+      type: 'DDS',
       options: [
         { value: '120', children: [], blocks_enabled: [] },
         { value: '105 to 119', children: [], blocks_enabled: [] },

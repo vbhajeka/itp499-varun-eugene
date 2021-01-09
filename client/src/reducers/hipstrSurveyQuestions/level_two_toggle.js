@@ -17,6 +17,7 @@ export const level_two_toggle = {
           value: 'Yes',
           children: ['1'],
           blocks_enabled: [
+            'random_level_two_details',
             'injection_details',
             'intra_operative_comp',
             'dvt_proph',

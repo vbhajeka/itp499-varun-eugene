@@ -56,8 +56,10 @@ export const realState = {
     // prior_right
     prior_right,
 
-    // level_one_aap
-    level_one_aap,
+    // left_diagnosis
+    left_diagnosis,
+    // right_diagnosis
+    right_diagnosis,
 
     // left_labrum
     left_labrum,
@@ -73,8 +75,6 @@ export const realState = {
     other_left_details,
     // left_glute_repair
     left_glute_repair,
-    // left_diagnosis
-    left_diagnosis,
 
     // right_labrum
     right_labrum,
@@ -90,11 +90,15 @@ export const realState = {
     other_right_details,
     // right_glute_repair
     right_glute_repair,
-    // right_diagnosis
-    right_diagnosis,
+
+    // level_one_aap
+    level_one_aap,
 
     // level_two_toggle
     level_two_toggle,
+
+    // random_level_two_details
+    random_level_two_details,
 
     // exam_under_anesthesia
     exam_under_anesthesia_left,
@@ -103,9 +107,6 @@ export const realState = {
     // angle_details
     angle_details_left,
     angle_details_right,
-
-    // random_level_two_details
-    random_level_two_details,
 
     // injection_details
     injection_details,

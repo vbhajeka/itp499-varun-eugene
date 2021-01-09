@@ -7,7 +7,7 @@ export const post_op_materials = {
     {
       id: '0',
       question_header: 'Post Operative Bracing',
-      question_desc: 'Was Post Operative Bracing reccomended?',
+      question_desc: 'Was Post Operative Bracing Prescribed?',
       enabled: true,
       required: false,
       type: 'MC',
@@ -20,7 +20,7 @@ export const post_op_materials = {
     {
       id: '1',
       question_header: 'Post Operative Bracing',
-      question_desc: 'How long has it been reccomended (in weeks)?',
+      question_desc: 'How many weeks has bracing been prescribed for?',
       enabled: false,
       required: true,
       type: 'MC',
@@ -35,12 +35,12 @@ export const post_op_materials = {
     {
       id: '2',
       question_header: 'Post Operative Crutches',
-      question_desc: 'Was Post Operative Bracing reccomended?',
+      question_desc: 'Was Post Operative Bracing prescribed?',
       enabled: true,
       required: false,
       type: 'MC',
       options: [
-        { value: 'Yes', children: ['1'], blocks_enabled: [] },
+        { value: 'Yes', children: ['3'], blocks_enabled: [] },
         { value: 'No', children: [], blocks_enabled: [] },
       ],
       value: [],
@@ -48,7 +48,7 @@ export const post_op_materials = {
     {
       id: '3',
       question_header: 'Post Operative Crutches',
-      question_desc: 'How long has it been reccomended (in weeks)?',
+      question_desc: 'How many weeks have crutches been prescribed for?',
       enabled: false,
       required: true,
       type: 'MC',

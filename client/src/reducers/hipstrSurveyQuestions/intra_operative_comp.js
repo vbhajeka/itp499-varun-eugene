@@ -45,6 +45,7 @@ export const intra_operative_comp = {
         { value: 'Break', children: [], blocks_enabled: [] },
         { value: 'Pull-out', children: [], blocks_enabled: [] },
       ],
+      value: [],
     },
   ],
 };

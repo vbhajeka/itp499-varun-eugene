@@ -2,9 +2,8 @@ export const level_one_aap =
   // level_one_aap
   {
     block_id: 'level_one_aap',
-    block_header: 'Approach & Anesthesia Details',
-    block_description:
-      'Details about the Approach, Anesthesia & Paraylsis Details',
+    block_header: 'Surgery Approach Details',
+    block_description: 'Details about the Surgery Approach',
     enabled: true,
     required: true,
     questions: [

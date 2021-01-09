@@ -91,8 +91,7 @@ export const right_acetabulum_articular_cartilage = {
     {
       id: '5',
       question_header: 'Acetabular Lesion Location',
-      question_desc:
-        'Select on the areas of GREATEST Articular Cartilage Damage?',
+      question_desc: 'Select areas of GREATEST Articular Cartilage Damage',
       enabled: false,
       required: true,
       type: 'SATA',

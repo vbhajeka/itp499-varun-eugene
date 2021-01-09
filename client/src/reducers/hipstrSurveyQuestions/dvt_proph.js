@@ -20,8 +20,8 @@ export const dvt_proph = {
     {
       id: '0',
       question_header: 'DVT Prophylaxis Type',
-      question_desc: 'Select all DVT Prophylaxis Types that apply',
-      enabled: true,
+      question_desc: 'Select all that apply',
+      enabled: false,
       required: false,
       type: 'SATA',
       options: [
@@ -55,6 +55,7 @@ export const dvt_proph = {
         { value: 'Intermittent compression', children: [], blocks_enabled: [] },
         { value: 'TED hose', children: [], blocks_enabled: [] },
       ],
+      value: [],
     },
   ],
 };

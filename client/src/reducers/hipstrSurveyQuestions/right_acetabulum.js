@@ -119,7 +119,7 @@ export const right_acetabulum =
         question_desc: 'Was there a Contrecoup or Dysplasia?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Contrecoup', children: [], blocks_enabled: [] },
           { value: 'Dysplasia', children: [], blocks_enabled: [] },

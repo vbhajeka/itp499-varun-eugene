@@ -140,8 +140,7 @@ export const left_femur =
       {
         id: '9',
         question_header: 'Articular Cartilage Location',
-        question_desc:
-          'Select on the areas of GREATEST Articular Cartilage Damage?',
+        question_desc: 'Select areas of GREATEST Articular Cartilage Damage',
         enabled: false,
         required: true,
         type: 'SATA',

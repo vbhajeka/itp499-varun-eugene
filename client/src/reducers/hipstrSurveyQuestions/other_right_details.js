@@ -1,14 +1,13 @@
 export const other_right_details = {
   block_id: 'other_right_details',
   block_header: 'Additional Right Hip Details',
-  block_description: 'Select any further details observed on the right side',
   enabled: false,
   required: true,
   questions: [
     {
       id: '0',
-      question_header: 'Other Right Details',
-      question_desc: 'Select any further details observed on the right side',
+      question_header: 'Other Surgery Details',
+      question_desc: 'Select all that apply',
       enabled: true,
       required: false,
       type: 'SATA',
@@ -62,10 +61,19 @@ export const other_right_details = {
       value: [],
     },
     {
+      id: '8',
+      question_header: 'Other Right Details',
+      question_desc: 'Enter any other details observed about the right side',
+      enabled: false,
+      required: true,
+      type: 'FR',
+      fr_type: 'text',
+      value: [],
+    },
+    {
       id: '1',
       question_header: 'Iliopsoas tendon lengthening Details',
-      question_desc:
-        'Select any further details observed about the Iliopsoas tendon lengthening (Select all that apply)',
+      question_desc: 'Select all that apply',
       enabled: false,
       required: true,
       type: 'SATA',
@@ -83,8 +91,6 @@ export const other_right_details = {
     {
       id: '2',
       question_header: 'Trochanteric bursectomy Details',
-      question_desc:
-        'Select any further details observed about the Trochanteric bursectomy',
       enabled: false,
       required: true,
       type: 'MC',
@@ -97,8 +103,7 @@ export const other_right_details = {
     {
       id: '3',
       question_header: 'IT band lengthening (external snapping) Details',
-      question_desc:
-        'Select any further details observed about the IT band lengthening (external snapping, Select all that apply)',
+      question_desc: 'Select all that apply',
       enabled: false,
       required: true,
       type: 'SATA',
@@ -119,8 +124,7 @@ export const other_right_details = {
     {
       id: '4',
       question_header: 'Ligamentum Teres Details',
-      question_desc:
-        'Select any further details observed about the Ligamentum Teres (Select all that apply)',
+      question_desc: 'Select all that apply',
       enabled: false,
       required: true,
       type: 'SATA',
@@ -141,8 +145,7 @@ export const other_right_details = {
     {
       id: '5',
       question_header: 'Subchondroplasty Details',
-      question_desc:
-        'Select any further details observed about the Subchondroplasty (Select all that apply)',
+      question_desc: 'Select all that apply',
       enabled: false,
       required: true,
       type: 'SATA',
@@ -163,8 +166,7 @@ export const other_right_details = {
     {
       id: '6',
       question_header: 'Plication Details',
-      question_desc:
-        'Select any further details observed about the Plication (Select all that apply)',
+      question_desc: 'Select all that apply',
       enabled: false,
       required: true,
       type: 'SATA',
@@ -191,16 +193,6 @@ export const other_right_details = {
       id: '7',
       question_header: 'Other Plication Details',
       question_desc: 'Enter other details observed about the Plication',
-      enabled: false,
-      required: true,
-      type: 'FR',
-      fr_type: 'text',
-      value: [],
-    },
-    {
-      id: '8',
-      question_header: 'Other Right Details',
-      question_desc: 'Enter any other details observed about the right side',
       enabled: false,
       required: true,
       type: 'FR',

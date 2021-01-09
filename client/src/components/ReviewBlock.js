@@ -3,6 +3,8 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { Container, Header, Grid, Table, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
 import 'semantic-ui-css/semantic.min.css';
 
 import { submitAction } from '../actions/blockActions';
@@ -105,6 +107,8 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
             <Grid.Column></Grid.Column>
             <Grid.Column>
               <Segment
+                as={Link}
+                to='/start'
                 style={{ margin: '2%' }}
                 inverted
                 color={'green'}
