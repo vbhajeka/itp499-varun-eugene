@@ -29,7 +29,7 @@ export const right_diagnosis = {
     },
     {
       id: '12',
-      question_header: 'Steinberg Classification',
+      question_header: 'AVN: Steinberg Classification',
       question_desc: 'What is the Steinberg Classification?',
       long_question_desc: [
         'Stage 0 - normal or nondiagnostic radiographs, bone scan, and/or MRI',

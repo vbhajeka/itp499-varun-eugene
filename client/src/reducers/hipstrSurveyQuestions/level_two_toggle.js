@@ -22,7 +22,7 @@ export const level_two_toggle = {
             'intra_operative_comp',
             'dvt_proph',
             'post_op_materials',
-            'exam_under_anesthesia_left',
+            'exam_under_anesthesia',
           ],
         },
         { value: 'No', children: [], blocks_enabled: [] },

@@ -34,7 +34,7 @@ export const left_femur =
         options: [
           {
             value: 'Yes',
-            children: ['4', '5', '6', '7', 98],
+            children: ['4', '5', '6', '7', '98'],
             blocks_enabled: [],
           },
           { value: 'No', children: [], blocks_enabled: [] },
