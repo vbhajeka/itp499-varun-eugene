@@ -77,19 +77,21 @@ function App({ comp, ping }) {
             marginTop: 0,
           }}
         >
-          <Image
-            style={{
-              float: 'left',
-              height: '2em',
-              width: '2em',
-              textAlign: 'center',
-              verticalAlign: 'middle',
-              marginTop: 0,
-            }}
-            src='https://ortho.stanford.edu/sports-medicine/marc-safran-profile/_jcr_content/main/panel_builder/panel_1/image.img.320.high.jpg/marc-safran.jpg'
-            avatar
-          ></Image>
-          Dr. Marc Safran
+          <Header size={'tiny'}>
+            <Image
+              style={{
+                float: 'left',
+                height: '2em',
+                width: '2em',
+                textAlign: 'center',
+                verticalAlign: 'middle',
+                marginTop: 0,
+              }}
+              src='https://ortho.stanford.edu/sports-medicine/marc-safran-profile/_jcr_content/main/panel_builder/panel_1/image.img.320.high.jpg/marc-safran.jpg'
+              avatar
+            ></Image>
+            Dr. Marc Safran
+          </Header>
         </Segment>
       </Segment>
     </div>

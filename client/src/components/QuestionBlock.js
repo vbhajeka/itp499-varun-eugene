@@ -127,11 +127,19 @@ const QuestionBlock = ({
   };
 
   const getProgress = () => {
-    return Math.floor(
-      (blocks.indexOf(blocks.find((b) => b.block_id === block_id)) /
-        blocks.length) *
-        100
-    );
+    const numEnabled = blocks.filter((b) => b.enabled);
+    let numCompleted = 1;
+    for (
+      let i = 0;
+      i < blocks.indexOf(blocks.find((b) => b.block_id === block_id));
+      i++
+    ) {
+      if (blocks[i].enabled) {
+        numCompleted++;
+      }
+    }
+    console.log(Math.floor((numCompleted / numEnabled.length) * 100));
+    return Math.floor((numCompleted / numEnabled.length) * 100);
   };
 
   const nextBlockActionLocal = () => {
@@ -145,7 +153,7 @@ const QuestionBlock = ({
 
   return (
     <Fragment>
-      <Progress percent={getProgress()} color={'blue'} progress />
+      <Progress percent={getProgress()} color={'blue'} progress active />
       <Container
         fluid
         id='header'
@@ -156,9 +164,16 @@ const QuestionBlock = ({
           borderRadius: '10px',
         }}
       >
-        <Header size={'tiny'} color={'blue'} style={{ fontSize: '70%' }}>
-          {current_block.block_header}
-        </Header>
+        {current_block.required && (
+          <Header size={'tiny'} color={'blue'} style={{ fontSize: '70%' }}>
+            {current_block.block_header}
+          </Header>
+        )}
+        {!current_block.required && (
+          <Header size={'tiny'} color={'orange'} style={{ fontSize: '70%' }}>
+            {current_block.block_header} (Optional)
+          </Header>
+        )}
         <Container text fluid>
           <p>{current_block.block_description}</p>
         </Container>

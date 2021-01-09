@@ -1,6 +1,6 @@
 export const random_level_two_details = {
   block_id: 'random_level_two_details',
-  block_header: 'Paralysis, Operation Time, & Anesthesia Details',
+  block_header: 'Operative Details',
   enabled: false,
   required: false,
   questions: [
@@ -71,7 +71,7 @@ export const random_level_two_details = {
     {
       id: '5',
       question_header: 'Paralysis',
-      question_desc: 'Was there paralysis observed?',
+      question_desc: 'Was there paralysis utilized?',
       enabled: true,
       required: false,
       type: 'MC',

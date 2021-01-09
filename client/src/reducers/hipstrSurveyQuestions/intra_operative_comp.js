@@ -28,7 +28,7 @@ export const intra_operative_comp = {
           blocks_enabled: [],
         },
         {
-          value: 'Penetrate joint while drilling or anchro placement',
+          value: 'Penetrate joint while drilling or anchor placement',
           children: [],
           blocks_enabled: [],
         },

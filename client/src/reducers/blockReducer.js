@@ -8,6 +8,7 @@ import {
 } from '../actions/types';
 
 import { realState } from './realState';
+let initState = JSON.parse(JSON.stringify(realState));
 
 const enableChildrenRec = (block, currQ, option_selected, toEnable) => {
   // base cases
@@ -181,6 +182,7 @@ export default function reducer(state = realState, action) {
 
   switch (type) {
     case SELECT_MC_SATA:
+      console.log(initState);
       return { ...selectMC_SATABody(state, payload) };
     case DROPDOWN_SELECT:
       return { ...dropdownSelectBody(state, payload) };
@@ -191,7 +193,9 @@ export default function reducer(state = realState, action) {
     case PREV_BLOCK:
       return { ...prevBlockActionBody(state, payload) };
     case SUBMIT_SURVEY:
-      return state;
+      let temp = JSON.parse(JSON.stringify(initState));
+      initState = JSON.parse(JSON.stringify(temp));
+      return { ...temp };
     default:
       return state;
   }

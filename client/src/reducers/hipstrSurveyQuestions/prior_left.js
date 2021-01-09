@@ -4,7 +4,7 @@ export const prior_left =
     block_id: 'prior_left',
     block_header: 'Prior Surgical History: Left Hip',
     block_description: "Details of Patient's prior surgery on the left hip",
-    enabled: true,
+    enabled: false,
     required: true,
     questions: [
       {
@@ -37,7 +37,7 @@ export const prior_left =
         type: 'MC',
         options: [
           {
-            value: 'Arthrosocpy',
+            value: 'Arthroscopy',
             children: [],
             blocks_enabled: [],
           },
@@ -114,7 +114,7 @@ export const prior_left =
         type: 'SATA',
         options: [
           {
-            value: 'Arthrosocpy',
+            value: 'Arthroscopy',
             children: [],
             blocks_enabled: [],
           },

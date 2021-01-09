@@ -73,10 +73,10 @@ export const other_left_details = {
     {
       id: '1',
       question_header: 'Iliopsoas tendon lengthening Details',
-      question_desc: 'Select all that apply',
+      question_desc: 'At what level was the Iliopsoas tendon lengthened?',
       enabled: false,
       required: true,
-      type: 'SATA',
+      type: 'MC',
       options: [
         { value: 'Central compartment', children: [], blocks_enabled: [] },
         {
@@ -95,7 +95,7 @@ export const other_left_details = {
       required: true,
       type: 'MC',
       options: [
-        { value: 'IT Band Sparring', children: [], blocks_enabled: [] },
+        { value: 'IT Band Sparing', children: [], blocks_enabled: [] },
         { value: 'Tenoplasty', children: [], blocks_enabled: [] },
       ],
       value: [],

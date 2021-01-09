@@ -123,12 +123,13 @@ export const left_acetabulum_articular_cartilage = {
     },
     {
       id: '7',
-      question_header: 'Select Beck Classification:',
+      question_header:
+        'Select Beck Classification for area of greatest damage:',
       long_question_desc: [
         'Normal - Macroscopically sound cartilage',
         'Malacia - Roughening of surface, fibrillation',
-        'Debonding - Loss of fixation to the subchronial bone, macroscopically sound cartialge, carpet phenomenon',
-        'Cleavage - Loss of fixation to the suchronial bone, frayed edges, thinning of cartilage',
+        'Debonding - Loss of fixation to the subchondral bone, macroscopically sound cartilage, carpet phenomenon',
+        'Cleavage - Loss of fixation to the subchondral bone, frayed edges, thinning of cartilage',
         'Defect - Full thickness defect',
       ],
       enabled: false,

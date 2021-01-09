@@ -7,7 +7,7 @@ export const injection_details = {
     {
       id: '0',
       question_header: 'Injections',
-      question_desc: 'Were there any injections during or after the case?',
+      question_desc: 'Were there any injections after the case?',
       enabled: true,
       required: false,
       type: 'MC',
@@ -23,13 +23,14 @@ export const injection_details = {
       question_desc: 'Select the Injection Type',
       enabled: false,
       required: false,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'BMAC', children: ['2'], blocks_enabled: [] },
         { value: 'PRP', children: ['3'], blocks_enabled: [] },
         { value: 'HA', children: ['4'], blocks_enabled: [] },
         { value: 'Anesthetic', children: ['5'], blocks_enabled: [] },
         { value: 'Stem Cells', children: ['6'], blocks_enabled: [] },
+        { value: 'Cortisone', children: ['8'], blocks_enabled: [] },
         { value: 'Other', children: ['7'], blocks_enabled: [] },
       ],
       value: [],
@@ -85,6 +86,18 @@ export const injection_details = {
     {
       id: '6',
       question_header: 'Stem Cells',
+      enabled: false,
+      required: true,
+      type: 'SATA',
+      options: [
+        { value: 'Intra-articular', children: [], blocks_enabled: [] },
+        { value: 'Extra-articular', children: [], blocks_enabled: [] },
+      ],
+      value: [],
+    },
+    {
+      id: '8',
+      question_header: 'Cortisone',
       enabled: false,
       required: true,
       type: 'SATA',

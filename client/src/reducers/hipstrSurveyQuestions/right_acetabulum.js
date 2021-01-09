@@ -3,7 +3,7 @@ export const right_acetabulum =
   {
     block_id: 'right_acetabulum',
     block_header: 'Right Acetabulum Details',
-    block_description: 'Details about the Right Acetabulum Labrum',
+    block_description: 'Details about the Right Bony Acetabulum ',
     enabled: false,
     required: true,
     questions: [
@@ -115,14 +115,27 @@ export const right_acetabulum =
       },
       {
         id: '4',
-        question_header: 'Contrecoup & Dysplasia',
-        question_desc: 'Was there a Contrecoup or Dysplasia?',
+        question_header: 'Contrecoup',
+        question_desc: 'Was there a Contrecoup?',
         enabled: false,
         required: true,
         type: 'SATA',
         options: [
-          { value: 'Contrecoup', children: [], blocks_enabled: [] },
-          { value: 'Dysplasia', children: [], blocks_enabled: [] },
+          { value: 'Yes', children: [], blocks_enabled: [] },
+          { value: 'No', children: [], blocks_enabled: [] },
+        ],
+        value: [],
+      },
+      {
+        id: '5',
+        question_header: 'Dysplasia',
+        question_desc: 'Was there a Dysplasia?',
+        enabled: false,
+        required: true,
+        type: 'SATA',
+        options: [
+          { value: 'Yes', children: [], blocks_enabled: [] },
+          { value: 'No', children: [], blocks_enabled: [] },
         ],
         value: [],
       },

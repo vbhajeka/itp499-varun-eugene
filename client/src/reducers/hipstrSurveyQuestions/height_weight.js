@@ -8,30 +8,10 @@ export const height_weight =
     required: true,
     questions: [
       {
-        id: '3',
-        question_header: "Was the patient's Height and Weight recorded?",
-        enabled: true,
-        required: true,
-        type: 'MC',
-        options: [
-          {
-            value: 'Yes',
-            children: ['4', '5', '43', '44'],
-            blocks_enabled: [],
-          },
-          {
-            value: 'No',
-            children: [],
-            blocks_enabled: [],
-          },
-        ],
-        value: [],
-      },
-      {
         id: '4',
         question_header: 'Patient Height',
         question_desc: 'Height',
-        enabled: false,
+        enabled: true,
         required: true,
         type: 'FR',
         fr_type: 'number',
@@ -42,7 +22,7 @@ export const height_weight =
         id: '43',
         question_header: 'Height Unit',
         question_desc: 'What unit was used to measure height?',
-        enabled: false,
+        enabled: true,
         required: true,
         type: 'MC',
         options: [
@@ -55,7 +35,7 @@ export const height_weight =
         id: '5',
         question_header: 'Patient Weight',
         question_desc: 'Weight in Pounds',
-        enabled: false,
+        enabled: true,
         required: true,
         type: 'FR',
         fr_type: 'number',
@@ -66,7 +46,7 @@ export const height_weight =
         id: '44',
         question_header: 'Weight Unit',
         question_desc: 'What unit was used to measure weight?',
-        enabled: false,
+        enabled: true,
         required: true,
         type: 'MC',
         options: [
@@ -75,16 +55,5 @@ export const height_weight =
         ],
         value: [],
       },
-      // {
-      //   id: '6',
-      //   question_header: 'Patient BMI',
-      //   question_desc: 'Body Mass Index',
-      //   enabled: false,
-      //   required: true,
-      //   type: 'FR',
-      //   fr_type: 'number',
-      //   children: [],
-      //   value: [],
-      // },
     ],
   };

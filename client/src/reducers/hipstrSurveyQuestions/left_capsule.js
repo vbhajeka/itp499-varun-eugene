@@ -2,8 +2,8 @@ export const left_capsule =
   // left_capsule
   {
     block_id: 'left_capsule',
-    block_header: 'Left Capsule Details',
-    block_description: 'Details about the Left Capsule',
+    block_header: 'Left Hip Capsule Details',
+    block_description: 'Details about the Left Hip Capsule',
     enabled: false,
     required: true,
     questions: [
@@ -23,12 +23,25 @@ export const left_capsule =
       {
         id: '1',
         question_header: 'Capsulotomy',
-        question_desc: 'Was there Capsulotomy?',
+        question_desc: 'Was a Capsulotomy performed?',
         enabled: false,
         required: true,
         type: 'MC',
         options: [
-          { value: 'Yes', children: ['2'], blocks_enabled: [] },
+          { value: 'Yes', children: ['2', '69'], blocks_enabled: [] },
+          { value: 'No', children: [], blocks_enabled: [] },
+        ],
+        value: [],
+      },
+      {
+        id: '69',
+        question_header: 'Capsulotomy',
+        question_desc: 'Was there a Capsulotomy defect?',
+        enabled: false,
+        required: true,
+        type: 'MC',
+        options: [
+          { value: 'Yes', children: [], blocks_enabled: [] },
           { value: 'No', children: [], blocks_enabled: [] },
         ],
         value: [],
@@ -41,7 +54,7 @@ export const left_capsule =
         required: true,
         type: 'MC',
         options: [
-          { value: 'Inner-portal', children: ['3'], blocks_enabled: [] },
+          { value: 'Inter-portal', children: ['3'], blocks_enabled: [] },
           { value: 'T-Capsulotomy', children: ['5'], blocks_enabled: [] },
           { value: 'Perl-portal', children: ['6'], blocks_enabled: [] },
           { value: 'Other', children: ['65'], blocks_enabled: [] },
@@ -62,7 +75,8 @@ export const left_capsule =
       {
         id: '3',
         question_header: 'Interportal',
-        question_desc: 'What was the status of the Interportal?',
+        question_desc:
+          'After the procedure, what was done with the Capsulotomy?',
         enabled: false,
         required: true,
         type: 'MC',
@@ -76,7 +90,8 @@ export const left_capsule =
       {
         id: '5',
         question_header: 'T-Capsulotomy',
-        question_desc: 'What was the status of the T-Capsulotomy?',
+        question_desc:
+          'After the procedure, what was done with the Capsulotomy?',
         enabled: false,
         required: true,
         type: 'MC',
@@ -90,13 +105,13 @@ export const left_capsule =
       {
         id: '6',
         question_header: 'Perl-portal',
-        question_desc: 'What was the status of the Perl-portal?',
+        question_desc:
+          'After the procedure, what was done with the Capsulotomy?',
         enabled: false,
         required: true,
         type: 'MC',
         options: [
           { value: 'Not closed', children: [], blocks_enabled: [] },
-          { value: 'Partially Closed', children: ['4'], blocks_enabled: [] },
           { value: 'Fully Closed', children: ['4'], blocks_enabled: [] },
         ],
         value: [],

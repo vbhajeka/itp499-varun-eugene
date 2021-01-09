@@ -25,7 +25,8 @@ export const post_op_materials = {
       required: true,
       type: 'MC',
       options: [
-        { value: '0 - 4', children: [], blocks_enabled: [] },
+        { value: '< 2', children: [], blocks_enabled: [] },
+        { value: '2 - 4', children: [], blocks_enabled: [] },
         { value: '5 - 8', children: [], blocks_enabled: [] },
         { value: '9 - 12', children: [], blocks_enabled: [] },
         { value: '12 +', children: [], blocks_enabled: [] },
@@ -53,7 +54,8 @@ export const post_op_materials = {
       required: true,
       type: 'MC',
       options: [
-        { value: '0 - 4', children: [], blocks_enabled: [] },
+        { value: '< 2', children: [], blocks_enabled: [] },
+        { value: '2 - 4', children: [], blocks_enabled: [] },
         { value: '5 - 8', children: [], blocks_enabled: [] },
         { value: '9 - 12', children: [], blocks_enabled: [] },
         { value: '12 +', children: [], blocks_enabled: [] },

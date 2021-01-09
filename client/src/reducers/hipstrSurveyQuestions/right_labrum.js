@@ -16,7 +16,24 @@ export const right_labrum =
         type: 'MC',
         options: [
           { value: 'Normal', children: [], blocks_enabled: [] },
-          { value: 'Abnormal', children: ['1'], blocks_enabled: [] },
+          {
+            value: 'Abnormal',
+            children: ['1', '50', '20'],
+            blocks_enabled: [],
+          },
+        ],
+        value: [],
+      },
+      {
+        id: '50',
+        question_header: 'Right Labrum',
+        question_desc: 'Was this a takedown for reformation?',
+        enabled: false,
+        required: true,
+        type: 'MC',
+        options: [
+          { value: 'Yes', children: [], blocks_enabled: [] },
+          { value: 'No', children: [], blocks_enabled: [] },
         ],
         value: [],
       },
@@ -28,19 +45,71 @@ export const right_labrum =
         required: true,
         type: 'MC',
         options: [
-          { value: 'Yes', children: ['2', '3', '4'], blocks_enabled: [] },
+          { value: 'Yes', children: ['2', '3', '4', '69'], blocks_enabled: [] },
           {
             value: 'No',
-            children: ['20', '21', '22', '23'],
+            children: ['21', '22', '23'],
             blocks_enabled: [],
           },
         ],
         value: [],
       },
       {
+        id: '69',
+        question_header: 'Right Labral Tear',
+        question_desc: 'What was the type of Labral Tear?',
+        enabled: false,
+        required: true,
+        type: 'MC',
+        options: [
+          { value: 'Flap', children: [], blocks_enabled: [] },
+          { value: 'Fibrilled', children: [], blocks_enabled: [] },
+          { value: 'Degenerative', children: [], blocks_enabled: [] },
+          { value: 'Radial', children: [], blocks_enabled: [] },
+          {
+            value: 'Labral Chondrial Separation',
+            children: [],
+            blocks_enabled: [],
+          },
+        ],
+        value: [],
+      },
+      {
+        id: '20',
+        question_header: 'Other Labrum Abnormalities',
+        question_desc: 'What other Labrum abnormalites were observed?',
+        enabled: false,
+        required: true,
+        type: 'SATA',
+        options: [
+          {
+            value: 'Hypertrophic',
+            children: [],
+            blocks_enabled: [],
+          },
+          { value: 'Hypotrophic', children: [], blocks_enabled: [] },
+          { value: 'Ossified', children: [], blocks_enabled: [] },
+          { value: 'Calcific', children: [], blocks_enabled: [] },
+          { value: 'Mucinoid', children: [], blocks_enabled: [] },
+          { value: 'Other', children: ['63'], blocks_enabled: [] },
+        ],
+        value: [],
+      },
+      {
+        id: '63',
+        question_header: 'Other Labrum Abnormalities',
+        question_desc: 'What was the Other Labrum Abnormalities System?',
+        enabled: false,
+        required: true,
+        type: 'FR',
+        fr_type: 'text',
+        options: [],
+        value: [],
+      },
+      {
         id: '2',
         question_header: 'Tear clockface "from"',
-        question_desc: 'Enter starting clockface tear',
+        long_question_desc: ["Anterior - 3 o'clock", "Lateral - 12 o'clock"],
         enabled: false,
         required: true,
         type: 'DDS',
@@ -63,7 +132,7 @@ export const right_labrum =
       {
         id: '3',
         question_header: 'Tear clockface "to"',
-        question_desc: 'Enter ending clockface tear',
+        long_question_desc: ["Anterior - 3 o'clock", "Lateral - 12 o'clock"],
         enabled: false,
         required: true,
         type: 'DDS',
@@ -95,7 +164,7 @@ export const right_labrum =
           { value: 'Labrectomy', children: [], blocks_enabled: [] },
           {
             value: 'Repair',
-            children: ['5', '6', '7', '8', '9', '10'],
+            children: ['6', '7', '8', '9', '10'],
             blocks_enabled: [],
           },
           {
@@ -103,23 +172,16 @@ export const right_labrum =
             children: ['18', '19', '6', '7', '8', '9'],
             blocks_enabled: [],
           },
+          {
+            value: 'Augmentation',
+            children: ['18', '19', '6', '7', '8', '9'],
+            blocks_enabled: [],
+          },
           { value: 'None', children: [], blocks_enabled: [] },
         ],
         value: [],
       },
-      {
-        id: '5',
-        question_header: 'Repair Type',
-        question_desc: 'What type of repair was this?',
-        enabled: false,
-        required: true,
-        type: 'MC',
-        options: [
-          { value: 'Primary', children: [], blocks_enabled: [] },
-          { value: 'Revision', children: [], blocks_enabled: [] },
-        ],
-        value: [],
-      },
+
       {
         id: '18',
         question_header: 'Type of Labral Graft',
@@ -136,7 +198,7 @@ export const right_labrum =
       {
         id: '19',
         question_header: 'Length of Graft',
-        question_desc: 'What was the length of the Graft?',
+        question_desc: 'What was the length of the Graft in centimeters?',
         enabled: false,
         required: true,
         type: 'FR',
@@ -150,7 +212,7 @@ export const right_labrum =
         question_desc: 'Who manufactured the implant?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Arthex', children: ['11'], blocks_enabled: [] },
           { value: 'Biomet', children: ['12'], blocks_enabled: [] },
@@ -183,7 +245,7 @@ export const right_labrum =
         question_desc: 'What was the Arthex Implant System?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Pushlock', children: [], blocks_enabled: [] },
           {
@@ -219,7 +281,7 @@ export const right_labrum =
         question_desc: 'What was the Biomet Implant System?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           {
             value: 'Juggerknot Long Soft Anchor',
@@ -247,7 +309,7 @@ export const right_labrum =
         question_desc: 'What was the Conmed Implant System?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           {
             value: 'Poplok',
@@ -278,7 +340,7 @@ export const right_labrum =
         question_desc: 'What was the Smith & Nephew Implant System?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Bioraptor Knotless', children: [], blocks_enabled: [] },
           { value: 'Bioraptor PK', children: [], blocks_enabled: [] },
@@ -287,6 +349,7 @@ export const right_labrum =
           { value: 'Mini Magnum Plus', children: [], blocks_enabled: [] },
           { value: 'Osteoraptor', children: [], blocks_enabled: [] },
           { value: 'Q-Fix', children: [], blocks_enabled: [] },
+          { value: 'Mini Q-Fix', children: [], blocks_enabled: [] },
           { value: 'Speedlock', children: [], blocks_enabled: [] },
           { value: 'Speedlock Plus', children: [], blocks_enabled: [] },
           { value: 'Speedlock Ultra', children: [], blocks_enabled: [] },
@@ -311,7 +374,7 @@ export const right_labrum =
         question_desc: 'What was the Stryker / Pivot Implant System?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Iconix', children: [], blocks_enabled: [] },
           { value: 'Pivot Cinchlock SS', children: [], blocks_enabled: [] },
@@ -337,7 +400,7 @@ export const right_labrum =
         question_desc: 'What was the Medacta Implant System?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Mectalock PPEK', children: [], blocks_enabled: [] },
           { value: 'Mectalock TI', children: [], blocks_enabled: [] },
@@ -384,7 +447,7 @@ export const right_labrum =
         question_desc: 'What was the material of the anchor?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'All-suture Based', children: [], blocks_enabled: [] },
           { value: 'Metal', children: [], blocks_enabled: [] },
@@ -399,7 +462,7 @@ export const right_labrum =
         question_desc: 'What type of anchor was used?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Knotted', children: [], blocks_enabled: [] },
           { value: 'Knotless', children: [], blocks_enabled: [] },
@@ -412,49 +475,18 @@ export const right_labrum =
         question_desc: 'What was the suture configuration?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Simple', children: [], blocks_enabled: [] },
-          { value: 'Matrress', children: [], blocks_enabled: [] },
+          { value: 'Mattress', children: [], blocks_enabled: [] },
           { value: 'Hybrid', children: [], blocks_enabled: [] },
         ],
         value: [],
       },
       {
-        id: '20',
-        question_header: 'Other Labrum Abnormalities',
-        question_desc: 'What other Labrum abnormalites were observed?',
-        enabled: false,
-        required: true,
-        type: 'SATA',
-        options: [
-          {
-            value: 'Hypertrophic',
-            children: [],
-            blocks_enabled: [],
-          },
-          { value: 'Hypotrophic', children: [], blocks_enabled: [] },
-          { value: 'Ossified', children: [], blocks_enabled: [] },
-          { value: 'Calcific', children: [], blocks_enabled: [] },
-          { value: 'Other', children: ['63'], blocks_enabled: [] },
-        ],
-        value: [],
-      },
-      {
-        id: '63',
-        question_header: 'Other Labrum Abnormalities',
-        question_desc: 'What was the Other Labrum Abnormalities System?',
-        enabled: false,
-        required: true,
-        type: 'FR',
-        fr_type: 'text',
-        options: [],
-        value: [],
-      },
-      {
         id: '21',
         question_header: 'Other clockface "from"',
-        question_desc: 'Enter starting clockface tear',
+        long_question_desc: ["Anterior - 3 o'clock", "Lateral - 12 o'clock"],
         enabled: false,
         required: true,
         type: 'DDS',
@@ -477,7 +509,7 @@ export const right_labrum =
       {
         id: '22',
         question_header: 'Other clockface "to"',
-        question_desc: 'Enter ending clockface tear',
+        long_question_desc: ["Anterior - 3 o'clock", "Lateral - 12 o'clock"],
         enabled: false,
         required: true,
         type: 'DDS',
@@ -507,7 +539,7 @@ export const right_labrum =
         options: [
           { value: 'None', children: [], blocks_enabled: [] },
           {
-            value: 'Debridement / Reserction',
+            value: 'Debridement / Resection',
             children: [],
             blocks_enabled: [],
           },

@@ -29,11 +29,11 @@ export const left_glute_repair = {
     {
       id: '1',
       question_header: 'Size of Lesion',
-      question_desc: 'Enter the Size of the Lesion',
+      question_desc: 'Enter the Size of the Lesion (in cm)',
       enabled: true,
       required: true,
       type: 'FR',
-      fr_type: 'number',
+      fr_type: 'text',
       value: [],
     },
     {
@@ -42,7 +42,7 @@ export const left_glute_repair = {
       question_desc: 'Who manufactured the implant?',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Arthex', children: ['11'], blocks_enabled: [] },
         { value: 'Biomet', children: ['12'], blocks_enabled: [] },
@@ -75,7 +75,7 @@ export const left_glute_repair = {
       question_desc: 'What was the Arthex Implant System?',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Pushlock', children: [], blocks_enabled: [] },
         {
@@ -111,7 +111,7 @@ export const left_glute_repair = {
       question_desc: 'What was the Biomet Implant System?',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         {
           value: 'Juggerknot Long Soft Anchor',
@@ -139,7 +139,7 @@ export const left_glute_repair = {
       question_desc: 'What was the Conmed Implant System?',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         {
           value: 'Poplok',
@@ -170,7 +170,7 @@ export const left_glute_repair = {
       question_desc: 'What was the Smith & Nephew Implant System?',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Bioraptor Knotless', children: [], blocks_enabled: [] },
         { value: 'Bioraptor PK', children: [], blocks_enabled: [] },
@@ -179,6 +179,7 @@ export const left_glute_repair = {
         { value: 'Mini Magnum Plus', children: [], blocks_enabled: [] },
         { value: 'Osteoraptor', children: [], blocks_enabled: [] },
         { value: 'Q-Fix', children: [], blocks_enabled: [] },
+        { value: 'Mini Q-Fix', children: [], blocks_enabled: [] },
         { value: 'Speedlock', children: [], blocks_enabled: [] },
         { value: 'Speedlock Plus', children: [], blocks_enabled: [] },
         { value: 'Speedlock Ultra', children: [], blocks_enabled: [] },
@@ -203,7 +204,7 @@ export const left_glute_repair = {
       question_desc: 'What was the Stryker / Pivot Implant System?',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Iconix', children: [], blocks_enabled: [] },
         { value: 'Pivot Cinchlock SS', children: [], blocks_enabled: [] },
@@ -215,7 +216,7 @@ export const left_glute_repair = {
     {
       id: '63',
       question_header: 'Other Stryker / Pivot Implant System',
-      question_desc: 'What was the Other SStryker / Pivot Implant System?',
+      question_desc: 'What was the Other Stryker / Pivot Implant System?',
       enabled: false,
       required: true,
       type: 'FR',
@@ -229,7 +230,7 @@ export const left_glute_repair = {
       question_desc: 'What was the Medacta Implant System?',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Mectalock PPEK', children: [], blocks_enabled: [] },
         { value: 'Mectalock TI', children: [], blocks_enabled: [] },
@@ -266,7 +267,7 @@ export const left_glute_repair = {
       question_desc: 'What was the material of the anchor?',
       enabled: true,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'All-suture Based', children: [], blocks_enabled: [] },
         { value: 'Metal', children: [], blocks_enabled: [] },
@@ -281,7 +282,7 @@ export const left_glute_repair = {
       question_desc: 'What type of anchor was used?',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Knotted', children: [], blocks_enabled: [] },
         { value: 'Knotless', children: [], blocks_enabled: [] },
@@ -290,8 +291,8 @@ export const left_glute_repair = {
     },
     {
       id: '2',
-      question_header: 'Row',
-      question_desc: 'How many rows were used?',
+      question_header: 'Gluteus Repair Formation',
+      question_desc: 'What was the formation',
       enabled: true,
       required: true,
       type: 'MC',

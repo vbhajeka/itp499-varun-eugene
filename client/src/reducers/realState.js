@@ -25,10 +25,7 @@ import { right_diagnosis } from './hipstrSurveyQuestions/right_diagnosis';
 
 import { level_two_toggle } from './hipstrSurveyQuestions/level_two_toggle';
 
-import {
-  exam_under_anesthesia_left,
-  exam_under_anesthesia_right,
-} from './hipstrSurveyQuestions/exam_under_anesthesia';
+import { exam_under_anesthesia } from './hipstrSurveyQuestions/exam_under_anesthesia';
 
 import {
   angle_details_left,
@@ -101,8 +98,7 @@ export const realState = {
     random_level_two_details,
 
     // exam_under_anesthesia
-    exam_under_anesthesia_left,
-    exam_under_anesthesia_right,
+    exam_under_anesthesia,
 
     // angle_details
     angle_details_left,

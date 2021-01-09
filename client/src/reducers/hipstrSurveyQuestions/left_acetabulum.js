@@ -3,7 +3,7 @@ export const left_acetabulum =
   {
     block_id: 'left_acetabulum',
     block_header: 'Left Acetabulum Details',
-    block_description: 'Details about the Acetabulum Labrum',
+    block_description: 'Details about the Bony Acetabulum',
     enabled: false,
     required: true,
     questions: [
@@ -18,7 +18,7 @@ export const left_acetabulum =
           { value: 'Normal', children: [], blocks_enabled: [] },
           {
             value: 'Abnormal',
-            children: ['1', '2', '3', '4'],
+            children: ['1', '2', '3', '4', '5'],
             blocks_enabled: [],
           },
         ],
@@ -115,14 +115,27 @@ export const left_acetabulum =
       },
       {
         id: '4',
-        question_header: 'Contrecoup & Dysplasia',
-        question_desc: 'Was there a Contrecoup or Dysplasia?',
+        question_header: 'Contrecoup',
+        question_desc: 'Was there a Contrecoup?',
         enabled: false,
         required: true,
         type: 'SATA',
         options: [
-          { value: 'Contrecoup', children: [], blocks_enabled: [] },
-          { value: 'Dysplasia', children: [], blocks_enabled: [] },
+          { value: 'Yes', children: [], blocks_enabled: [] },
+          { value: 'No', children: [], blocks_enabled: [] },
+        ],
+        value: [],
+      },
+      {
+        id: '5',
+        question_header: 'Dysplasia',
+        question_desc: 'Was there a  Dysplasia?',
+        enabled: false,
+        required: true,
+        type: 'SATA',
+        options: [
+          { value: 'Yes', children: [], blocks_enabled: [] },
+          { value: 'No', children: [], blocks_enabled: [] },
         ],
         value: [],
       },

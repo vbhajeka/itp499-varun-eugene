@@ -81,7 +81,7 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
                 >
                   {block.block_header}
                 </Header>
-                <Table celled style={{ fontSize: '45%' }}>
+                <Table striped celled style={{ fontSize: '45%' }}>
                   <Table.Body>
                     {block.questions.map(
                       (q) =>
@@ -91,7 +91,9 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
                             <Table.Cell width={'8'}>
                               {q.question_header}
                             </Table.Cell>
-                            <Table.Cell>{getVals(q.value)}</Table.Cell>
+                            <Table.Cell>
+                              <Header size={'tiny'}>{getVals(q.value)}</Header>
+                            </Table.Cell>
                           </Table.Row>
                         )
                     )}
@@ -104,19 +106,30 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
       <Container style={{ position: 'absolute', bottom: '3.6%' }}>
         <Grid>
           <Grid.Row columns={'3'}>
-            <Grid.Column></Grid.Column>
             <Grid.Column>
-              <Segment
-                as={Link}
-                to='/start'
-                style={{ margin: '2%' }}
-                inverted
-                color={'green'}
-                onClick={() => reviewClicked()}
-                className={'buttonSegEnabled'}
-              >
-                Submit
-              </Segment>
+              <Link to='/'>
+                <Segment
+                  style={{ margin: '2%' }}
+                  inverted
+                  color={'blue'}
+                  className={'buttonSegEnabled'}
+                >
+                  Previous Question
+                </Segment>
+              </Link>
+            </Grid.Column>
+            <Grid.Column>
+              <Link to='/start'>
+                <Segment
+                  style={{ margin: '2%' }}
+                  inverted
+                  color={'green'}
+                  onClick={() => reviewClicked()}
+                  className={'buttonSegEnabled'}
+                >
+                  Submit
+                </Segment>
+              </Link>
             </Grid.Column>
             <Grid.Column></Grid.Column>
           </Grid.Row>

@@ -2,13 +2,13 @@ export const level_two_toggle = {
   block_id: 'level_two_toggle',
   block_header: 'Further Details',
   enabled: true,
-  required: true,
+  required: false,
   questions: [
     {
       id: '0',
-      question_header: 'Do you have more details to report about this surgery?',
-      question_desc:
-        'This includes details such as alpha angle, tonnis, PROM, and others. All further fields will be optional',
+      question_header:
+        'Would you like to provide more details about the surgery?',
+      question_desc: 'This includes radiographic and operative findings',
       enabled: true,
       required: true,
       type: 'MC',
@@ -22,6 +22,7 @@ export const level_two_toggle = {
             'intra_operative_comp',
             'dvt_proph',
             'post_op_materials',
+            'exam_under_anesthesia_left',
           ],
         },
         { value: 'No', children: [], blocks_enabled: [] },
@@ -39,15 +40,12 @@ export const level_two_toggle = {
         {
           value: 'Left',
           children: [],
-          blocks_enabled: ['exam_under_anesthesia_left', 'angle_details_left'],
+          blocks_enabled: ['angle_details_left'],
         },
         {
           value: 'Right',
           children: [],
-          blocks_enabled: [
-            'exam_under_anesthesia_right',
-            'angle_details_right',
-          ],
+          blocks_enabled: ['angle_details_right'],
         },
       ],
       value: [],

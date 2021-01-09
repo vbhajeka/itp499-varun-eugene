@@ -30,6 +30,7 @@ export const basic_details =
             value: 'Left',
             children: [],
             blocks_enabled: [
+              'prior_left',
               'left_labrum',
               'left_acetabulum',
               'left_acetabulum_articular_cartilage',
@@ -43,6 +44,7 @@ export const basic_details =
             value: 'Right',
             children: [],
             blocks_enabled: [
+              'prior_right',
               'right_labrum',
               'right_acetabulum',
               'right_acetabulum_articular_cartilage',

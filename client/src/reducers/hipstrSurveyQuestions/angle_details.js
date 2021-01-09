@@ -3,12 +3,12 @@ export const angle_details_left = {
   block_header: 'Hip Angle Details - Left',
   block_description: 'Details about the Angle of the Hip',
   enabled: false,
-  required: true,
+  required: false,
   questions: [
     {
       id: '33',
       question_header: 'Left Center Edge Angle',
-      question_desc: 'Enter the Left Center Edge Angle',
+      question_desc: 'Enter the Left Center Edge Angle to the Sourcil',
       enabled: true,
       required: false,
       type: 'FR',
@@ -18,14 +18,11 @@ export const angle_details_left = {
     {
       id: '34',
       question_header: 'Left Center Edge Angle',
-      question_desc: 'Enter the type of edge angle',
+      question_desc: 'Enter the Left Center Edge Angle to the Edge',
       enabled: true,
       required: false,
-      type: 'MC',
-      options: [
-        { value: 'Sourcil', children: [], blocks_enabled: [] },
-        { value: 'Edge', children: [], blocks_enabled: [] },
-      ],
+      type: 'FR',
+      fr_type: 'number',
       value: [],
     },
     {
@@ -71,16 +68,6 @@ export const angle_details_left = {
       fr_type: 'number',
       value: [],
     },
-    {
-      id: '39',
-      question_header: 'Left Acetabular Index',
-      question_desc: 'Enter the Left Acetabular Index',
-      enabled: true,
-      required: false,
-      type: 'FR',
-      fr_type: 'number',
-      value: [],
-    },
   ],
 };
 export const angle_details_right = {
@@ -93,7 +80,7 @@ export const angle_details_right = {
     {
       id: '40',
       question_header: 'Right Center Edge Angle',
-      question_desc: 'Enter the Right Center Edge Angle',
+      question_desc: 'Enter the Right Center Edge Angle to the Sourcil',
       enabled: true,
       required: false,
       type: 'FR',
@@ -103,14 +90,11 @@ export const angle_details_right = {
     {
       id: '41',
       question_header: 'Right Center Edge Angle',
-      question_desc: 'Enter the type of edge angle',
+      question_desc: 'Enter the Right Center Edge Angle to the Edge',
       enabled: true,
       required: false,
-      type: 'MC',
-      options: [
-        { value: 'Sourcil', children: [], blocks_enabled: [] },
-        { value: 'Edge', children: [], blocks_enabled: [] },
-      ],
+      type: 'FR',
+      fr_type: 'number',
       value: [],
     },
     {
@@ -150,16 +134,6 @@ export const angle_details_right = {
       id: '45',
       question_header: 'Right Tonnis Angle',
       question_desc: 'Enter the Right Tonnis Angle',
-      enabled: true,
-      required: false,
-      type: 'FR',
-      fr_type: 'number',
-      value: [],
-    },
-    {
-      id: '46',
-      question_header: 'Right Acetabular Index',
-      question_desc: 'Enter the Right Acetabular Index',
       enabled: true,
       required: false,
       type: 'FR',

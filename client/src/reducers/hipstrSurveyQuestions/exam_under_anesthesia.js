@@ -1,6 +1,6 @@
-export const exam_under_anesthesia_left = {
-  block_id: 'exam_under_anesthesia_left',
-  block_header: 'Exam Under Anesthesia - Left Side',
+export const exam_under_anesthesia = {
+  block_id: 'exam_under_anesthesia',
+  block_header: 'Exam Under Anesthesia',
   block_description:
     'Details about the Exam while the patient was under anesthesia',
   enabled: false,
@@ -83,17 +83,6 @@ export const exam_under_anesthesia_left = {
       ],
       value: [],
     },
-  ],
-};
-
-export const exam_under_anesthesia_right = {
-  block_id: 'exam_under_anesthesia_right',
-  block_header: 'Exam Under Anesthesia - Right Side',
-  block_description:
-    'Details about the Exam while the patient was under anesthesia',
-  enabled: false,
-  required: false,
-  questions: [
     {
       id: '29',
       question_header: 'Right PROM Performed',

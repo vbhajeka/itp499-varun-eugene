@@ -25,23 +25,23 @@ export const dvt_proph = {
       required: false,
       type: 'SATA',
       options: [
-        { value: 'Mechanical', children: ['1'], blocks_enabled: [] },
-        { value: 'ASA', children: [], blocks_enabled: [] },
         {
           value: 'NSAID',
           children: [],
           blocks_enabled: [],
         },
+        { value: 'ASA', children: [], blocks_enabled: [] },
         {
-          value: 'Injectable herapin like products',
+          value: 'Injectable heparin like products',
           children: [],
           blocks_enabled: [],
         },
         {
-          value: 'Oral anticoagulants (Coumadin, Xarelto, Eliquiis',
+          value: 'Oral anticoagulants (Coumadin, Xarelto, Eliquiis)',
           children: [],
           blocks_enabled: [],
         },
+        { value: 'Mechanical', children: ['1'], blocks_enabled: [] },
       ],
       value: [],
     },
