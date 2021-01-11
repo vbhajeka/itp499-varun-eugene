@@ -9,8 +9,10 @@ import 'semantic-ui-css/semantic.min.css';
 
 import { submitAction } from '../actions/blockActions';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
-  console.log(ping);
+  const { user } = useAuth0();
 
   const getVals = (values) => {
     let retVal = '';
@@ -25,6 +27,7 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
     let body = {
       surveyID: surveyID,
       answers: [],
+      doctor: user.name,
     };
     blocks.forEach((block) => {
       if (block.enabled) {
@@ -107,7 +110,7 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
         <Grid>
           <Grid.Row columns={'3'}>
             <Grid.Column>
-              <Link to='/'>
+              <Link to='/survey'>
                 <Segment
                   style={{ margin: '2%' }}
                   inverted
@@ -119,7 +122,7 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
               </Link>
             </Grid.Column>
             <Grid.Column>
-              <Link to='/start'>
+              <Link to='/'>
                 <Segment
                   style={{ margin: '2%' }}
                   inverted

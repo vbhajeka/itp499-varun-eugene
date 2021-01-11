@@ -19,14 +19,15 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { surveyID, answers } = req.body;
+    const { surveyID, answers, doctor } = req.body;
 
     try {
-      let surveyData = new Survey({ surveyID, surveyAnswers: answers });
+      let surveyData = new Survey({ surveyID, surveyAnswers: answers, doctor });
 
-      await surveyData.save();
-
-      console.log('survey submitted succesfully to db');
+      await surveyData.save(function (err, survey) {
+        if (err) return console.error(err);
+        console.log(survey.surveyID + ' saved to collection.');
+      });
 
       res.send('survey submitted!');
     } catch (err) {

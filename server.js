@@ -14,12 +14,14 @@ app.use(express.json({ extended: false }));
 
 //app.get('/', (req, res) => res.send('API running'));
 
-// define routes
+// define routes - examples
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
+// my routes
 app.use('/api/submitSurvey', require('./routes/api/submitSurvey'));
+app.use('/api/getSurveys', require('./routes/api/getSurveys'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

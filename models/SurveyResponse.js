@@ -10,6 +10,10 @@ const SurveyResponseSchema = new mongoose.Schema({
     default: Date.now,
   },
   surveyAnswers: [String],
+  doctor: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = Survey = mongoose.model(

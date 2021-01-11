@@ -6,10 +6,10 @@ import { TestComp } from './components/TestComp';
 import ConfirmPage from './components/ConfirmPage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
-import { ImgComp } from './components/ImgComp';
 
 import { Segment, Image, Header } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { connect } from 'react-redux';
 
@@ -19,8 +19,8 @@ function App({ comp, ping }) {
   console.log(comp);
 
   switch (comp) {
-    case 'start':
-      visible_comp = <TestComp></TestComp>;
+    case 'survey':
+      visible_comp = <QuestionBlock />;
       break;
     case 'confirm':
       visible_comp = <ConfirmPage></ConfirmPage>;
@@ -28,19 +28,73 @@ function App({ comp, ping }) {
     case 'review':
       visible_comp = <ReviewBlock />;
       break;
-    case 'img':
-      visible_comp = <ImgComp />;
-      break;
     default:
-      visible_comp = <QuestionBlock />;
+      visible_comp = <TestComp />;
   }
+
+  console.log(useAuth0());
+
+  const {
+    loginWithRedirect,
+    logout,
+    user,
+    isAuthenticated,
+    isLoading,
+  } = useAuth0();
+
+  const attemptLogin = () => {
+    if (isLoading) {
+      return;
+    }
+    if (!isAuthenticated) {
+      loginWithRedirect();
+    } else {
+      logout({ returnTo: 'http://localhost:3000' });
+    }
+  };
+
+  console.log(user);
 
   return (
     <div className='App'>
       <div id='artificial-background'>
         <Segment style={{ width: '100%' }} id='topBar' className='bars'>
-          <Header style={{ color: 'white' }} size={'large'}>
+          <Header
+            style={{ color: 'white' }}
+            size={'large'}
+            textAlign={'center'}
+          >
             HIPSTR Survey
+            <Segment
+              inverted
+              color={'blue'}
+              style={{
+                minWidth: '15%',
+                verticalAlign: 'middle',
+                textAlign: 'center',
+                marginTop: '0.5%',
+                marginRight: '0.5%',
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                padding: '0.5em 0.5em',
+              }}
+              disabled={isLoading}
+              onClick={() => attemptLogin()}
+            >
+              {isAuthenticated && (
+                <Header size={'tiny'}>
+                  <Image
+                    src={user.picture}
+                    alt={user.name}
+                    circular
+                    size={'mini'}
+                  ></Image>
+                  {user.name}
+                </Header>
+              )}
+              {!isAuthenticated && <Header size={'tiny'}>Login</Header>}
+            </Segment>
           </Header>
         </Segment>
         <div
@@ -56,44 +110,11 @@ function App({ comp, ping }) {
           {visible_comp}
         </div>
       </div>
-      <Segment style={{ width: '100%' }} id='bottomBar' className='bars'>
-        <Link to='/start'>
-          <Segment
-            inverted
-            color={'orange'}
-            style={{ float: 'left', width: '15%', textAlign: 'center' }}
-          >
-            Logout
-          </Segment>
-        </Link>
-        <Segment
-          inverted
-          color={'blue'}
-          style={{
-            float: 'right',
-            width: '15%',
-            verticalAlign: 'middle',
-            textAlign: 'center',
-            marginTop: 0,
-          }}
-        >
-          <Header size={'tiny'}>
-            <Image
-              style={{
-                float: 'left',
-                height: '2em',
-                width: '2em',
-                textAlign: 'center',
-                verticalAlign: 'middle',
-                marginTop: 0,
-              }}
-              src='https://ortho.stanford.edu/sports-medicine/marc-safran-profile/_jcr_content/main/panel_builder/panel_1/image.img.320.high.jpg/marc-safran.jpg'
-              avatar
-            ></Image>
-            Dr. Marc Safran
-          </Header>
-        </Segment>
-      </Segment>
+      <Segment
+        style={{ width: '100%' }}
+        id='bottomBar'
+        className='bars'
+      ></Segment>
     </div>
   );
 }
