@@ -195,6 +195,7 @@ export default function reducer(state = realState, action) {
     case SUBMIT_SURVEY:
       let temp = JSON.parse(JSON.stringify(initState));
       initState = JSON.parse(JSON.stringify(temp));
+      temp.submitted = true;
       return { ...temp };
     default:
       return state;

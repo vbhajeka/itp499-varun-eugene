@@ -27,7 +27,7 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
     let body = {
       surveyID: surveyID,
       answers: [],
-      doctor: user.name,
+      //doctor: user.name,
     };
     blocks.forEach((block) => {
       if (block.enabled) {

@@ -24,7 +24,18 @@ export const left_diagnosis = {
         { value: 'Post Traumatic', children: [], blocks_enabled: [] },
         { value: 'AVN', children: ['12'], blocks_enabled: [] },
         { value: 'Undiagnosed hip Pain', children: [], blocks_enabled: [] },
+        { value: 'Other', children: ['64'], blocks_enabled: [] },
       ],
+      value: [],
+    },
+    {
+      id: '64',
+      question_header: 'Other Prior Left Hip Surgery',
+      question_desc: 'Enter other prior left hip surgery',
+      enabled: false,
+      required: true,
+      type: 'FR',
+      fr_type: 'text',
       value: [],
     },
     {

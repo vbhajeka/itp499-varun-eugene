@@ -19,3 +19,33 @@
 #questionTitleHeader {
   color: white;
 }
+
+.questionBlock {
+  background-color: white;
+  padding: 3%;
+  border-radius: 10px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+/* normal styling*/
+@media (min-width: 600px) {
+  .selectButtons {
+    width: 45%;
+  }
+}
+
+/* mobile styling */
+@media (max-width: 600px) {
+  .selectButtons {
+    width: 100%;
+  }
+
+  .questionBlock {
+    padding: 6%;
+  }
+
+  .bottomButtons {
+    left: 0;
+  }
+}

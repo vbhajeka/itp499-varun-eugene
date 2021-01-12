@@ -145,13 +145,14 @@ export const left_femur =
           { value: 'Anterior', children: [], blocks_enabled: [] },
           { value: 'Posterior', children: [], blocks_enabled: [] },
           { value: 'Lateral', children: [], blocks_enabled: [] },
-          { value: 'Radial', children: [], blocks_enabled: [] },
+          { value: 'Medial', children: [], blocks_enabled: [] },
         ],
         value: [],
       },
       {
         id: '10',
-        question_header: 'Select Classification of area of greatest damage:',
+        question_header:
+          'Select Classification for the degree of worst cartilage damage:',
         long_question_desc: [
           'Grade 0 - Normal',
           'Grade 1 - Softening',

@@ -2,7 +2,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 import './index.css';
 
-import { TestComp } from './components/TestComp';
+import HomePage from './components/HomePage';
 import ConfirmPage from './components/ConfirmPage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
@@ -23,13 +23,13 @@ function App({ comp, ping }) {
       visible_comp = <QuestionBlock />;
       break;
     case 'confirm':
-      visible_comp = <ConfirmPage></ConfirmPage>;
+      visible_comp = <ConfirmPage />;
       break;
     case 'review':
       visible_comp = <ReviewBlock />;
       break;
     default:
-      visible_comp = <TestComp />;
+      visible_comp = <HomePage />;
   }
 
   console.log(useAuth0());
@@ -40,20 +40,22 @@ function App({ comp, ping }) {
     user,
     isAuthenticated,
     isLoading,
+    getAccessTokenSilently,
   } = useAuth0();
 
-  const attemptLogin = () => {
-    if (isLoading) {
-      return;
-    }
-    if (!isAuthenticated) {
-      loginWithRedirect();
-    } else {
-      logout({ returnTo: 'http://localhost:3000' });
-    }
-  };
+  // const attemptLogin = () => {
+  //   if (isLoading) {
+  //     return;
+  //   }
+  //   if (!isAuthenticated) {
+  //     loginWithRedirect();
+  //     getToken();
+  //   } else {
+  //     logout({ returnTo: window.location.origin });
+  //   }
+  // };
 
-  console.log(user);
+  console.log('user is', user);
 
   return (
     <div className='App'>
@@ -65,7 +67,7 @@ function App({ comp, ping }) {
             textAlign={'center'}
           >
             HIPSTR Survey
-            <Segment
+            {/* <Segment
               inverted
               color={'blue'}
               style={{
@@ -94,27 +96,17 @@ function App({ comp, ping }) {
                 </Header>
               )}
               {!isAuthenticated && <Header size={'tiny'}>Login</Header>}
-            </Segment>
+              </Segment> */}
           </Header>
         </Segment>
-        <div
-          id='middle'
-          className='center'
-          style={{
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
+        <div id='middle' className='center'>
           {visible_comp}
         </div>
       </div>
-      <Segment
-        style={{ width: '100%' }}
-        id='bottomBar'
-        className='bars'
-      ></Segment>
+      <Segment style={{ width: '100%' }} id='bottomBar' className='bars'>
+        <p style={{ float: 'right' }}>Copyright Marc Safran 2021 &#169;</p>
+        <p style={{ float: 'left' }}>V 1.0</p>
+      </Segment>
     </div>
   );
 }

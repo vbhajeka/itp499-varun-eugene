@@ -43,6 +43,7 @@ export const realState = {
   blocks_seen: [],
   surveyID: 'as341s',
   current: 'basic_details',
+  submitted: false,
   blocks: [
     // basic_details
     basic_details,

@@ -8,7 +8,9 @@ import { logo } from '../images/logo';
 
 import axios from 'axios';
 
-export const TestComp = () => {
+import { connect as reduxConnect } from 'react-redux';
+
+const HomePage = ({ submitted }) => {
   const getSurveys = async (sd, ed) => {
     console.log('getting');
     const config = {
@@ -39,6 +41,17 @@ export const TestComp = () => {
     <Fragment>
       <Container>
         <Grid>
+          <Grid.Row>
+            {submitted && (
+              <Segment
+                style={{ position: 'absolute', top: 0, width: '100%' }}
+                color={'green'}
+                inverted
+              >
+                Thank you for Submitting!
+              </Segment>
+            )}
+          </Grid.Row>
           <Grid.Row columns={1}>
             <Grid.Column>
               <div
@@ -65,7 +78,12 @@ export const TestComp = () => {
                   <Segment
                     inverted
                     color={'blue'}
-                    style={{ fontSize: '100%', margin: '3%', width: '97%' }}
+                    style={{
+                      lineHeight: '100%',
+                      fontSize: '100%',
+                      margin: '3%',
+                      width: '97%',
+                    }}
                   >
                     Begin Operative Summary
                   </Segment>
@@ -78,7 +96,12 @@ export const TestComp = () => {
                 <Segment
                   inverted
                   color={'green'}
-                  style={{ fontSize: '100%', margin: '3%', width: '97%' }}
+                  style={{
+                    lineHeight: '100%',
+                    fontSize: '100%',
+                    margin: '3%',
+                    width: '97%',
+                  }}
                   onClick={() => getSurveys('2020-12-01', '2021-2-1')}
                 >
                   View Previous Surveys
@@ -91,3 +114,11 @@ export const TestComp = () => {
     </Fragment>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    submitted: state.blocks.submitted,
+  };
+};
+
+export default reduxConnect(mapStateToProps, {})(HomePage);

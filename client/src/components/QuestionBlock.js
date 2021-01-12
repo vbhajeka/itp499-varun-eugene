@@ -14,6 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
+import './components.css';
 
 import {
   blockAction,
@@ -22,6 +23,8 @@ import {
   nextBlockAction,
   prevBlockAction,
 } from '../actions/blockActions';
+
+import ReactDOM from 'react-dom';
 
 const QuestionBlock = ({
   blockAction,
@@ -187,15 +190,16 @@ const QuestionBlock = ({
               <Container
                 fluid
                 key={q.id}
-                style={{
-                  backgroundColor: 'white',
-                  padding: '3%',
-                  borderRadius: '10px',
-                  marginTop: '2%',
-                  marginBottom: '2%',
-                }}
+                // style={{
+                //   backgroundColor: 'white',
+                //   padding: '3%',
+                //   borderRadius: '10px',
+                //   marginTop: '2%',
+                //   marginBottom: '2%',
+                // }}
+                className={'questionBlock'}
               >
-                <Grid divided columns={2}>
+                <Grid divided stackable columns={2}>
                   <Grid.Row>
                     <Grid.Column textAlign={'left'} width={8}>
                       <Container text fluid style={{ maxWidth: '30%' }}>
@@ -215,7 +219,6 @@ const QuestionBlock = ({
                         style={{
                           display: 'flex',
                           flexFlow: 'wrap',
-                          float: 'right',
                         }}
                       >
                         {(q.type === 'MC' || q.type === 'SATA') &&
@@ -229,10 +232,10 @@ const QuestionBlock = ({
                               }
                               key={o.value}
                               style={{
-                                width: '45%',
                                 margin: '1%',
                                 fontSize: '1.1rem',
                               }}
+                              className={'selectButtons'}
                             >
                               {o.value}
                             </Segment>
@@ -276,12 +279,16 @@ const QuestionBlock = ({
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
+                {/* <Button onClick={() => testFunc()}>testScroll</Button> */}
               </Container>
             )
         )}
       </Container>
-      <Container style={{ position: 'absolute', bottom: '3.6%' }}>
-        <Grid>
+      <Container
+        className={'bottomButtons'}
+        style={{ position: 'absolute', bottom: '3.6%' }}
+      >
+        <Grid container>
           <Grid.Row columns={'3'}>
             <Grid.Column floated='left'>
               {previousVisible() && (

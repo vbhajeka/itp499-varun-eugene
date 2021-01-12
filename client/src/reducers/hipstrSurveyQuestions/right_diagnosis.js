@@ -24,7 +24,18 @@ export const right_diagnosis = {
         { value: 'Post Traumatic', children: [], blocks_enabled: [] },
         { value: 'AVN', children: ['12'], blocks_enabled: [] },
         { value: 'Undiagnosed hip Pain', children: [], blocks_enabled: [] },
+        { value: 'Other', children: ['64'], blocks_enabled: [] },
       ],
+      value: [],
+    },
+    {
+      id: '64',
+      question_header: 'Other Prior Right Hip Surgery',
+      question_desc: 'Enter other prior right hip surgery',
+      enabled: false,
+      required: true,
+      type: 'FR',
+      fr_type: 'text',
       value: [],
     },
     {

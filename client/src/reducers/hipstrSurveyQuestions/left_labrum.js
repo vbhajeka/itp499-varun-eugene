@@ -65,7 +65,7 @@ export const left_labrum =
           { value: 'Flap', children: [], blocks_enabled: [] },
           { value: 'Fibrilled', children: [], blocks_enabled: [] },
           { value: 'Degenerative', children: [], blocks_enabled: [] },
-          { value: 'Radial', children: [], blocks_enabled: [] },
+          { value: 'Medial', children: [], blocks_enabled: [] },
           {
             value: 'Labral Chondrial Separation',
             children: [],

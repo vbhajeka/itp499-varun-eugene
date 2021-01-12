@@ -124,7 +124,7 @@ export const left_acetabulum_articular_cartilage = {
     {
       id: '7',
       question_header:
-        'Select Beck Classification for area of greatest damage:',
+        'Select Beck Classification for the degree of worst cartilage damage:',
       long_question_desc: [
         'Normal - Macroscopically sound cartilage',
         'Malacia - Roughening of surface, fibrillation',
