@@ -28,6 +28,8 @@ const ReviewBlock = ({
   cancelModalIsOpen,
   submitAction,
   modalActions,
+
+  token,
 }) => {
   const { user } = useAuth0();
 
@@ -44,7 +46,7 @@ const ReviewBlock = ({
     let body = {
       surveyID: surveyID,
       answers: [],
-      //doctor: user.name,
+      doctor: user.name,
     };
     blocks.forEach((block) => {
       if (block.enabled) {
@@ -61,7 +63,7 @@ const ReviewBlock = ({
       }
     });
     console.log(body);
-    submitAction(body);
+    submitAction(body, token);
   };
 
   return (
@@ -199,6 +201,8 @@ const mapStateToProps = (state) => {
     blocks: state.blocks.blocks,
     surveyID: state.blocks.surveyID,
     cancelModalIsOpen: state.state.cancelModalIsOpen,
+
+    token: state.state.Auth0Token,
   };
 };
 

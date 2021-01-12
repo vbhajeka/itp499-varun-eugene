@@ -50,11 +50,12 @@ export const prevBlockAction = () => (dispatch) => {
   });
 };
 
-export const submitAction = (surveyData) => async (dispatch) => {
+export const submitAction = (surveyData, token) => async (dispatch) => {
   console.log('reviewing');
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
     },
   };
 

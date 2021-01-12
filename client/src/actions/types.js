@@ -8,3 +8,5 @@ export const SUBMIT_SURVEY = 'SUBMIT_SURVEY';
 
 export const TOGGLE_CANCEL_MODAL = 'TOGGLE_CANCEL_MODAL';
 export const BACK_TO_HOME = 'BACK_TO_HOME';
+
+export const SET_TOKEN = 'SET_TOKEN';

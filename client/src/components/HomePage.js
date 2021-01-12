@@ -1,5 +1,8 @@
 import { Grid, Segment, Image, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+
+import { useHistory } from 'react-router-dom';
+
 import 'semantic-ui-css/semantic.min.css';
 import '../index.css';
 import { Fragment } from 'react';
@@ -9,8 +12,13 @@ import { logo } from '../images/logo';
 import axios from 'axios';
 
 import { connect as reduxConnect } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
 
-const HomePage = ({ submitted }) => {
+const HomePage = ({ submitted, token }) => {
+  const history = useHistory();
+
+  const { isAuthenticated } = useAuth0();
+
   const getSurveys = async (sd, ed) => {
     console.log('getting');
     const config = {
@@ -35,6 +43,29 @@ const HomePage = ({ submitted }) => {
         console.log(JSON.parse(y));
       });
     });
+  };
+
+  const beginSurvey = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const body = {};
+
+    try {
+      const res = await axios.post('/api/external', body, config);
+      downloadCsv(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+
+    if (isAuthenticated) {
+      history.push('/survey');
+    } else {
+      console.log('not authenticated');
+    }
   };
 
   return (
@@ -74,20 +105,19 @@ const HomePage = ({ submitted }) => {
           <Container style={{ position: 'absolute', bottom: '3.6%' }}>
             <Grid.Row columns={1}>
               <Grid.Column>
-                <Link to='/survey'>
-                  <Segment
-                    inverted
-                    color={'blue'}
-                    style={{
-                      lineHeight: '100%',
-                      fontSize: '100%',
-                      margin: '3%',
-                      width: '97%',
-                    }}
-                  >
-                    Begin Operative Summary
-                  </Segment>
-                </Link>
+                <Segment
+                  inverted
+                  color={'blue'}
+                  style={{
+                    lineHeight: '100%',
+                    fontSize: '100%',
+                    margin: '3%',
+                    width: '97%',
+                  }}
+                  onClick={() => beginSurvey()}
+                >
+                  Begin Operative Summary
+                </Segment>
               </Grid.Column>
             </Grid.Row>
 
@@ -118,6 +148,7 @@ const HomePage = ({ submitted }) => {
 const mapStateToProps = (state) => {
   return {
     submitted: state.blocks.submitted,
+    token: state.state.auth0Token,
   };
 };
 

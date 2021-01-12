@@ -7,13 +7,15 @@ import ConfirmPage from './components/ConfirmPage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
 
-import { Segment, Header } from 'semantic-ui-react';
+import { Segment, Header, Image } from 'semantic-ui-react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { connect } from 'react-redux';
 
-function App({ comp, ping }) {
+import { setAuth0Token } from './actions/stateActions';
+
+function App({ comp, ping, setAuth0Token }) {
   let visible_comp;
 
   console.log(comp);
@@ -32,8 +34,6 @@ function App({ comp, ping }) {
       visible_comp = <HomePage />;
   }
 
-  console.log(useAuth0());
-
   const {
     loginWithRedirect,
     logout,
@@ -43,19 +43,29 @@ function App({ comp, ping }) {
     getAccessTokenSilently,
   } = useAuth0();
 
-  // const attemptLogin = () => {
-  //   if (isLoading) {
-  //     return;
-  //   }
-  //   if (!isAuthenticated) {
-  //     loginWithRedirect();
-  //     getToken();
-  //   } else {
-  //     logout({ returnTo: window.location.origin });
-  //   }
-  // };
+  const attemptLogin = () => {
+    if (isLoading) {
+      return;
+    }
+    if (!isAuthenticated) {
+      loginWithRedirect();
+    } else {
+      logout({ returnTo: window.location.origin });
+    }
+  };
 
   console.log('user is', user);
+
+  const setToken = async () => {
+    let token = await getAccessTokenSilently();
+    console.log('token is', token);
+    setAuth0Token(token);
+    return token;
+  };
+
+  if (isAuthenticated) {
+    setToken();
+  }
 
   return (
     <div className='App'>
@@ -67,7 +77,7 @@ function App({ comp, ping }) {
             textAlign={'center'}
           >
             HIPSTR Survey
-            {/* <Segment
+            <Segment
               inverted
               color={'blue'}
               style={{
@@ -96,7 +106,7 @@ function App({ comp, ping }) {
                 </Header>
               )}
               {!isAuthenticated && <Header size={'tiny'}>Login</Header>}
-              </Segment> */}
+            </Segment>
           </Header>
         </Segment>
         <div id='middle' className='center'>
@@ -118,4 +128,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, { setAuth0Token })(App);

@@ -1,6 +1,7 @@
-import { TOGGLE_CANCEL_MODAL, BACK_TO_HOME } from '../actions/types';
+import { TOGGLE_CANCEL_MODAL, BACK_TO_HOME, SET_TOKEN } from '../actions/types';
 
 const initialState = {
+  auth0Token: null,
   cancelModalIsOpen: false,
 };
 
@@ -18,10 +19,11 @@ export default function reducer(state = initialState, action) {
     case TOGGLE_CANCEL_MODAL:
       return { ...toggleModal(state) };
     case BACK_TO_HOME:
-      let temp = JSON.parse(JSON.stringify(initState));
-      initState = JSON.parse(JSON.stringify(temp));
-      temp.submitted = true;
-      return { ...temp };
+      state.cancelModalIsOpen = false;
+      return { ...state };
+    case SET_TOKEN:
+      state.auth0Token = payload.token;
+      return { ...state };
     default:
       return state;
   }
