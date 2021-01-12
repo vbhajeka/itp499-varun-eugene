@@ -64,14 +64,6 @@
   border-radius: 0;
 }
 
-.buttonSegEnabled {
-  cursor: pointer;
-}
-
-.buttonSegDisabled {
-  cursor: auto;
-}
-
 #middle {
   height: 80%;
   background-color: black;

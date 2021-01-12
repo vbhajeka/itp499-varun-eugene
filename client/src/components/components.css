@@ -7,6 +7,14 @@
   color: black;
 }
 
+.buttonSegEnabled {
+  cursor: pointer;
+}
+
+.buttonSegDisabled {
+  cursor: auto;
+}
+
 .textArea {
   max-width: 100%;
   font-size: 70%;
@@ -47,5 +55,13 @@
 
   .bottomButtons {
     left: 0;
+  }
+
+  .buttonSegEnabled {
+    font-size: 0.8rem !important;
+  }
+
+  .buttonSegDisabled {
+    font-size: 0.8rem !important;
   }
 }

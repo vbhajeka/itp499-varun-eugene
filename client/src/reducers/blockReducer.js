@@ -5,6 +5,7 @@ import {
   NEXT_BLOCK,
   PREV_BLOCK,
   SUBMIT_SURVEY,
+  BACK_TO_HOME,
 } from '../actions/types';
 
 import { realState } from './realState';
@@ -177,6 +178,15 @@ const prevBlockActionBody = (state, payload) => {
   return state;
 };
 
+const clearState = (submitted) => {
+  let temp = JSON.parse(JSON.stringify(initState));
+  initState = JSON.parse(JSON.stringify(temp));
+  if (submitted) {
+    temp.submitted = true;
+  }
+  return { ...temp };
+};
+
 export default function reducer(state = realState, action) {
   const { type, payload } = action;
 
@@ -193,10 +203,9 @@ export default function reducer(state = realState, action) {
     case PREV_BLOCK:
       return { ...prevBlockActionBody(state, payload) };
     case SUBMIT_SURVEY:
-      let temp = JSON.parse(JSON.stringify(initState));
-      initState = JSON.parse(JSON.stringify(temp));
-      temp.submitted = true;
-      return { ...temp };
+      return { ...clearState(true) };
+    case BACK_TO_HOME:
+      return { ...clearState(false) };
     default:
       return state;
   }

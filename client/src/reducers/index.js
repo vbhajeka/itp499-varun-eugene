@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
 import blockReducer from './blockReducer';
+import stateReducer from './stateReducer';
 
 import { SUBMIT_SURVEY } from '../actions/types';
 
 const appReducer = combineReducers({
   blocks: blockReducer,
+  state: stateReducer,
 });
 
 const rootReducer = (state, action) => {

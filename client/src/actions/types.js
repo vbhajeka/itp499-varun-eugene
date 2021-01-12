@@ -5,3 +5,6 @@ export const NEXT_BLOCK = 'NEXT_BLOCK';
 export const PREV_BLOCK = 'PREV_BLOCK';
 
 export const SUBMIT_SURVEY = 'SUBMIT_SURVEY';
+
+export const TOGGLE_CANCEL_MODAL = 'TOGGLE_CANCEL_MODAL';
+export const BACK_TO_HOME = 'BACK_TO_HOME';

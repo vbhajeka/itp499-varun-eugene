@@ -9,6 +9,9 @@ import {
   Dropdown,
   Progress,
   Image,
+  Modal,
+  Icon,
+  Button,
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
@@ -24,7 +27,7 @@ import {
   prevBlockAction,
 } from '../actions/blockActions';
 
-import ReactDOM from 'react-dom';
+import { modalActions } from '../actions/stateActions';
 
 const QuestionBlock = ({
   blockAction,
@@ -32,12 +35,14 @@ const QuestionBlock = ({
   updateFRAction,
   nextBlockAction,
   prevBlockAction,
+  modalActions,
   questions,
   block_id,
   blocks,
   current_block,
   blocks_seen,
   ping,
+  cancelModalIsOpen,
 }) => {
   // set current block & questions
   current_block = blocks.find((b) => b.block_id === block_id);
@@ -154,8 +159,33 @@ const QuestionBlock = ({
     }
   };
 
+  console.log('cancel: ', cancelModalIsOpen);
+
   return (
     <Fragment>
+      <Modal basic open={cancelModalIsOpen}>
+        <Modal.Content>
+          <p>
+            Are you sure you'd like to cancel this survey and return to the home
+            page? All survey data will be lost
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Link to='/'>
+            <Button
+              basic
+              color='red'
+              inverted
+              onClick={() => modalActions(true)}
+            >
+              <Icon name='remove' /> Cancel
+            </Button>
+          </Link>
+          <Button color='green' inverted onClick={() => modalActions(false)}>
+            <Icon name='checkmark' /> Back to the Survey
+          </Button>
+        </Modal.Actions>
+      </Modal>
       <Progress percent={getProgress()} color={'blue'} progress active />
       <Container
         fluid
@@ -205,7 +235,9 @@ const QuestionBlock = ({
                       <Container text fluid style={{ maxWidth: '30%' }}>
                         <Header size={'tiny'}>{q.question_header}</Header>
                         <p>{q.question_desc}</p>
-                        {q.img !== '' && <Image src={q.img} fluid />}
+                        {(q.img !== undefined ||
+                          q.img != null ||
+                          q.img !== '') && <Image src={q.img} fluid />}
                         {q.long_question_desc != null &&
                           q.long_question_desc.length > 0 &&
                           q.long_question_desc.map((desc) => (
@@ -268,7 +300,7 @@ const QuestionBlock = ({
                                 onTextChange(q.id, val.target.value)
                               }
                               style={{
-                                fontSize: '65%',
+                                fontSize: '1.5rem',
                                 width: '100%',
                                 padding: '1%',
                               }}
@@ -289,7 +321,7 @@ const QuestionBlock = ({
         style={{ position: 'absolute', bottom: '3.6%' }}
       >
         <Grid container>
-          <Grid.Row columns={'3'}>
+          <Grid.Row columns={'4'}>
             <Grid.Column floated='left'>
               {previousVisible() && (
                 <Segment
@@ -299,9 +331,20 @@ const QuestionBlock = ({
                   onClick={() => prevBlockAction()}
                   className={'buttonSegEnabled'}
                 >
-                  Previous Question
+                  Previous Section
                 </Segment>
               )}
+            </Grid.Column>
+            <Grid.Column floated='left'>
+              <Segment
+                style={{ margin: '2%' }}
+                inverted
+                color={'red'}
+                onClick={() => modalActions(false)}
+                className={'buttonSegEnabled'}
+              >
+                Cancel Survey
+              </Segment>
             </Grid.Column>
             <Grid.Column>
               {reviewEnabled() && (
@@ -313,7 +356,7 @@ const QuestionBlock = ({
                     onClick={() => reviewClicked()}
                     className={'buttonSegEnabled'}
                   >
-                    Review
+                    Review Survey
                   </Segment>
                 </Link>
               )}
@@ -330,7 +373,7 @@ const QuestionBlock = ({
                     nextDisabledVar ? 'buttonSegDisabled' : 'buttonSegEnabled'
                   }
                 >
-                  Next Question
+                  Next Section
                 </Segment>
               )}
             </Grid.Column>
@@ -349,6 +392,8 @@ const mapStateToProps = (state) => {
     block_id: state.blocks.current,
     blocks: state.blocks.blocks,
     blocks_seen: state.blocks.blocks_seen,
+
+    cancelModalIsOpen: state.state.cancelModalIsOpen,
   };
 };
 
@@ -358,4 +403,5 @@ export default connect(mapStateToProps, {
   updateFRAction,
   nextBlockAction,
   prevBlockAction,
+  modalActions,
 })(QuestionBlock);

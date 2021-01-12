@@ -2,16 +2,33 @@ import React, { Fragment } from 'react';
 
 import { connect } from 'react-redux';
 
-import { Container, Header, Grid, Table, Segment } from 'semantic-ui-react';
+import {
+  Container,
+  Header,
+  Grid,
+  Table,
+  Segment,
+  Modal,
+  Button,
+  Icon,
+} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 
 import { submitAction } from '../actions/blockActions';
+import { modalActions } from '../actions/stateActions';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
-const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
+const ReviewBlock = ({
+  ping,
+  blocks,
+  surveyID,
+  cancelModalIsOpen,
+  submitAction,
+  modalActions,
+}) => {
   const { user } = useAuth0();
 
   const getVals = (values) => {
@@ -49,6 +66,29 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
 
   return (
     <Fragment>
+      <Modal basic open={cancelModalIsOpen}>
+        <Modal.Content>
+          <p>
+            Are you sure you'd like to cancel this survey and return to the home
+            page? All survey data will be lost
+          </p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Link to='/'>
+            <Button
+              basic
+              color='red'
+              inverted
+              onClick={() => modalActions(true)}
+            >
+              <Icon name='remove' /> Cancel
+            </Button>
+          </Link>
+          <Button color='green' inverted onClick={() => modalActions(false)}>
+            <Icon name='checkmark' /> Back to the Review
+          </Button>
+        </Modal.Actions>
+      </Modal>
       <Container
         fluid
         id='header'
@@ -108,7 +148,7 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
       </Container>
       <Container style={{ position: 'absolute', bottom: '3.6%' }}>
         <Grid>
-          <Grid.Row columns={'3'}>
+          <Grid.Row columns={'4'}>
             <Grid.Column>
               <Link to='/survey'>
                 <Segment
@@ -117,9 +157,20 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
                   color={'blue'}
                   className={'buttonSegEnabled'}
                 >
-                  Previous Question
+                  Previous Section
                 </Segment>
               </Link>
+            </Grid.Column>
+            <Grid.Column floated='left'>
+              <Segment
+                style={{ margin: '2%' }}
+                inverted
+                color={'red'}
+                onClick={() => modalActions(false)}
+                className={'buttonSegEnabled'}
+              >
+                Cancel Survey
+              </Segment>
             </Grid.Column>
             <Grid.Column>
               <Link to='/'>
@@ -130,7 +181,7 @@ const ReviewBlock = ({ ping, blocks, surveyID, submitAction }) => {
                   onClick={() => reviewClicked()}
                   className={'buttonSegEnabled'}
                 >
-                  Submit
+                  Submit Survey
                 </Segment>
               </Link>
             </Grid.Column>
@@ -147,7 +198,10 @@ const mapStateToProps = (state) => {
     ping: state.blocks.ping,
     blocks: state.blocks.blocks,
     surveyID: state.blocks.surveyID,
+    cancelModalIsOpen: state.state.cancelModalIsOpen,
   };
 };
 
-export default connect(mapStateToProps, { submitAction })(ReviewBlock);
+export default connect(mapStateToProps, { submitAction, modalActions })(
+  ReviewBlock
+);

@@ -7,7 +7,7 @@ import ConfirmPage from './components/ConfirmPage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
 
-import { Segment, Image, Header } from 'semantic-ui-react';
+import { Segment, Header } from 'semantic-ui-react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -114,6 +114,7 @@ function App({ comp, ping }) {
 const mapStateToProps = (state) => {
   return {
     ping: state.blocks.ping,
+    cancelModalIsOpen: state.state.cancelModalIsOpen,
   };
 };
 
