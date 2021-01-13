@@ -15,7 +15,11 @@ import { connect } from 'react-redux';
 
 import { setAuth0Token } from './actions/stateActions';
 
-function App({ comp, ping, setAuth0Token }) {
+import { setSurveyData } from './actions/blockActions';
+
+import axios from 'axios';
+
+function App({ comp, ping, setAuth0Token, token, setSurveyData, blocks }) {
   let visible_comp;
 
   console.log(comp);
@@ -54,6 +58,25 @@ function App({ comp, ping, setAuth0Token }) {
     }
   };
 
+  const loadSurvey = async () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const body = {};
+
+    try {
+      const res = await axios.post('/api/getSurveyData', body, config);
+      console.log(res.status);
+      await setSurveyData(res.data);
+    } catch (err) {
+      console.log(`err is ${err}`);
+      console.log(JSON.stringify(err));
+    }
+  };
+
   console.log('user is', user);
 
   const setToken = async () => {
@@ -65,6 +88,9 @@ function App({ comp, ping, setAuth0Token }) {
 
   if (isAuthenticated) {
     setToken();
+    if (token && blocks === undefined) {
+      loadSurvey();
+    }
   }
 
   return (
@@ -77,7 +103,7 @@ function App({ comp, ping, setAuth0Token }) {
             textAlign={'center'}
           >
             HIPSTR Survey
-            <Segment
+            {/* <Segment
               inverted
               color={'blue'}
               style={{
@@ -106,7 +132,15 @@ function App({ comp, ping, setAuth0Token }) {
                 </Header>
               )}
               {!isAuthenticated && <Header size={'tiny'}>Login</Header>}
-            </Segment>
+              </Segment> */}
+            {isAuthenticated && (
+              <Image
+                src={user.picture}
+                alt={user.name}
+                circular
+                size={'mini'}
+              ></Image>
+            )}
           </Header>
         </Segment>
         <div id='middle' className='center'>
@@ -125,7 +159,9 @@ const mapStateToProps = (state) => {
   return {
     ping: state.blocks.ping,
     cancelModalIsOpen: state.state.cancelModalIsOpen,
+    token: state.state.auth0Token,
+    blocks: state.blocks.blocks,
   };
 };
 
-export default connect(mapStateToProps, { setAuth0Token })(App);
+export default connect(mapStateToProps, { setAuth0Token, setSurveyData })(App);

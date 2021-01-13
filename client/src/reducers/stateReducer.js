@@ -5,8 +5,6 @@ const initialState = {
   cancelModalIsOpen: false,
 };
 
-let initState = JSON.parse(JSON.stringify(initialState));
-
 const toggleModal = (state) => {
   state.cancelModalIsOpen = !state.cancelModalIsOpen;
   return state;

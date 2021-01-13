@@ -36,15 +36,21 @@
   margin-bottom: 2%;
 }
 
+.inputField {
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 1%;
+}
+
 /* normal styling*/
-@media (min-width: 600px) {
+@media (min-width: 767px) {
   .selectButtons {
     width: 45%;
   }
 }
 
 /* mobile styling */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .selectButtons {
     width: 100%;
   }
@@ -63,5 +69,9 @@
 
   .buttonSegDisabled {
     font-size: 0.8rem !important;
+  }
+
+  .inputField {
+    font-size: 0.9rem;
   }
 }

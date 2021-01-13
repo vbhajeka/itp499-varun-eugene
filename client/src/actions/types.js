@@ -1,3 +1,4 @@
+export const SET_STATE_INIT = 'SET_STATE_INIT';
 export const SELECT_MC_SATA = 'SELECT_MC_SATA';
 export const DROPDOWN_SELECT = 'DROPDOWN_SELECT';
 export const UPDATE_FR = 'UPDATE_FR';

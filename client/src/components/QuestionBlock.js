@@ -14,7 +14,7 @@ import {
   Button,
 } from 'semantic-ui-react';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 import './components.css';
@@ -44,6 +44,12 @@ const QuestionBlock = ({
   ping,
   cancelModalIsOpen,
 }) => {
+  // make sure we have questions to display - if not, redirect to home page
+  const history = useHistory();
+  if (blocks === undefined) {
+    history.push('/');
+    return <div>empty</div>;
+  }
   // set current block & questions
   current_block = blocks.find((b) => b.block_id === block_id);
   questions = current_block.questions;
@@ -135,6 +141,7 @@ const QuestionBlock = ({
   };
 
   const getProgress = () => {
+    console.log(blocks);
     const numEnabled = blocks.filter((b) => b.enabled);
     let numCompleted = 1;
     for (
@@ -166,23 +173,18 @@ const QuestionBlock = ({
       <Modal basic open={cancelModalIsOpen}>
         <Modal.Content>
           <p>
-            Are you sure you'd like to cancel this survey and return to the home
-            page? All survey data will be lost
+            Are you sure you'd like to abandon this survey and return to the
+            home page? All survey data will be lost
           </p>
         </Modal.Content>
         <Modal.Actions>
           <Link to='/'>
-            <Button
-              basic
-              color='red'
-              inverted
-              onClick={() => modalActions(true)}
-            >
-              <Icon name='remove' /> Cancel
+            <Button color='red' inverted onClick={() => modalActions(true)}>
+              <Icon name='remove' /> Abandon
             </Button>
           </Link>
           <Button color='green' inverted onClick={() => modalActions(false)}>
-            <Icon name='checkmark' /> Back to the Survey
+            <Icon name='checkmark' /> Continue Survey
           </Button>
         </Modal.Actions>
       </Modal>
@@ -217,27 +219,17 @@ const QuestionBlock = ({
         {questions.map(
           (q) =>
             q.enabled && (
-              <Container
-                fluid
-                key={q.id}
-                // style={{
-                //   backgroundColor: 'white',
-                //   padding: '3%',
-                //   borderRadius: '10px',
-                //   marginTop: '2%',
-                //   marginBottom: '2%',
-                // }}
-                className={'questionBlock'}
-              >
+              <Container fluid key={q.id} className={'questionBlock'}>
                 <Grid divided stackable columns={2}>
                   <Grid.Row>
                     <Grid.Column textAlign={'left'} width={8}>
                       <Container text fluid style={{ maxWidth: '30%' }}>
                         <Header size={'tiny'}>{q.question_header}</Header>
                         <p>{q.question_desc}</p>
-                        {(q.img !== undefined ||
-                          q.img != null ||
-                          q.img !== '') && <Image src={q.img} fluid />}
+                        {console.log(q.img)}
+                        {q.img !== undefined &&
+                          q.img !== null &&
+                          q.img !== '' && <Image src={q.img} fluid />}
                         {q.long_question_desc != null &&
                           q.long_question_desc.length > 0 &&
                           q.long_question_desc.map((desc) => (
@@ -299,11 +291,7 @@ const QuestionBlock = ({
                               onChange={(val) =>
                                 onTextChange(q.id, val.target.value)
                               }
-                              style={{
-                                fontSize: '1.5rem',
-                                width: '100%',
-                                padding: '1%',
-                              }}
+                              className={'inputField'}
                             ></input>
                           </Container>
                         )}
@@ -311,7 +299,6 @@ const QuestionBlock = ({
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
-                {/* <Button onClick={() => testFunc()}>testScroll</Button> */}
               </Container>
             )
         )}
@@ -331,7 +318,7 @@ const QuestionBlock = ({
                   onClick={() => prevBlockAction()}
                   className={'buttonSegEnabled'}
                 >
-                  Previous Section
+                  Previous
                 </Segment>
               )}
             </Grid.Column>
@@ -343,7 +330,7 @@ const QuestionBlock = ({
                 onClick={() => modalActions(false)}
                 className={'buttonSegEnabled'}
               >
-                Cancel Survey
+                Cancel
               </Segment>
             </Grid.Column>
             <Grid.Column>
@@ -356,7 +343,7 @@ const QuestionBlock = ({
                     onClick={() => reviewClicked()}
                     className={'buttonSegEnabled'}
                   >
-                    Review Survey
+                    Review
                   </Segment>
                 </Link>
               )}
@@ -373,7 +360,7 @@ const QuestionBlock = ({
                     nextDisabledVar ? 'buttonSegDisabled' : 'buttonSegEnabled'
                   }
                 >
-                  Next Section
+                  Next
                 </Segment>
               )}
             </Grid.Column>

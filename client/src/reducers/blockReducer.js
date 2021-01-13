@@ -1,4 +1,5 @@
 import {
+  SET_STATE_INIT,
   SELECT_MC_SATA,
   DROPDOWN_SELECT,
   UPDATE_FR,
@@ -8,7 +9,8 @@ import {
   BACK_TO_HOME,
 } from '../actions/types';
 
-import { realState } from './realState';
+// import { realState } from './realState';
+let realState = { cont: false };
 let initState = JSON.parse(JSON.stringify(realState));
 
 const enableChildrenRec = (block, currQ, option_selected, toEnable) => {
@@ -191,6 +193,8 @@ export default function reducer(state = realState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case SET_STATE_INIT:
+      return { ...payload.initState, cont: true };
     case SELECT_MC_SATA:
       console.log(initState);
       return { ...selectMC_SATABody(state, payload) };

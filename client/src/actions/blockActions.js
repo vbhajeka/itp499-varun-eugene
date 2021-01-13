@@ -1,4 +1,5 @@
 import {
+  SET_STATE_INIT,
   SELECT_MC_SATA,
   DROPDOWN_SELECT,
   UPDATE_FR,
@@ -8,6 +9,14 @@ import {
 } from './types';
 
 import axios from 'axios';
+
+export const setSurveyData = (initState) => (dispatch) => {
+  console.log('in dispath');
+  dispatch({
+    type: SET_STATE_INIT,
+    payload: { initState },
+  });
+};
 
 export const blockAction = (block_id, question_id, option_selected) => (
   dispatch
@@ -54,15 +63,19 @@ export const submitAction = (surveyData, token) => async (dispatch) => {
   console.log('reviewing');
   const config = {
     headers: {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
     },
   };
+
+  console.log(config);
 
   const body = JSON.stringify(surveyData);
 
   try {
     const res = await axios.post('/api/submitSurvey', body, config);
+    // const res = await axios.post('/api/checkToken', {}, config);
+
     console.log(res);
   } catch (err) {
     console.log(err);

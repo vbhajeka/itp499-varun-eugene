@@ -1,7 +1,6 @@
 import { Grid, Segment, Image, Container } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 import '../index.css';
@@ -14,10 +13,12 @@ import axios from 'axios';
 import { connect as reduxConnect } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const HomePage = ({ submitted, token }) => {
+import { setSurveyData } from '../actions/blockActions';
+
+const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
   const history = useHistory();
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, isLoading } = useAuth0();
 
   const getSurveys = async (sd, ed) => {
     console.log('getting');
@@ -45,28 +46,18 @@ const HomePage = ({ submitted, token }) => {
     });
   };
 
-  const beginSurvey = async () => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const body = {};
-
-    try {
-      const res = await axios.post('/api/external', body, config);
-      downloadCsv(res.data);
-    } catch (err) {
-      console.log(err);
+  const attemptLogin = () => {
+    if (isLoading) {
+      return;
     }
-
-    if (isAuthenticated) {
-      history.push('/survey');
+    if (!isAuthenticated) {
+      loginWithRedirect();
     } else {
-      console.log('not authenticated');
+      logout({ returnTo: window.location.origin });
     }
   };
+
+  console.log(continueToSurvey);
 
   return (
     <Fragment>
@@ -102,43 +93,64 @@ const HomePage = ({ submitted, token }) => {
               </div>
             </Grid.Column>
           </Grid.Row>
-          <Container style={{ position: 'absolute', bottom: '3.6%' }}>
-            <Grid.Row columns={1}>
-              <Grid.Column>
-                <Segment
-                  inverted
-                  color={'blue'}
-                  style={{
-                    lineHeight: '100%',
-                    fontSize: '100%',
-                    margin: '3%',
-                    width: '97%',
-                  }}
-                  onClick={() => beginSurvey()}
-                >
-                  Begin Operative Summary
-                </Segment>
-              </Grid.Column>
-            </Grid.Row>
+          {isAuthenticated && (
+            <Container style={{ position: 'absolute', bottom: '3.6%' }}>
+              <Grid.Row columns={1}>
+                <Grid.Column>
+                  <Link to='/survey'>
+                    <Segment
+                      inverted
+                      color={'blue'}
+                      style={{
+                        lineHeight: '100%',
+                        fontSize: '100%',
+                        margin: '3%',
+                        width: '97%',
+                      }}
+                    >
+                      Begin Operative Summary
+                    </Segment>
+                  </Link>
+                </Grid.Column>
+              </Grid.Row>
 
-            <Grid.Row columns={1}>
-              <Grid.Column>
-                <Segment
-                  inverted
-                  color={'green'}
-                  style={{
-                    lineHeight: '100%',
-                    fontSize: '100%',
-                    margin: '3%',
-                    width: '97%',
-                  }}
-                  onClick={() => getSurveys('2020-12-01', '2021-2-1')}
-                >
-                  View Previous Surveys
-                </Segment>
-              </Grid.Column>
-            </Grid.Row>
-          </Container>
+              <Grid.Row columns={1}>
+                <Grid.Column>
+                  <Segment
+                    inverted
+                    color={'green'}
+                    style={{
+                      lineHeight: '100%',
+                      fontSize: '100%',
+                      margin: '3%',
+                      width: '97%',
+                    }}
+                    onClick={() => getSurveys('2020-12-01', '2021-2-1')}
+                  >
+                    View Previous Surveys
+                  </Segment>
+                </Grid.Column>
+              </Grid.Row>
+            </Container>
+          )}
+          {!isAuthenticated && (
+            <Container style={{ padding: '4rem' }}>
+              <Grid>
+                <Grid.Row columns={'1'}>
+                  <Grid.Column>
+                    <Segment
+                      disabled={isLoading}
+                      inverted
+                      color={'blue'}
+                      onClick={() => attemptLogin()}
+                    >
+                      Login to Fill out survey
+                    </Segment>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Container>
+          )}
         </Grid>
       </Container>
     </Fragment>
@@ -149,7 +161,8 @@ const mapStateToProps = (state) => {
   return {
     submitted: state.blocks.submitted,
     token: state.state.auth0Token,
+    continueToSurvey: state.blocks.cont,
   };
 };
 
-export default reduxConnect(mapStateToProps, {})(HomePage);
+export default reduxConnect(mapStateToProps, { setSurveyData })(HomePage);

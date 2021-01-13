@@ -8,7 +8,6 @@ export const modalActions = (action) => (dispatch) => {
 };
 
 export const setAuth0Token = (token) => (dispatch) => {
-  console.log('whee authtoken set');
   dispatch({
     type: SET_TOKEN,
     payload: { token },

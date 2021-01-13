@@ -13,7 +13,6 @@ const app = express();
 
 // connect DB
 connectDB();
-//otherDB();
 
 // init middleware
 // body parser
@@ -22,6 +21,7 @@ app.use(express.json({ extended: false }));
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors({ origin: process.env.APP_ORIGIN }));
+app.use(cors({ origin: process.env.APP_SUBMIT }));
 
 // middleware function for auth0
 const checkJwt = jwt({
@@ -38,17 +38,22 @@ const checkJwt = jwt({
 });
 
 app.post('/api/external', checkJwt, (req, res) => {
+  console.log(req.headers.authorization);
   res.send({
     msg: 'Your access token was successfully validated!',
   });
 });
 
+app.use('/api', checkJwt);
+app.post('/api/checkToken', (req, res) => {
+  console.log(`token is ${req.headers.authorization}`);
+  res.send(`token is ${req.headers.authorization}`);
+});
+
 // define routes - examples
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/posts', require('./routes/api/posts'));
 // my routes
+app.use('/api/getSurveyData', checkJwt, require('./routes/api/getSurveyData'));
 app.use('/api/submitSurvey', checkJwt, require('./routes/api/submitSurvey'));
 app.use('/api/getSurveys', require('./routes/api/getSurveys'));
 

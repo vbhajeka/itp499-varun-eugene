@@ -12,7 +12,7 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -32,6 +32,13 @@ const ReviewBlock = ({
   token,
 }) => {
   const { user } = useAuth0();
+
+  // make sure we have questions to display - if not, redirect to home page
+  const history = useHistory();
+  if (blocks === undefined) {
+    history.push('/');
+    return <div>empty</div>;
+  }
 
   const getVals = (values) => {
     let retVal = '';
@@ -71,23 +78,18 @@ const ReviewBlock = ({
       <Modal basic open={cancelModalIsOpen}>
         <Modal.Content>
           <p>
-            Are you sure you'd like to cancel this survey and return to the home
-            page? All survey data will be lost
+            Are you sure you'd like to abandon this survey and return to the
+            home page? All survey data will be lost
           </p>
         </Modal.Content>
         <Modal.Actions>
           <Link to='/'>
-            <Button
-              basic
-              color='red'
-              inverted
-              onClick={() => modalActions(true)}
-            >
-              <Icon name='remove' /> Cancel
+            <Button color='red' inverted onClick={() => modalActions(true)}>
+              <Icon name='remove' /> Abandon
             </Button>
           </Link>
           <Button color='green' inverted onClick={() => modalActions(false)}>
-            <Icon name='checkmark' /> Back to the Review
+            <Icon name='checkmark' /> Continue Review
           </Button>
         </Modal.Actions>
       </Modal>
@@ -202,7 +204,7 @@ const mapStateToProps = (state) => {
     surveyID: state.blocks.surveyID,
     cancelModalIsOpen: state.state.cancelModalIsOpen,
 
-    token: state.state.Auth0Token,
+    token: state.state.auth0Token,
   };
 };
 
