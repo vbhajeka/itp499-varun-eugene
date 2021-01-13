@@ -47,17 +47,6 @@ function App({ comp, ping, setAuth0Token, token, setSurveyData, blocks }) {
     getAccessTokenSilently,
   } = useAuth0();
 
-  const attemptLogin = () => {
-    if (isLoading) {
-      return;
-    }
-    if (!isAuthenticated) {
-      loginWithRedirect();
-    } else {
-      logout({ returnTo: window.location.origin });
-    }
-  };
-
   const loadSurvey = async () => {
     const config = {
       headers: {
@@ -135,6 +124,8 @@ function App({ comp, ping, setAuth0Token, token, setSurveyData, blocks }) {
               </Segment> */}
             {isAuthenticated && (
               <Image
+                onClick={() => logout()}
+                style={{ position: 'absolute', right: 0, marginBottom: '1rem' }}
                 src={user.picture}
                 alt={user.name}
                 circular

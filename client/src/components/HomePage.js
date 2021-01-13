@@ -144,7 +144,7 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
                       color={'blue'}
                       onClick={() => attemptLogin()}
                     >
-                      Login to Fill out survey
+                      Click here to login and fill out survey
                     </Segment>
                   </Grid.Column>
                 </Grid.Row>
