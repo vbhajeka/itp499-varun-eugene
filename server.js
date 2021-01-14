@@ -28,7 +28,7 @@ app.use(
         styleSrc: [
           "'self'",
           'https://fonts.googleapis.com',
-          'https://fonts.gstatic.com/s/lato/',
+          'https://fonts.gstatic.com/s/lato/*',
           "'unsafe-inline'",
         ],
         imgSrc: ["'self'", 'data:'],
