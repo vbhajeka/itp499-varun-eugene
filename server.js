@@ -19,7 +19,26 @@ connectDB();
 app.use(express.json({ extended: false }));
 // auth0 middleware
 app.use(morgan('dev'));
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
+        imgSrc: ["'self'", 'data:'],
+        connectSrc: [
+          "'self'",
+          'https://${process.env.AUTH_DOMAIN}/oauth/token',
+        ],
+        fontSrc: ["'self'"],
+        objectSrc: ["'self'"],
+        mediaSrc: ["'self'"],
+        frameSrc: ["'self'", '${process.env.AUTH_DOMAIN}'],
+      },
+    },
+  })
+);
 app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
 app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
 
