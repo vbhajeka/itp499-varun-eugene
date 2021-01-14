@@ -20,8 +20,8 @@ app.use(express.json({ extended: false }));
 // auth0 middleware
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors({ origin: process.env.APP_ORIGIN }));
-app.use(cors({ origin: process.env.APP_SUBMIT }));
+app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
+app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
 
 // middleware function for auth0
 const checkJwt = jwt({
