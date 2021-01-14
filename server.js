@@ -30,6 +30,7 @@ app.use(
         connectSrc: [
           "'self'",
           `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
+          'https://lh4.googleusercontent.com',
         ],
         fontSrc: ["'self'", 'https://fonts.gstatic.com/', 'data:'],
         objectSrc: ["'self'"],
