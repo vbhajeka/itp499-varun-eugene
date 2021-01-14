@@ -26,7 +26,15 @@ import { setSurveyData } from './actions/blockActions';
 
 import axios from 'axios';
 
-function App({ comp, ping, setAuth0Token, token, setSurveyData, blocks }) {
+function App({
+  comp,
+  ping,
+  setAuth0Token,
+  token,
+  setSurveyData,
+  blocks,
+  isMobile,
+}) {
   let visible_comp;
 
   console.log(comp);
@@ -89,6 +97,25 @@ function App({ comp, ping, setAuth0Token, token, setSurveyData, blocks }) {
     }
   }
 
+  const mql = window.matchMedia('(max-width: 767px)');
+
+  let mobileView = mql.matches;
+
+  mql.addEventListener('change', (e) => {
+    resetMobileView(e.matches);
+  });
+
+  const resetMobileView = (mobileView) => {
+    if (mobileView) {
+      isMobile = true;
+    } else {
+      isMobile = false;
+    }
+    console.log(isMobile);
+  };
+
+  resetMobileView(mobileView);
+
   return (
     <div className='App'>
       <div id='artificial-background'>
@@ -129,7 +156,7 @@ function App({ comp, ping, setAuth0Token, token, setSurveyData, blocks }) {
               )}
               {!isAuthenticated && <Header size={'tiny'}>Login</Header>}
               </Segment> */}
-            {isAuthenticated && (
+            {isAuthenticated &&
               // <Container>
               //   <Menu floated={'right'}>
               //     <Menu.Item>
@@ -148,17 +175,39 @@ function App({ comp, ping, setAuth0Token, token, setSurveyData, blocks }) {
               //     </Menu.Item>
               //   </Menu>
               // </Container>
+              !isMobile && (
+                <Segment
+                  style={{
+                    position: 'absolute',
+                    right: 0,
+                    top: 0,
+                    margin: '0.5rem',
+                    padding: '0.5rem',
+                  }}
+                  onClick={() => logout()}
+                  inverted
+                  color={'blue'}
+                >
+                  <Header size={'tiny'} style={{ marginLeft: '0.75rem' }}>
+                    {user.name}
+                    <Image
+                      src={user.picture}
+                      alt={user.name}
+                      circular
+                      size={'mini'}
+                      style={{ marginLeft: '0.75rem' }}
+                    ></Image>
+                  </Header>
+                </Segment>
+              )}
+            {isAuthenticated && isMobile && (
               <Image
-                onClick={() => logout()}
-                style={{
-                  position: 'absolute',
-                  right: 0,
-                  marginBottom: '1rem',
-                }}
                 src={user.picture}
                 alt={user.name}
                 circular
                 size={'mini'}
+                onClick={() => logout()}
+                floated={'right'}
               ></Image>
             )}
           </Header>
