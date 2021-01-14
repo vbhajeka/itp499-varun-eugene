@@ -114,6 +114,19 @@ const left_acetabulum =
         value: [],
       },
       {
+        id: '5',
+        question_header: 'Dysplasia',
+        question_desc: 'Was there a  Dysplasia?',
+        enabled: false,
+        required: true,
+        type: 'MC',
+        options: [
+          { value: 'Yes', children: [], blocks_enabled: [] },
+          { value: 'No', children: [], blocks_enabled: [] },
+        ],
+        value: [],
+      },
+      {
         id: '4',
         question_header: 'Posterior Rim Fracture',
         question_desc: 'Was there an Acute Posterior Rim Fracture?',
@@ -135,20 +148,7 @@ const left_acetabulum =
         type: 'MC',
         options: [
           { value: 'Displaced', children: [], blocks_enabled: [] },
-          { value: 'Not DIsplaced', children: [], blocks_enabled: [] },
-        ],
-        value: [],
-      },
-      {
-        id: '5',
-        question_header: 'Dysplasia',
-        question_desc: 'Was there a  Dysplasia?',
-        enabled: false,
-        required: true,
-        type: 'MC',
-        options: [
-          { value: 'Yes', children: [], blocks_enabled: [] },
-          { value: 'No', children: [], blocks_enabled: [] },
+          { value: 'Not Displaced', children: [], blocks_enabled: [] },
         ],
         value: [],
       },

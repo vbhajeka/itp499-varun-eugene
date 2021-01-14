@@ -26,7 +26,12 @@ app.use(
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
-        imgSrc: ["'self'", 'data:', 'https://lh4.googleusercontent.com'],
+        imgSrc: [
+          "'self'",
+          'data:',
+          '*.gravatar.com',
+          '*.googleusercontent.com',
+        ],
         connectSrc: [
           "'self'",
           `https://${process.env.AUTH0_DOMAIN}/oauth/token`,

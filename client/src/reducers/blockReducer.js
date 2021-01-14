@@ -180,12 +180,9 @@ const prevBlockActionBody = (state, payload) => {
   return state;
 };
 
-const clearState = (submitted) => {
+const clearState = () => {
   let temp = JSON.parse(JSON.stringify(initState));
   initState = JSON.parse(JSON.stringify(temp));
-  if (submitted) {
-    temp.submitted = true;
-  }
   return { ...temp };
 };
 

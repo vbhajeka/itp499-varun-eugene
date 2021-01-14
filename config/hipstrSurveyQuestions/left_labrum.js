@@ -165,17 +165,17 @@ const left_labrum =
           { value: 'Labrectomy', children: [], blocks_enabled: [] },
           {
             value: 'Repair',
-            children: ['6', '7', '8', '9', '10'],
+            children: ['6', '7', '10'],
             blocks_enabled: [],
           },
           {
             value: 'Reconstruction',
-            children: ['18', '19', '6', '7', '8', '9'],
+            children: ['18', '19', '6', '7'],
             blocks_enabled: [],
           },
           {
             value: 'Augmentation',
-            children: ['18', '19', '6', '7', '8', '9'],
+            children: ['18', '19', '6', '7'],
             blocks_enabled: [],
           },
           { value: 'None', children: [], blocks_enabled: [] },

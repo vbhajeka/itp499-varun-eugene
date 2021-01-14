@@ -40,8 +40,8 @@ const realState = {
   ping: true,
   blocks_seen: [],
   surveyID: 'as341s',
+  versionID: 1.0,
   current: 'basic_details',
-  submitted: false,
   blocks: [
     // basic_details
     basic_details,

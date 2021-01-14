@@ -71,7 +71,8 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
                 color={'green'}
                 inverted
               >
-                Thank you for Submitting!
+                Thank you for Submitting! An email with your selections has been
+                sent to you!
               </Segment>
             )}
           </Grid.Row>
@@ -161,7 +162,7 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
 
 const mapStateToProps = (state) => {
   return {
-    submitted: state.blocks.submitted,
+    submitted: state.state.submitted,
     token: state.state.auth0Token,
     continueToSurvey: state.blocks.cont,
   };

@@ -5,6 +5,10 @@ const SurveyResponseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  version: {
+    type: Number,
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,

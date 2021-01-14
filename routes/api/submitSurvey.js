@@ -33,7 +33,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { surveyID, answers, doctor } = req.body;
+    const { surveyID, answers, doctor, versionID } = req.body;
 
     try {
       let surveyData = new Survey({
@@ -41,6 +41,7 @@ router.post(
         surveyAnswers: answers,
         doctor,
         doctor_id: decoded.payload.sub,
+        version: versionID,
       });
 
       await surveyData.save(function (err, survey) {

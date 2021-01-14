@@ -15,7 +15,7 @@ const other_right_details = {
         { value: 'Ligamentum Teres', children: ['4'], blocks_enabled: [] },
         { value: 'Capsular Plication', children: ['6'], blocks_enabled: [] },
         {
-          value: 'Iliopsoas Tendon lengthening',
+          value: 'Iliopsoas Tendon Lengthening',
           children: ['1'],
           blocks_enabled: [],
         },
