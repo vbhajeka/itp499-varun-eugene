@@ -125,7 +125,7 @@ function App({
             size={'large'}
             textAlign={'center'}
           >
-            HIPSTR Survey
+            HipSTER Survey
             {/* <Segment
               inverted
               color={'blue'}

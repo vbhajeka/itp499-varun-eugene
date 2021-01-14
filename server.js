@@ -50,10 +50,10 @@ function forceSSL(req, res, next) {
   next();
 }
 
-if (process.env.NODE_ENV === 'production') {
-  console.log('Forcing SSL Use');
-  app.use(forceSSL);
-}
+// if (process.env.NODE_ENV === 'production') {
+//   console.log('Forcing SSL Use');
+//   app.use(forceSSL);
+// }
 
 app.post('/api/external', checkJwt, (req, res) => {
   console.log(req.headers.authorization);
