@@ -40,7 +40,7 @@ const injection_details = {
       question_header: 'BMAC',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Intra-articular', children: [], blocks_enabled: [] },
         { value: 'Extra-articular', children: [], blocks_enabled: [] },
@@ -52,7 +52,7 @@ const injection_details = {
       question_header: 'PRP',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Intra-articular', children: [], blocks_enabled: [] },
         { value: 'Extra-articular', children: [], blocks_enabled: [] },
@@ -64,7 +64,7 @@ const injection_details = {
       question_header: 'HA',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Intra-articular', children: [], blocks_enabled: [] },
         { value: 'Extra-articular', children: [], blocks_enabled: [] },
@@ -76,7 +76,7 @@ const injection_details = {
       question_header: 'Anesthetic',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Intra-articular', children: [], blocks_enabled: [] },
         { value: 'Extra-articular', children: [], blocks_enabled: [] },
@@ -88,7 +88,7 @@ const injection_details = {
       question_header: 'Stem Cells',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Intra-articular', children: [], blocks_enabled: [] },
         { value: 'Extra-articular', children: [], blocks_enabled: [] },
@@ -100,7 +100,7 @@ const injection_details = {
       question_header: 'Cortisone',
       enabled: false,
       required: true,
-      type: 'MC',
+      type: 'SATA',
       options: [
         { value: 'Intra-articular', children: [], blocks_enabled: [] },
         { value: 'Extra-articular', children: [], blocks_enabled: [] },

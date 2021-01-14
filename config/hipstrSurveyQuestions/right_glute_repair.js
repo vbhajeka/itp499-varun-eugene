@@ -7,8 +7,8 @@ const right_glute_repair = {
   questions: [
     {
       id: '0',
-      question_header: 'Glute Tendon Repair Type',
-      question_desc: 'Select Glute tendon repair type',
+      question_header: 'Gluteus Tendon Repair Type',
+      question_desc: 'Select Gluteus tendon repair type',
       enabled: true,
       required: true,
       type: 'MC',

@@ -21,20 +21,6 @@ const level_one_aap =
         ],
         value: [],
       },
-      {
-        id: '47',
-        question_header: 'Femoral Osteotomy',
-        question_desc:
-          'Is this hip arthroscopy performed in conjunction with femoral osteotomy?',
-        enabled: true,
-        required: true,
-        type: 'MC',
-        options: [
-          { value: 'Yes', children: [], blocks_enabled: [] },
-          { value: 'No', children: [], blocks_enabled: [] },
-        ],
-        value: [],
-      },
     ],
   };
 

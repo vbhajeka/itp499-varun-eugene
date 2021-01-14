@@ -51,9 +51,8 @@ const random_level_two_details = {
       type: 'MC',
       options: [
         { value: 'General', children: [], blocks_enabled: [] },
-        { value: 'Spinal', children: [], blocks_enabled: [] },
-        { value: 'Lumbar Plexus Block', children: [], blocks_enabled: [] },
         { value: 'Spinal / Epidural', children: [], blocks_enabled: [] },
+        { value: 'Lumbar Plexus Block', children: [], blocks_enabled: [] },
         { value: 'Other', children: ['4'], blocks_enabled: [] },
       ],
       value: [],

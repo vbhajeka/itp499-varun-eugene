@@ -206,7 +206,9 @@ function App({
                 alt={user.name}
                 circular
                 size={'mini'}
-                onClick={() => logout()}
+                onClick={() =>
+                  logout({ returnTo: process.env.MY_CORS_APP_ORIGIN })
+                }
                 floated={'right'}
               ></Image>
             )}

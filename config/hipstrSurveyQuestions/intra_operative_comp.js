@@ -1,12 +1,12 @@
 const intra_operative_comp = {
   block_id: 'intra_operative_comp',
-  block_header: 'Intra-operative Complications',
+  block_header: 'Intra-Operative Complications',
   enabled: false,
   required: false,
   questions: [
     {
       id: '0',
-      question_header: 'Intra-operative Complications',
+      question_header: 'Intra-Operative Complications',
       question_desc: 'Select all Intra-operative Complications that apply',
       enabled: true,
       required: false,
@@ -15,7 +15,7 @@ const intra_operative_comp = {
         { value: 'Labral Damage', children: [], blocks_enabled: [] },
         { value: 'Chondral Damage', children: [], blocks_enabled: [] },
         {
-          value: 'Bent/Broken instrument(s)',
+          value: 'Bent/Broken Instrument(s)',
           children: [],
           blocks_enabled: [],
         },
@@ -23,7 +23,7 @@ const intra_operative_comp = {
         { value: 'Suture Breakage', children: [], blocks_enabled: [] },
         { value: 'Loss of Traction', children: [], blocks_enabled: [] },
         {
-          value: 'Inability to adequately distract',
+          value: 'Inability to Adequately Distract',
           children: [],
           blocks_enabled: [],
         },
@@ -37,7 +37,7 @@ const intra_operative_comp = {
     },
     {
       id: '1',
-      question_header: 'Anchor complications',
+      question_header: 'Anchor Complications',
       enabled: false,
       required: false,
       type: 'SATA',

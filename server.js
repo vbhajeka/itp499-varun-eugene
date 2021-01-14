@@ -26,11 +26,10 @@ app.use(
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'"],
         styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
-        imgSrc: ["'self'", 'data:'],
+        imgSrc: ["'self'", 'data:', 'https://lh4.googleusercontent.com'],
         connectSrc: [
           "'self'",
           `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
-          'https://lh4.googleusercontent.com',
         ],
         fontSrc: ["'self'", 'https://fonts.gstatic.com/', 'data:'],
         objectSrc: ["'self'"],
