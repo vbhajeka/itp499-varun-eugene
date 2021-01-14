@@ -31,7 +31,7 @@ app.use(
           "'self'",
           `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
         ],
-        fontSrc: ["'self'", 'https://fonts.gstatic.com/'],
+        fontSrc: ["'self'", 'https://fonts.gstatic.com/', 'data:'],
         objectSrc: ["'self'"],
         mediaSrc: ["'self'"],
         frameSrc: ["'self'", `${process.env.AUTH0_DOMAIN}`],
