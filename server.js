@@ -25,18 +25,13 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'"],
-        styleSrc: [
-          "'self'",
-          'https://fonts.googleapis.com',
-          'https://fonts.gstatic.com/s/lato/*',
-          "'unsafe-inline'",
-        ],
+        styleSrc: ["'self'", 'https://fonts.googleapis.com', "'unsafe-inline'"],
         imgSrc: ["'self'", 'data:'],
         connectSrc: [
           "'self'",
           `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
         ],
-        fontSrc: ["'self'"],
+        fontSrc: ["'self'", 'https://fonts.gstatic.com/'],
         objectSrc: ["'self'"],
         mediaSrc: ["'self'"],
         frameSrc: ["'self'", `${process.env.AUTH0_DOMAIN}`],
