@@ -37,6 +37,24 @@ const checkJwt = jwt({
   algorithms: ['RS256'],
 });
 
+function forceSSL(req, res, next) {
+  var herokuProtocolHeader = req.headers['x-forwarded-proto'];
+  if (herokuProtocolHeader && herokuProtocolHeader != 'https') {
+    var hostName = req.get('host');
+    hostName = hostName.replace(/:\d+$/, '');
+    if (process.env.SSL_PORT) hostName += ':' + process.env.SSL_PORT;
+    var redirectURL = 'https://' + hostName + req.url;
+    console.log('Redirecting to: ' + redirectURL);
+    return res.redirect(redirectURL);
+  }
+  next();
+}
+
+if (process.env.NODE_ENV === 'production') {
+  console.log('Forcing SSL Use');
+  app.use(forceSSL);
+}
+
 app.post('/api/external', checkJwt, (req, res) => {
   console.log(req.headers.authorization);
   res.send({

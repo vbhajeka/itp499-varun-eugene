@@ -27,7 +27,7 @@ export const left_labrum =
       {
         id: '50',
         question_header: 'Left Labrum',
-        question_desc: 'Was this a takedown for reformation?',
+        question_desc: 'Was this a takedown for refixation?',
         enabled: false,
         required: true,
         type: 'MC',

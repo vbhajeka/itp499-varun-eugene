@@ -7,7 +7,14 @@ import ConfirmPage from './components/ConfirmPage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
 
-import { Segment, Header, Image } from 'semantic-ui-react';
+import {
+  Segment,
+  Header,
+  Image,
+  Dropdown,
+  Menu,
+  Container,
+} from 'semantic-ui-react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -123,9 +130,31 @@ function App({ comp, ping, setAuth0Token, token, setSurveyData, blocks }) {
               {!isAuthenticated && <Header size={'tiny'}>Login</Header>}
               </Segment> */}
             {isAuthenticated && (
+              // <Container>
+              //   <Menu floated={'right'}>
+              //     <Menu.Item>
+              //       <Image
+              //         onClick={() => logout()}
+              //         style={{
+              //           position: 'absolute',
+              //           right: 0,
+              //           marginBottom: '1rem',
+              //         }}
+              //         src={user.picture}
+              //         alt={user.name}
+              //         circular
+              //         size={'mini'}
+              //       ></Image>
+              //     </Menu.Item>
+              //   </Menu>
+              // </Container>
               <Image
                 onClick={() => logout()}
-                style={{ position: 'absolute', right: 0, marginBottom: '1rem' }}
+                style={{
+                  position: 'absolute',
+                  right: 0,
+                  marginBottom: '1rem',
+                }}
                 src={user.picture}
                 alt={user.name}
                 circular

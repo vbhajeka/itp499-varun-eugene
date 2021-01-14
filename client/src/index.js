@@ -13,6 +13,10 @@ import store from './store';
 
 ReactDOM.render(
   <Auth0Provider
+    /**domain={process.env.AUTH_DOMAIN}
+    clientId={process.env.AUTH0_CLIENT_ID}
+    redirectUri={window.location.origin}
+    audience={process.env.AUTH_AUDIENCE} */
     domain='dev-g1b86-e1.us.auth0.com'
     clientId='EavhqaPMrv16U1GY0WYHOPwfinV4wiHB'
     redirectUri={window.location.origin}

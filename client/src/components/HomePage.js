@@ -58,6 +58,7 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
   };
 
   console.log(continueToSurvey);
+  console.log(isLoading);
 
   return (
     <Fragment>
@@ -102,8 +103,8 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
                       inverted
                       color={'blue'}
                       style={{
-                        lineHeight: '100%',
-                        fontSize: '100%',
+                        lineHeight: '2rem',
+                        fontSize: '1.5rem',
                         margin: '3%',
                         width: '97%',
                       }}
@@ -120,8 +121,8 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
                     inverted
                     color={'green'}
                     style={{
-                      lineHeight: '100%',
-                      fontSize: '100%',
+                      lineHeight: '2rem',
+                      fontSize: '1.5rem',
                       margin: '3%',
                       width: '97%',
                     }}
@@ -143,6 +144,7 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
                       inverted
                       color={'blue'}
                       onClick={() => attemptLogin()}
+                      style={{ lineHeight: '2rem', fontSize: '1.5rem' }}
                     >
                       Click here to login and fill out survey
                     </Segment>
