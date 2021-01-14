@@ -29,12 +29,12 @@ app.use(
         imgSrc: ["'self'", 'data:'],
         connectSrc: [
           "'self'",
-          'https://${process.env.AUTH_DOMAIN}/oauth/token',
+          `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
         ],
         fontSrc: ["'self'"],
         objectSrc: ["'self'"],
         mediaSrc: ["'self'"],
-        frameSrc: ["'self'", '${process.env.AUTH_DOMAIN}'],
+        frameSrc: ["'self'", `${process.env.AUTH0_DOMAIN}`],
       },
     },
   })
