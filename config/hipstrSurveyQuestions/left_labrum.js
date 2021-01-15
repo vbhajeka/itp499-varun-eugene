@@ -79,7 +79,7 @@ const left_labrum =
         question_header: 'Other Labrum Abnormalities',
         question_desc: 'What other Labrum abnormalites were observed?',
         enabled: false,
-        required: true,
+        required: false,
         type: 'SATA',
         options: [
           {

@@ -47,7 +47,7 @@ const right_femur =
         question_desc: 'Location of the Cam Lesion',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Anteromedial', children: [], blocks_enabled: [] },
           { value: 'Anterior', children: [], blocks_enabled: [] },

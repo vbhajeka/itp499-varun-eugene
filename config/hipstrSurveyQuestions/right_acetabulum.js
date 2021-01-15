@@ -18,7 +18,7 @@ const right_acetabulum =
           { value: 'Normal', children: [], blocks_enabled: [] },
           {
             value: 'Abnormal',
-            children: ['1', '2', '3', '4', '5'],
+            children: ['1', '2', '3', '4'],
             blocks_enabled: [],
           },
         ],
@@ -111,19 +111,6 @@ const right_acetabulum =
         required: true,
         type: 'FR',
         fr_type: 'text',
-        value: [],
-      },
-      {
-        id: '5',
-        question_header: 'Dysplasia',
-        question_desc: 'Was there a Dysplasia?',
-        enabled: false,
-        required: true,
-        type: 'MC',
-        options: [
-          { value: 'Yes', children: [], blocks_enabled: [] },
-          { value: 'No', children: [], blocks_enabled: [] },
-        ],
         value: [],
       },
       {
