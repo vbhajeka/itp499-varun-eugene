@@ -18,7 +18,13 @@ import { setSurveyData } from '../actions/blockActions';
 const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
   const history = useHistory();
 
-  const { isAuthenticated, loginWithRedirect, logout, isLoading } = useAuth0();
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    isLoading,
+    user,
+  } = useAuth0();
 
   const getSurveys = async (sd, ed) => {
     console.log('getting');
@@ -72,7 +78,7 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
                 inverted
               >
                 Thank you for Submitting! An email with your selections has been
-                sent to you!
+                sent to {user.email}!
               </Segment>
             )}
           </Grid.Row>
