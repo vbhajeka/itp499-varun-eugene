@@ -97,6 +97,8 @@ function App({
     }
   }
 
+  console.log(window.location.origin);
+
   const mql = window.matchMedia('(max-width: 767px)');
 
   let mobileView = mql.matches;
@@ -184,7 +186,7 @@ function App({
                     margin: '0.5rem',
                     padding: '0.5rem',
                   }}
-                  onClick={() => logout()}
+                  onClick={() => logout({ returnTo: window.location.origin })}
                   inverted
                   color={'blue'}
                 >
@@ -206,9 +208,7 @@ function App({
                 alt={user.name}
                 circular
                 size={'mini'}
-                onClick={() =>
-                  logout({ returnTo: process.env.MY_CORS_APP_ORIGIN })
-                }
+                onClick={() => logout({ returnTo: window.location.origin })}
                 floated={'right'}
               ></Image>
             )}
