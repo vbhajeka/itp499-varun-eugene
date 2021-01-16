@@ -59,7 +59,7 @@ const checkJwt = jwt({
   algorithms: ['RS256'],
 });
 
-function forceSSL(req, res, next) {
+const forceSSL = (req, res, next) => {
   var herokuProtocolHeader = req.headers['x-forwarded-proto'];
   if (herokuProtocolHeader && herokuProtocolHeader != 'https') {
     var hostName = req.get('host');
@@ -70,7 +70,7 @@ function forceSSL(req, res, next) {
     return res.redirect(redirectURL);
   }
   next();
-}
+};
 
 if (process.env.NODE_ENV === 'production') {
   console.log('Forcing SSL Use');
