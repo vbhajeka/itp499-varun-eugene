@@ -72,13 +72,13 @@ const forceSSL = (req, res, next) => {
   next();
 };
 
-if (process.env.NODE_ENV === 'production') {
-  console.log('Forcing SSL Use');
-  app.use(forceSSL);
-} else {
-  app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
-  app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
-}
+// if (process.env.NODE_ENV === 'production') {
+//   console.log('Forcing SSL Use');
+//   app.use(forceSSL);
+// } else {
+//   app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
+//   app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
+// }
 
 app.post('/api/external', checkJwt, (req, res) => {
   console.log(req.headers.authorization);
@@ -107,6 +107,12 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
+
+  console.log('Forcing SSL Use');
+  app.use(forceSSL);
+} else {
+  app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
+  app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
 }
 
 const PORT = process.env.PORT || 5000;
