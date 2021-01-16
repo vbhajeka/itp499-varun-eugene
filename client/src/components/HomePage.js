@@ -15,7 +15,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { setSurveyData } from '../actions/blockActions';
 
-const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
+const HomePage = ({
+  submitted,
+  token,
+  setSurveyData,
+  continueToSurvey,
+  isAdmin = true,
+}) => {
   const history = useHistory();
 
   const {
@@ -65,6 +71,7 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
 
   console.log(continueToSurvey);
   console.log(isLoading);
+  console.log(isAdmin ? 2 : 1);
 
   return (
     <Fragment>
@@ -122,7 +129,7 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
                 </Grid.Column>
               </Grid.Row>
 
-              <Grid.Row columns={1}>
+              <Grid.Row columns={isAdmin ? 2 : 1}>
                 <Grid.Column>
                   <Segment
                     inverted
@@ -138,6 +145,23 @@ const HomePage = ({ submitted, token, setSurveyData, continueToSurvey }) => {
                     View Previous Surveys
                   </Segment>
                 </Grid.Column>
+                {isAdmin && (
+                  <Grid.Column>
+                    <Segment
+                      inverted
+                      color={'green'}
+                      style={{
+                        lineHeight: '2rem',
+                        fontSize: '1.5rem',
+                        margin: '3%',
+                        width: '97%',
+                      }}
+                      onClick={() => getSurveys('2020-12-01', '2021-2-1')}
+                    >
+                      Export Surveys
+                    </Segment>
+                  </Grid.Column>
+                )}
               </Grid.Row>
             </Container>
           )}

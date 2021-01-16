@@ -44,8 +44,6 @@ app.use(
     },
   })
 );
-app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
-app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
 
 // middleware function for auth0
 const checkJwt = jwt({
@@ -77,6 +75,9 @@ function forceSSL(req, res, next) {
 if (process.env.NODE_ENV === 'production') {
   console.log('Forcing SSL Use');
   app.use(forceSSL);
+} else {
+  app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
+  app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
 }
 
 app.post('/api/external', checkJwt, (req, res) => {

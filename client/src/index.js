@@ -35,7 +35,7 @@ ReactDOM.render(
               render={() => <App comp='confirm' />}
             />
             <Route exact path='/review' render={() => <App comp='review' />} />
-            <Route exact path='/img' render={() => <App comp='img' />} />
+            <Route exact path='/export' render={() => <App comp='export' />} />
           </Switch>
         </section>
       </Provider>

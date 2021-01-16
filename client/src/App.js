@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import ConfirmPage from './components/ConfirmPage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
+import ExportPage from './components/ExportPage';
 
 import {
   Segment,
@@ -48,6 +49,9 @@ function App({
       break;
     case 'review':
       visible_comp = <ReviewBlock />;
+      break;
+    case 'export':
+      visible_comp = <ExportPage />;
       break;
     default:
       visible_comp = <HomePage />;
