@@ -31,6 +31,7 @@ app.use(
           '*.gravatar.com',
           '*.googleusercontent.com',
           '*.auth0.com',
+          '*.i1.wp.com',
         ],
         connectSrc: [
           "'self'",
