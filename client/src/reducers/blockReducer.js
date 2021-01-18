@@ -14,6 +14,33 @@ import {
 let realState = { cont: false };
 let initState = JSON.parse(JSON.stringify(realState));
 
+const getTodaysDate = () => {
+  let now = new Date();
+  let month = `${now.getMonth() + 1}`;
+  if (month.length === 1) {
+    month = `0${month}`;
+  }
+  let date = `${now.getDate()}`;
+  if (date.length === 1) {
+    date = `0${date}`;
+  }
+  let dateIso = `${now.getFullYear()}-${month}-${date}`;
+  return dateIso;
+};
+
+const setStateInitBody = (init) => {
+  init.cont = true;
+  // find any dates, give them a default value of today's date
+  init.blocks.forEach((b) => {
+    b.questions.forEach((q) => {
+      if (q.type === 'FR' && q.fr_type === 'date') {
+        q.value = [getTodaysDate()];
+      }
+    });
+  });
+  return { ...init };
+};
+
 const enableChildrenRec = (blocks, currQ, option_selected, toEnable) => {
   // base cases
   console.log(currQ.text, option_selected);
@@ -50,13 +77,34 @@ const enableChildrenRec = (blocks, currQ, option_selected, toEnable) => {
   }
 };
 
+// const enableBlocks = (blocks, currQ, options, value) => {
+//   options.forEach((x) => {
+//     const currOptions = currQ.options.find((o) => o.value === x);
+//     if (currOptions.blocks_enabled) {
+//       console.log(currOptions.blocks_enabled);
+//       currOptions.blocks_enabled.forEach((be) => {
+//         blocks.find((b) => b.block_id === be).enabled = value;
+//       });
+//     }
+//   });
+// };
+
 const enableBlocks = (blocks, currQ, options, value) => {
   options.forEach((x) => {
     const currOptions = currQ.options.find((o) => o.value === x);
+    // enable blocks with only one dependency
     if (currOptions.blocks_enabled) {
-      console.log(currOptions.blocks_enabled);
       currOptions.blocks_enabled.forEach((be) => {
         blocks.find((b) => b.block_id === be).enabled = value;
+      });
+    }
+    // now deal with partial enables
+    if (currOptions.blocks_partially_enabled) {
+      // find partially enabled block
+      currOptions.blocks_partially_enabled.forEach((be) => {
+        let part = blocks.find((b) => b.block_id === be.id);
+        part.toEnable[be.index] = value;
+        part.enabled = !part.toEnable.includes(false);
       });
     }
   });
@@ -212,7 +260,7 @@ export default function reducer(state = realState, action) {
 
   switch (type) {
     case SET_STATE_INIT:
-      return { ...payload.initState, cont: true };
+      return { ...setStateInitBody(payload.initState) };
     case SET_PREFS:
       return { ...setPrefsBody(state, payload.prefs) };
     case SELECT_MC_SATA:

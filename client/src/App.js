@@ -86,10 +86,6 @@ function App({
 
   let mobileView = mql.matches;
 
-  mql.addEventListener('change', (e) => {
-    resetMobileView(e.matches);
-  });
-
   const resetMobileView = (mobileView) => {
     if (mobileView) {
       isMobile = true;

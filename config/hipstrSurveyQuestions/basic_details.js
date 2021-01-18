@@ -39,6 +39,7 @@ const basic_details =
               'other_left_details',
               'left_diagnosis',
             ],
+            blocks_partially_enabled: [{ id: 'angle_details_left', index: 0 }],
           },
           {
             value: 'Right',
@@ -53,6 +54,7 @@ const basic_details =
               'other_right_details',
               'right_diagnosis',
             ],
+            blocks_partially_enabled: [{ id: 'angle_details_right', index: 0 }],
           },
         ],
         value: [],

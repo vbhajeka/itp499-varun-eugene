@@ -15,7 +15,8 @@ const level_two_toggle = {
       options: [
         {
           value: 'Yes',
-          children: ['enable_level_two_side'],
+          // children: ['enable_level_two_side'],
+          children: [],
           blocks_enabled: [
             'random_level_two_details',
             'injection_details',
@@ -24,32 +25,36 @@ const level_two_toggle = {
             'post_op_materials',
             'exam_under_anesthesia',
           ],
+          blocks_partially_enabled: [
+            { id: 'angle_details_left', index: 1 },
+            { id: 'angle_details_right', index: 1 },
+          ],
         },
         { value: 'No', children: [], blocks_enabled: [] },
       ],
       value: [],
     },
-    {
-      id: 'enable_level_two_side',
-      question_header: 'Which side can you give more details on?',
-      question_desc: 'Select one or both',
-      enabled: false,
-      required: true,
-      type: 'SATA',
-      options: [
-        {
-          value: 'Left',
-          children: [],
-          blocks_enabled: ['angle_details_left'],
-        },
-        {
-          value: 'Right',
-          children: [],
-          blocks_enabled: ['angle_details_right'],
-        },
-      ],
-      value: [],
-    },
+    // {
+    //   id: 'enable_level_two_side',
+    //   question_header: 'Which side can you give more details on?',
+    //   question_desc: 'Select one or both',
+    //   enabled: false,
+    //   required: true,
+    //   type: 'SATA',
+    //   options: [
+    //     {
+    //       value: 'Left',
+    //       children: [],
+    //       blocks_enabled: ['angle_details_left'],
+    //     },
+    //     {
+    //       value: 'Right',
+    //       children: [],
+    //       blocks_enabled: ['angle_details_right'],
+    //     },
+    //   ],
+    //   value: [],
+    // },
   ],
 };
 

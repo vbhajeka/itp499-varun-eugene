@@ -87,7 +87,9 @@ app.post('/api/checkToken', (req, res) => {
   res.send(`token is ${req.headers.authorization}`);
 });
 
-// my routes
+//my unsecured routes
+app.use('/auth0/config', require('./routes/auth0/config'));
+// my secured routes
 app.use('/api/getSurveyData', require('./routes/api/getSurveyData'));
 app.use('/api/submitSurvey', require('./routes/api/submitSurvey'));
 app.use('/api/getSurveys', require('./routes/api/getSurveys'));

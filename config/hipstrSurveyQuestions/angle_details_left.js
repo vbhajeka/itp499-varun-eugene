@@ -4,6 +4,7 @@ const angle_details_left = {
   block_description: 'Details about the Angle of the Hip',
   enabled: false,
   required: false,
+  toEnable: [false, false],
   questions: [
     {
       id: 'center_edge_left',

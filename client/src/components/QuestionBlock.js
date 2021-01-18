@@ -313,11 +313,7 @@ const QuestionBlock = ({
                           <Container key={q.id}>
                             <input
                               name={q.value}
-                              defaultValue={
-                                q.fr_type === 'date'
-                                  ? setTodaysDate(q.id)
-                                  : q.value
-                              }
+                              defaultValue={q.value}
                               type={q.fr_type}
                               onChange={(val) =>
                                 onTextChange(q.id, val.target.value)
