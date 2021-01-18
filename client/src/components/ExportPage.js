@@ -36,6 +36,7 @@ const ExportPage = ({ surveys, toggleOpenSpecific, ids }) => {
     arr.forEach((a) => {
       retVal += `${a} | `;
     });
+    retVal.replace(',', '-');
     return retVal.substring(0, retVal.length - 2);
   };
 

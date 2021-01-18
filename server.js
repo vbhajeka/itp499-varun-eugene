@@ -30,6 +30,7 @@ app.use(
           'data:',
           '*.gravatar.com',
           '*.googleusercontent.com',
+          '*.auth0.com',
         ],
         connectSrc: [
           "'self'",
