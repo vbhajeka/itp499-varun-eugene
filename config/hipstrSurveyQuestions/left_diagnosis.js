@@ -24,7 +24,10 @@ const left_diagnosis = {
         { value: 'Post Traumatic', children: [], blocks_enabled: [] },
         {
           value: 'AVN',
-          children: ['left_diagnosis_avn_classification'],
+          children: [
+            'left_diagnosis_avn_classification',
+            'left_femur_avn_treatment',
+          ],
           blocks_enabled: [],
         },
         { value: 'Undiagnosed Hip Pain', children: [], blocks_enabled: [] },

@@ -13,7 +13,35 @@ import {
 let realState = { cont: false };
 let initState = JSON.parse(JSON.stringify(realState));
 
-const enableChildrenRec = (block, currQ, option_selected, toEnable) => {
+// const enableChildrenRec = (block, currQ, option_selected, toEnable) => {
+//   // base cases
+//   console.log(currQ.text, option_selected);
+//   if (currQ.type === 'FR') {
+//     console.log('quitting because FR has no children');
+//     return;
+//   } else if (
+//     option_selected === undefined ||
+//     option_selected === null ||
+//     option_selected.length === 0
+//   ) {
+//     console.log('quitting because nothing was selected');
+//     return;
+//   } else {
+//     option_selected.forEach((option) => {
+//       console.log('attempting new recursive calls');
+//       currQ.options
+//         .find((o) => option === o.value)
+//         .children.forEach((c) => {
+//           console.log(c);
+//           let subQ = block.questions.find((q) => q.id === c);
+//           subQ.enabled = toEnable;
+//           enableChildrenRec(block, subQ, subQ.value, toEnable);
+//         });
+//     });
+//   }
+// };
+
+const enableChildrenRec = (blocks, currQ, option_selected, toEnable) => {
   // base cases
   console.log(currQ.text, option_selected);
   if (currQ.type === 'FR') {
@@ -33,9 +61,17 @@ const enableChildrenRec = (block, currQ, option_selected, toEnable) => {
         .find((o) => option === o.value)
         .children.forEach((c) => {
           console.log(c);
-          let subQ = block.questions.find((q) => q.id === c);
-          subQ.enabled = toEnable;
-          enableChildrenRec(block, subQ, subQ.value, toEnable);
+          // let subQ = block.questions.find((q) => q.id === c);
+          // subQ.enabled = toEnable;
+          // enableChildrenRec(block, subQ, subQ.value, toEnable);
+          blocks.forEach((b) => {
+            b.questions.forEach((bq) => {
+              if (bq.id === c) {
+                bq.enabled = toEnable;
+                enableChildrenRec(blocks, bq, bq.value, toEnable);
+              }
+            });
+          });
         });
     });
   }
@@ -82,11 +118,11 @@ const selectMC_SATABody = (state, payload) => {
   console.log('add:', newSelections);
 
   if (newDeselections.length > 0) {
-    enableChildrenRec(currBlock, currQ, newDeselections, false);
+    enableChildrenRec(state.blocks, currQ, newDeselections, false);
     enableBlocks(state.blocks, currQ, newDeselections, false);
   }
   if (newSelections.length > 0) {
-    enableChildrenRec(currBlock, currQ, newSelections, true);
+    enableChildrenRec(state.blocks, currQ, newSelections, true);
     enableBlocks(state.blocks, currQ, newSelections, true);
   }
 
@@ -126,12 +162,12 @@ const dropdownSelectBody = (state, payload) => {
       : payload.option_selected;
   // enable children of new additions
   if (addition) {
-    enableChildrenRec(currBlock, currQ, newAdditions, true);
+    enableChildrenRec(state.blocks, currQ, newAdditions, true);
     enableBlocks(state.blocks, currQ, newAdditions, true);
   }
   // disable children of new deletions
   if (deletion) {
-    enableChildrenRec(currBlock, currQ, newDeletions, false);
+    enableChildrenRec(state.blocks, currQ, newDeletions, false);
     enableBlocks(state.blocks, currQ, newDeletions, false);
   }
   state.ping = !state.ping;

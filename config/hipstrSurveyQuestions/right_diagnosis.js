@@ -24,7 +24,10 @@ const right_diagnosis = {
         { value: 'Post Traumatic', children: [], blocks_enabled: [] },
         {
           value: 'AVN',
-          children: ['right_diagnosis_avn_classification'],
+          children: [
+            'right_diagnosis_avn_classification',
+            'right_femur_avn_treatment',
+          ],
           blocks_enabled: [],
         },
         { value: 'Undiagnosed Hip Pain', children: [], blocks_enabled: [] },

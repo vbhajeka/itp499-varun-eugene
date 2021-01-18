@@ -202,23 +202,6 @@ const right_femur =
         value: [],
       },
       {
-        id: 'right_femur_avn',
-        question_header: 'AVN',
-        question_desc: 'Was there AVN present?',
-        enabled: false,
-        required: true,
-        type: 'MC',
-        options: [
-          {
-            value: 'Yes',
-            children: ['right_femur_avn_treatment'],
-            blocks_enabled: [],
-          },
-          { value: 'No', children: [], blocks_enabled: [] },
-        ],
-        value: [],
-      },
-      {
         id: 'right_femur_avn_treatment',
         question_header: 'AVN Treatment',
         question_desc: 'What was the Treatment for the AVN?',

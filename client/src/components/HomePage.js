@@ -47,10 +47,6 @@ const HomePage = ({
     }
   };
 
-  console.log(continueToSurvey);
-  console.log(isLoading);
-  console.log(isAdmin ? 2 : 1);
-
   return (
     <Fragment>
       <ExportModal />

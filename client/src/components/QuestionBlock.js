@@ -78,10 +78,6 @@ const QuestionBlock = ({
     updateFRAction(block_id, qId, val);
   };
 
-  const reviewClicked = () => {
-    console.log('review clicked');
-  };
-
   const reviewEnabled = () => {
     let unfinished = blocks.filter(
       (b) => b.required && b.enabled && nextDisabled(b.block_id)
@@ -102,16 +98,10 @@ const QuestionBlock = ({
   };
 
   const nextDisabled = (b_id = block_id) => {
-    console.log('checking to enable next', b_id);
     let currBlock = blocks.find((b) => b.block_id === b_id);
     let unfinished = currBlock.questions.filter(
       (q) =>
         q.required && q.enabled && (q.value === null || q.value.length === 0)
-    );
-    console.log(
-      unfinished === undefined || unfinished.length > 0
-        ? 'not done'
-        : 'all done'
     );
     return unfinished === undefined || unfinished.length > 0 ? true : false;
   };
@@ -153,20 +143,19 @@ const QuestionBlock = ({
         numCompleted++;
       }
     }
-    console.log(Math.floor((numCompleted / numEnabled.length) * 100));
+    console.log(
+      'progress is',
+      Math.floor((numCompleted / numEnabled.length) * 100)
+    );
     return Math.floor((numCompleted / numEnabled.length) * 100);
   };
 
   const nextBlockActionLocal = () => {
     if (!nextDisabledVar) {
-      console.log('here');
       nextBlockAction();
     } else {
-      console.log('not done');
     }
   };
-
-  console.log('cancel: ', cancelModalIsOpen);
 
   const getDefaultValue = (type, val) => {
     if (val === []) {
@@ -365,7 +354,6 @@ const QuestionBlock = ({
                     style={{ margin: '2%' }}
                     inverted
                     color={'green'}
-                    onClick={() => reviewClicked()}
                     className={'buttonSegEnabled'}
                   >
                     Review

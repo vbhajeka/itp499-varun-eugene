@@ -18,11 +18,7 @@ const left_femur =
           { value: 'Normal', children: [], blocks_enabled: [] },
           {
             value: 'Abnormal',
-            children: [
-              'left_femur_cam_lesion',
-              'left_femur_cartilage_lesion',
-              'left_femur_avn',
-            ],
+            children: ['left_femur_cam_lesion', 'left_femur_cartilage_lesion'],
             blocks_enabled: [],
           },
         ],
@@ -199,23 +195,6 @@ const left_femur =
         type: 'FR',
         fr_type: 'text',
         options: [],
-        value: [],
-      },
-      {
-        id: 'left_femur_avn',
-        question_header: 'AVN',
-        question_desc: 'Was there AVN present?',
-        enabled: false,
-        required: true,
-        type: 'MC',
-        options: [
-          {
-            value: 'Yes',
-            children: ['left_femur_avn_treatment'],
-            blocks_enabled: [],
-          },
-          { value: 'No', children: [], blocks_enabled: [] },
-        ],
         value: [],
       },
       {
