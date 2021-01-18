@@ -74,7 +74,7 @@ const ExportPage = ({ surveys, toggleOpenSpecific, ids }) => {
         id='header'
         style={{
           backgroundColor: 'white',
-          padding: '3%',
+          padding: '0',
           borderRadius: '10px',
         }}
       >
@@ -84,36 +84,36 @@ const ExportPage = ({ surveys, toggleOpenSpecific, ids }) => {
               <Header
                 size={'small'}
                 color={'blue'}
-                style={{ lineHeight: '2rem', fontSize: '2rem' }}
+                style={{ fontSize: '1.5rem' }}
               >
-                Date of Surgery
+                SURGERY DATE
               </Header>
             </Grid.Column>
             <Grid.Column>
               <Header
                 size={'small'}
                 color={'blue'}
-                style={{ lineHeight: '2rem', fontSize: '2rem' }}
+                style={{ fontSize: '1.5rem' }}
               >
-                Doctor's Name
+                DOCTOR
               </Header>
             </Grid.Column>
             <Grid.Column>
               <Header
                 size={'small'}
                 color={'blue'}
-                style={{ lineHeight: '2rem', fontSize: '2rem' }}
+                style={{ fontSize: '1.5rem' }}
               >
-                Hip(s) Operated On
+                HIP SITE
               </Header>
             </Grid.Column>
             <Grid.Column>
               <Header
                 size={'small'}
                 color={'blue'}
-                style={{ lineHeight: '2rem', fontSize: '2rem' }}
+                style={{ fontSize: '1.5rem' }}
               >
-                Date Submitted
+                SURVEY DATE
               </Header>
             </Grid.Column>
           </Grid.Row>

@@ -1,6 +1,5 @@
 const express = require('express');
 const connectDB = require('./config/db');
-const otherDB = require('./config/otherDB');
 const path = require('path');
 
 const cors = require('cors');
@@ -72,14 +71,6 @@ const forceSSL = (req, res, next) => {
   next();
 };
 
-// if (process.env.NODE_ENV === 'production') {
-//   console.log('Forcing SSL Use');
-//   app.use(forceSSL);
-// } else {
-//   app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
-//   app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
-// }
-
 app.post('/api/external', checkJwt, (req, res) => {
   console.log(req.headers.authorization);
   res.send({
@@ -88,16 +79,15 @@ app.post('/api/external', checkJwt, (req, res) => {
 });
 
 app.use('/api', checkJwt);
+// test if token is coming and if token is valid
 app.post('/api/checkToken', (req, res) => {
   console.log(`token is ${req.headers.authorization}`);
   res.send(`token is ${req.headers.authorization}`);
 });
 
-// define routes - examples
-app.use('/api/users', require('./routes/api/users'));
 // my routes
-app.use('/api/getSurveyData', checkJwt, require('./routes/api/getSurveyData'));
-app.use('/api/submitSurvey', checkJwt, require('./routes/api/submitSurvey'));
+app.use('/api/getSurveyData', require('./routes/api/getSurveyData'));
+app.use('/api/submitSurvey', require('./routes/api/submitSurvey'));
 app.use('/api/getSurveys', require('./routes/api/getSurveys'));
 
 // Serve static assets in production

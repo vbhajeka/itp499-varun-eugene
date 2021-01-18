@@ -1,4 +1,0 @@
-{
-    "mongoURL": "mongodb+srv://varun123:varun123@varun-test.pjq6b.mongodb.net/testclear?retryWrites=true&w=majority",
-    "dbName": "Survey"
-}

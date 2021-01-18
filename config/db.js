@@ -1,15 +1,18 @@
 const mongoose = require('mongoose');
-const config = require('config');
-const db = config.get('mongoURL');
+const db = `mongodb+srv://${process.env.MONGO_HOST}/${process.env.MONGO_DB}`;
 
 const connectDB = async () => {
   try {
     await mongoose.connect(db, {
+      user: process.env.MONGO_USER,
+      pass: process.env.MONGO_PWD,
+      retryWrites: true,
+      w: 'majority',
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    console.log('Connect to DB!');
+    console.log('Connected to DB!');
   } catch (err) {
     console.log('Connection to DB failed');
     console.log(err.message);

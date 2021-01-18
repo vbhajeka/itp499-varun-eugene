@@ -55,35 +55,7 @@ function App({
       visible_comp = <HomePage />;
   }
 
-  const {
-    loginWithRedirect,
-    logout,
-    user,
-    isAuthenticated,
-    isLoading,
-    getAccessTokenSilently,
-  } = useAuth0();
-
-  const loadSurvey = async () => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const body = {};
-
-    try {
-      const res = await axios.post('/api/getSurveyData', body, config);
-      console.log(res.status);
-      await setSurveyData(res.data);
-    } catch (err) {
-      console.log(`err is ${err}`);
-      console.log(JSON.stringify(err));
-    }
-  };
-
-  console.log('user is', user);
+  const { logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   const setToken = async () => {
     let token = await getAccessTokenSilently();
@@ -92,11 +64,27 @@ function App({
     return token;
   };
 
-  if (isAuthenticated) {
-    setToken();
-    if (token && blocks === undefined) {
-      loadSurvey();
+  const loadHomePageOptions = async () => {
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      console.log('Authenticated User is', user);
+      const res = await axios.get('/api/getSurveyData', config);
+      await setSurveyData(res.data);
+      return;
+    } catch (err) {
+      console.log(`Page load after Authentication failed: ${err}`);
+      return;
     }
+  };
+
+  if (isAuthenticated) {
+    // get fresh token before calling backend for fresh survey
+    setToken();
+    if (token && blocks === undefined) loadHomePageOptions();
+  } else {
+    console.log('Waiting for User to Login');
   }
 
   const mql = window.matchMedia('(max-width: 767px)');

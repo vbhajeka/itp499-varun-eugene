@@ -6,7 +6,7 @@ const surveyInitState = require('../../config/reduxState');
 // @route       GET api/getSurveyData
 // @desc        Test route
 // @access      Public
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
   console.log(req.headers.authorization);
   res.send(surveyInitState);
 });
