@@ -168,6 +168,23 @@ const QuestionBlock = ({
     }
   };
 
+  const setTodaysDate = (q_id) => {
+    let now = new Date();
+    let month = `${now.getMonth() + 1}`;
+    if (month.length === 1) {
+      month = `0${month}`;
+    }
+    let date = `${now.getDate()}`;
+    if (date.length === 1) {
+      date = `0${date}`;
+    }
+    let dateIso = `${now.getFullYear()}-${month}-${date}`;
+    if (current_block.questions.find((q) => q.id === q_id).value.length === 0) {
+      onTextChange(q_id, dateIso);
+    }
+    return dateIso;
+  };
+
   const getAllQIds = () => {
     let ids = [];
     let retVal = '';
@@ -298,7 +315,7 @@ const QuestionBlock = ({
                               name={q.value}
                               defaultValue={
                                 q.fr_type === 'date'
-                                  ? new Date().toISOString().substr(0, 10)
+                                  ? setTodaysDate(q.id)
                                   : q.value
                               }
                               type={q.fr_type}

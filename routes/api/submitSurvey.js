@@ -10,18 +10,38 @@ const { check, validationResult } = require('express-validator');
 const groupSurveysByBlocks = (serv) => {
   let retVal = [];
   let currBlock;
+  serv = serv.map(JSON.parse);
   console.log(serv);
   serv.forEach((s) => {
     const thisBlock = retVal.find((x) => x.block === s.block);
+    if (thisBlock) {
+      thisBlock.questions.push(s);
+    } else {
+      retVal.push({ block: s.block, questions: [s] });
+    }
   });
   return retVal;
 };
 
 const generateHtml = (answers) => {
-  let retVal;
+  let tableContents = '';
+  let rowContents = '';
   const blocks = groupSurveysByBlocks(answers);
-  console.log('blocks are', blocks);
-  return retVal;
+
+  blocks.forEach((b) => {
+    rowContents += `<tr style='margin:auto'><th colSpan='2' style='border: 1px solid black;'>${b.block}</th></tr>`;
+    b.questions.forEach((q) => {
+      rowContents += `<tr>
+          <td style='border: 1px solid black;'>${q.question}</td>
+          <td style='border: 1px solid black;'>${q.value}</td>
+        </tr>`;
+    });
+    tableContents += rowContents;
+    rowContents = '';
+  });
+
+  return `<table style='border: 1px solid black; margin-left: auto;
+  margin-right: auto;'>${tableContents}</table>`;
 };
 
 // @route       POST api/submitSurvey
@@ -72,6 +92,7 @@ router.post(
     }
 
     const resultsHtml = generateHtml(answers);
+    console.log(resultsHtml);
 
     // survey is submitted to db, now send email
     sgMail.setApiKey(process.env.SENDGRID_KEY);
@@ -79,9 +100,10 @@ router.post(
       to: emailAddy, // Change to your recipient
       from: 'hipreg1@gmail.com', // Change to your verified sender
       subject: 'HIPSTR Survey Submission Confirmation',
-      text:
-        "Uh oh! Looks like this feature isn't quite ready yet! Bear with us, and you'll recieve your HIPSTR survey results soon!",
+      // text:
+      //   "Uh oh! Looks like this feature isn't quite ready yet! Bear with us, and you'll recieve your HIPSTR survey results soon!",
       // html: resultsHtml,
+      html: resultsHtml,
     };
     sgMail
       .send(msg)

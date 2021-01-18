@@ -203,7 +203,7 @@ const left_femur =
         question_desc: 'What was the Treatment for the AVN?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           {
             value: 'K-wire / Steinman Pin Drilling',
