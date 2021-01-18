@@ -54,12 +54,14 @@ const ReviewBlock = ({
       surveyID: surveyID,
       answers: [],
       doctor: user.name,
+      versionID: '1.0',
     };
     blocks.forEach((block) => {
       if (block.enabled) {
         block.questions.forEach((q) => {
           if (q.enabled && q.value.length !== 0) {
             let entry = {
+              id: q.id,
               block: block.block_header,
               question: q.question_header,
               value: q.value,
@@ -161,7 +163,7 @@ const ReviewBlock = ({
                   color={'blue'}
                   className={'buttonSegEnabled'}
                 >
-                  Previous Section
+                  Previous
                 </Segment>
               </Link>
             </Grid.Column>
@@ -173,7 +175,7 @@ const ReviewBlock = ({
                 onClick={() => modalActions(false)}
                 className={'buttonSegEnabled'}
               >
-                Cancel Survey
+                Cancel
               </Segment>
             </Grid.Column>
             <Grid.Column>
@@ -185,7 +187,7 @@ const ReviewBlock = ({
                   onClick={() => reviewClicked()}
                   className={'buttonSegEnabled'}
                 >
-                  Submit Survey
+                  Submit
                 </Segment>
               </Link>
             </Grid.Column>

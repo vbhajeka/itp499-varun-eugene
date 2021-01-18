@@ -8,7 +8,7 @@ const left_capsule =
     required: true,
     questions: [
       {
-        id: '0',
+        id: 'left_capsule_status',
         question_header: 'Left Capsule',
         question_desc: 'What was the status of the Left Capsule?',
         enabled: true,
@@ -16,12 +16,16 @@ const left_capsule =
         type: 'MC',
         options: [
           { value: 'Normal', children: [], blocks_enabled: [] },
-          { value: 'Abnormal', children: ['69'], blocks_enabled: [] },
+          {
+            value: 'Abnormal',
+            children: ['left_capsule_capsular_defect'],
+            blocks_enabled: [],
+          },
         ],
         value: [],
       },
       {
-        id: '69',
+        id: 'left_capsule_capsular_defect',
         question_header: 'Capsulotomy',
         question_desc: 'Was there a Capsular Defect?',
         enabled: false,
@@ -34,35 +38,55 @@ const left_capsule =
         value: [],
       },
       {
-        id: '1',
+        id: 'left_capsule_capsulotomy_performed',
         question_header: 'Capsulotomy',
         question_desc: 'Was a Capsulotomy Performed?',
         enabled: true,
         required: true,
         type: 'MC',
         options: [
-          { value: 'Yes', children: ['2'], blocks_enabled: [] },
+          {
+            value: 'Yes',
+            children: ['left_capsule_capsulotomy_type'],
+            blocks_enabled: [],
+          },
           { value: 'No', children: [], blocks_enabled: [] },
         ],
         value: [],
       },
       {
-        id: '2',
+        id: 'left_capsule_capsulotomy_type',
         question_header: 'Capsulotomy Type',
         question_desc: 'What was the type of Capsulotomy?',
         enabled: false,
         required: true,
         type: 'MC',
         options: [
-          { value: 'Inter-portal', children: ['3'], blocks_enabled: [] },
-          { value: 'T-Capsulotomy', children: ['5'], blocks_enabled: [] },
-          { value: 'Perl-portal', children: ['6'], blocks_enabled: [] },
-          { value: 'Other', children: ['65'], blocks_enabled: [] },
+          {
+            value: 'Inter-portal',
+            children: ['left_capsule_interportal'],
+            blocks_enabled: [],
+          },
+          {
+            value: 'T-Capsulotomy',
+            children: ['left_capsule_tcapsulotomy'],
+            blocks_enabled: [],
+          },
+          {
+            value: 'Perl-portal',
+            children: ['left_capsule_peri_portal'],
+            blocks_enabled: [],
+          },
+          {
+            value: 'Other',
+            children: ['left_capsule_other_capsulotomy_type'],
+            blocks_enabled: [],
+          },
         ],
         value: [],
       },
       {
-        id: '65',
+        id: 'left_capsule_other_capsulotomy_type',
         question_header: 'Other Capsulotomy Type',
         question_desc: 'What was the Other Capsulotomy Type?',
         enabled: false,
@@ -73,7 +97,7 @@ const left_capsule =
         value: [],
       },
       {
-        id: '3',
+        id: 'left_capsule_interportal',
         question_header: 'Interportal',
         question_desc:
           'After the procedure, what was done with the Capsulotomy?',
@@ -82,13 +106,21 @@ const left_capsule =
         type: 'MC',
         options: [
           { value: 'Not closed', children: [], blocks_enabled: [] },
-          { value: 'Partially Closed', children: ['4'], blocks_enabled: [] },
-          { value: 'Fully Closed', children: ['4'], blocks_enabled: [] },
+          {
+            value: 'Partially Closed',
+            children: ['left_capsule_suture_type'],
+            blocks_enabled: [],
+          },
+          {
+            value: 'Fully Closed',
+            children: ['left_capsule_suture_type'],
+            blocks_enabled: [],
+          },
         ],
         value: [],
       },
       {
-        id: '5',
+        id: 'left_capsule_tcapsulotomy',
         question_header: 'T-Capsulotomy',
         question_desc:
           'After the procedure, what was done with the Capsulotomy?',
@@ -97,13 +129,21 @@ const left_capsule =
         type: 'MC',
         options: [
           { value: 'Not closed', children: [], blocks_enabled: [] },
-          { value: 'Partially Closed', children: ['4'], blocks_enabled: [] },
-          { value: 'Fully Closed', children: ['4'], blocks_enabled: [] },
+          {
+            value: 'Partially Closed',
+            children: ['left_capsule_suture_type'],
+            blocks_enabled: [],
+          },
+          {
+            value: 'Fully Closed',
+            children: ['left_capsule_suture_type'],
+            blocks_enabled: [],
+          },
         ],
         value: [],
       },
       {
-        id: '6',
+        id: 'left_capsule_peri_portal',
         question_header: 'Perl-portal',
         question_desc:
           'After the procedure, what was done with the Capsulotomy?',
@@ -112,12 +152,16 @@ const left_capsule =
         type: 'MC',
         options: [
           { value: 'Not closed', children: [], blocks_enabled: [] },
-          { value: 'Fully Closed', children: ['4'], blocks_enabled: [] },
+          {
+            value: 'Fully Closed',
+            children: ['left_capsule_suture_type'],
+            blocks_enabled: [],
+          },
         ],
         value: [],
       },
       {
-        id: '4',
+        id: 'left_capsule_suture_type',
         question_header: 'Suture Type',
         question_desc: 'What was the type of the suture?',
         enabled: false,

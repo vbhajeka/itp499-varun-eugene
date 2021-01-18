@@ -5,20 +5,24 @@ const dvt_proph = {
   required: false,
   questions: [
     {
-      id: '2',
+      id: 'dvt_prophylaxis_present',
       question_header: 'DVT Prophylaxis',
       question_desc: 'Was there DVT Prophylaxis?',
       enabled: true,
       required: false,
       type: 'MC',
       options: [
-        { value: 'Yes', children: ['0'], blocks_enabled: [] },
+        {
+          value: 'Yes',
+          children: ['dvt_prophylaxis_type'],
+          blocks_enabled: [],
+        },
         { value: 'No', children: [], blocks_enabled: [] },
       ],
       value: [],
     },
     {
-      id: '0',
+      id: 'dvt_prophylaxis_type',
       question_header: 'DVT Prophylaxis Type',
       question_desc: 'Select all that apply',
       enabled: false,
@@ -41,12 +45,16 @@ const dvt_proph = {
           children: [],
           blocks_enabled: [],
         },
-        { value: 'Mechanical', children: ['1'], blocks_enabled: [] },
+        {
+          value: 'Mechanical',
+          children: ['dvt_prophylaxis_mechanical_type'],
+          blocks_enabled: [],
+        },
       ],
       value: [],
     },
     {
-      id: '1',
+      id: 'dvt_prophylaxis_mechanical_type',
       question_header: 'Mechanical DVT Prophylaxis Type',
       enabled: false,
       required: false,

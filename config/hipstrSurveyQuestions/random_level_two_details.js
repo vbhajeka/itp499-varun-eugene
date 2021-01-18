@@ -5,7 +5,7 @@ const random_level_two_details = {
   required: false,
   questions: [
     {
-      id: '0',
+      id: 'op_details_fluo_time',
       question_header: 'Fluoroscopy Time',
       question_desc: 'Enter the Fluoroscpy Time in Minutes',
       enabled: true,
@@ -15,7 +15,7 @@ const random_level_two_details = {
       value: [],
     },
     {
-      id: '1',
+      id: 'op_details_op_time',
       question_header: 'Operation Time',
       question_desc:
         'Enter the Operation Time in Minutes, from Incision to Closure',
@@ -26,7 +26,7 @@ const random_level_two_details = {
       value: [],
     },
     {
-      id: '2',
+      id: 'op_details_traction_time',
       question_header: 'Traction Time',
       question_desc: 'Select the Traction Time in Minutes',
       enabled: true,
@@ -43,7 +43,7 @@ const random_level_two_details = {
       value: [],
     },
     {
-      id: '3',
+      id: 'op_details_anesthesia',
       question_header: 'Anesthesia',
       question_desc: 'Select the Anesthesia Used',
       enabled: true,
@@ -53,12 +53,16 @@ const random_level_two_details = {
         { value: 'General', children: [], blocks_enabled: [] },
         { value: 'Spinal / Epidural', children: [], blocks_enabled: [] },
         { value: 'Lumbar Plexus Block', children: [], blocks_enabled: [] },
-        { value: 'Other', children: ['4'], blocks_enabled: [] },
+        {
+          value: 'Other',
+          children: ['op_details_anesthesia_other'],
+          blocks_enabled: [],
+        },
       ],
       value: [],
     },
     {
-      id: '4',
+      id: 'op_details_anesthesia_other',
       question_header: 'Other Anesthesia',
       question_desc: 'What Anesthesia was used?',
       enabled: false,

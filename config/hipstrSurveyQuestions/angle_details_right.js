@@ -6,7 +6,7 @@ const angle_details_right = {
   required: false,
   questions: [
     {
-      id: '40',
+      id: 'center_edge_right',
       question_header: 'Right Center Edge Angle',
       question_desc: 'Enter the Right Center Edge Angle to the Sourcil',
       enabled: true,
@@ -16,7 +16,7 @@ const angle_details_right = {
       value: [],
     },
     {
-      id: '41',
+      id: 'center_sourcil_right',
       question_header: 'Right Center Edge Angle',
       question_desc: 'Enter the Right Center Edge Angle to the Edge',
       enabled: true,
@@ -26,7 +26,7 @@ const angle_details_right = {
       value: [],
     },
     {
-      id: '42',
+      id: 'alpha_right',
       question_header: 'Right Alpha Angle',
       question_desc: 'Enter Right Side Alpha Angle',
       enabled: true,
@@ -36,7 +36,7 @@ const angle_details_right = {
       value: [],
     },
     {
-      id: '43',
+      id: 'right_femoral_version',
       question_header: 'Right Femoral Version',
       question_desc: 'Enter the Right Femoral Version',
       enabled: true,
@@ -46,7 +46,7 @@ const angle_details_right = {
       value: [],
     },
     {
-      id: '44',
+      id: 'right_femoral_version_type',
       question_header: 'Right Femoral Version',
       question_desc: 'Enter the type Right Femoral Version',
       enabled: true,
@@ -59,7 +59,7 @@ const angle_details_right = {
       value: [],
     },
     {
-      id: '45',
+      id: 'right_tonnis_angle',
       question_header: 'Right Tonnis Angle',
       question_desc: 'Enter the Right Tonnis Angle',
       enabled: true,

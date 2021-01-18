@@ -8,7 +8,7 @@ const basic_details =
     required: true,
     questions: [
       {
-        id: '0',
+        id: 'date_of_surgery',
         question_header: 'Date of Surgery',
         question_desc: "Defaulted to Today's Date",
         enabled: true,
@@ -19,7 +19,7 @@ const basic_details =
         value: [],
       },
       {
-        id: '1',
+        id: 'site',
         question_header: 'Surgery Site',
         question_desc: 'Which side was operated on? Select all that apply',
         enabled: true,

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const survey = require('../../models/SurveyResponse');
+const ids = require('../../config/allQuestionIds');
 
 // @route       GET api/auth
 // @desc        Test route
@@ -19,8 +20,11 @@ router.post('/', (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(result);
-      res.send(result);
+      const resBody = {
+        ids,
+        result,
+      };
+      res.send({ ...resBody });
     }
   });
 });

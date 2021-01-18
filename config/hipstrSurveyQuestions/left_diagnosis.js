@@ -6,7 +6,7 @@ const left_diagnosis = {
   required: true,
   questions: [
     {
-      id: '0',
+      id: 'left_diagnosis_general',
       question_header: 'General Diagnosis',
       question_desc: 'Select all that apply',
       enabled: true,
@@ -22,16 +22,24 @@ const left_diagnosis = {
         { value: 'Loose Bodies', children: [], blocks_enabled: [] },
         { value: 'Inflammatory', children: [], blocks_enabled: [] },
         { value: 'Post Traumatic', children: [], blocks_enabled: [] },
-        { value: 'AVN', children: ['12'], blocks_enabled: [] },
+        {
+          value: 'AVN',
+          children: ['left_diagnosis_avn_classification'],
+          blocks_enabled: [],
+        },
         { value: 'Undiagnosed Hip Pain', children: [], blocks_enabled: [] },
-        { value: 'Other', children: ['64'], blocks_enabled: [] },
+        {
+          value: 'Other',
+          children: ['left_diagnosis_other'],
+          blocks_enabled: [],
+        },
       ],
       value: [],
     },
     {
-      id: '64',
-      question_header: 'Other Prior Left Hip Surgery',
-      question_desc: 'Enter other prior left hip surgery',
+      id: 'left_diagnosis_other',
+      question_header: 'Other Left Diagnosis',
+      question_desc: 'Enter other diagnosis',
       enabled: false,
       required: true,
       type: 'FR',
@@ -39,7 +47,7 @@ const left_diagnosis = {
       value: [],
     },
     {
-      id: '12',
+      id: 'left_diagnosis_avn_classification',
       question_header: 'AVN: Steinberg Classification',
       question_desc: 'What is the Steinberg Classification?',
       long_question_desc: [
@@ -94,7 +102,7 @@ const left_diagnosis = {
       value: [],
     },
     {
-      id: '1',
+      id: 'left_diagnosis_central_comp',
       question_header: 'Central Compartment Diagnosis',
       question_desc: 'Select all that apply',
       enabled: true,
@@ -113,7 +121,7 @@ const left_diagnosis = {
       value: [],
     },
     {
-      id: '2',
+      id: 'left_diagnosis_extra_articular',
       question_header: 'Extra-Articular',
       question_desc: 'Select all that apply',
       enabled: true,

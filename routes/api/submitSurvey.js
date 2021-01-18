@@ -7,6 +7,23 @@ const Survey = require('../../models/SurveyResponse');
 
 const { check, validationResult } = require('express-validator');
 
+const groupSurveysByBlocks = (serv) => {
+  let retVal = [];
+  let currBlock;
+  console.log(serv);
+  serv.forEach((s) => {
+    const thisBlock = retVal.find((x) => x.block === s.block);
+  });
+  return retVal;
+};
+
+const generateHtml = (answers) => {
+  let retVal;
+  const blocks = groupSurveysByBlocks(answers);
+  console.log('blocks are', blocks);
+  return retVal;
+};
+
 // @route       POST api/submitSurvey
 // @desc        Submit survey results
 // @access      Public
@@ -54,6 +71,8 @@ router.post(
       console.log(err);
     }
 
+    const resultsHtml = generateHtml(answers);
+
     // survey is submitted to db, now send email
     sgMail.setApiKey(process.env.SENDGRID_KEY);
     const msg = {
@@ -62,6 +81,7 @@ router.post(
       subject: 'HIPSTR Survey Submission Confirmation',
       text:
         "Uh oh! Looks like this feature isn't quite ready yet! Bear with us, and you'll recieve your HIPSTR survey results soon!",
+      // html: resultsHtml,
     };
     sgMail
       .send(msg)

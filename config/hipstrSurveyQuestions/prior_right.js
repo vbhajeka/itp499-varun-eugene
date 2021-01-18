@@ -8,7 +8,7 @@ const prior_right =
     required: true,
     questions: [
       {
-        id: '24',
+        id: 'prior_right_surgery',
         question_header: 'Prior Surgical History: Right Hip',
         question_desc: 'Was surgery previously performed on the right hip',
         enabled: true,
@@ -17,7 +17,10 @@ const prior_right =
         options: [
           {
             value: 'Yes',
-            children: ['7', '8'],
+            children: [
+              'prior_right_surgery_type',
+              'prior_right_surgery_multiple',
+            ],
             blocks_enabled: [],
           },
           {
@@ -29,7 +32,7 @@ const prior_right =
         value: [],
       },
       {
-        id: '7',
+        id: 'prior_right_surgery_type',
         question_header: 'Right Hip Surgery Type',
         question_desc: 'Select Surgery Type',
         enabled: false,
@@ -68,16 +71,16 @@ const prior_right =
           },
           {
             value: 'Other',
-            children: ['64'],
+            children: ['prior_right_surgery_other'],
             blocks_enabled: [],
           },
         ],
         value: [],
       },
       {
-        id: '64',
-        question_header: 'Other Prior Left Hip Surgery',
-        question_desc: 'Enter other prior left hip surgery',
+        id: 'prior_right_surgery_other',
+        question_header: 'Other Prior Right Hip Surgery',
+        question_desc: 'Enter other prior right hip surgery',
         enabled: false,
         required: true,
         type: 'FR',
@@ -85,7 +88,7 @@ const prior_right =
         value: [],
       },
       {
-        id: '8',
+        id: 'prior_right_surgery_multiple',
         question_header: 'Multiple Prior Right Hip Surgeries',
         question_desc: 'Were there multiple surgeries performed?',
         enabled: false,
@@ -94,7 +97,7 @@ const prior_right =
         options: [
           {
             value: 'Yes',
-            children: ['9'],
+            children: ['prior_right_surgery_all'],
             blocks_enabled: [],
           },
           {
@@ -106,7 +109,7 @@ const prior_right =
         value: [],
       },
       {
-        id: '9',
+        id: 'prior_right_surgery_all',
         question_header: 'All Prior Right Hip Surgeries',
         question_desc: 'Select all prior surgeries',
         enabled: false,
@@ -145,16 +148,16 @@ const prior_right =
           },
           {
             value: 'Other',
-            children: ['65'],
+            children: ['prior_right_surgery_all_other'],
             blocks_enabled: [],
           },
         ],
         value: [],
       },
       {
-        id: '65',
-        question_header: 'Other Prior Left Hip Surgery',
-        question_desc: 'Enter other prior left hip surgery',
+        id: 'prior_right_surgery_all_other',
+        question_header: 'Other Prior Right Hip Surgery',
+        question_desc: 'Enter other prior right hip surgery',
         enabled: false,
         required: true,
         type: 'FR',

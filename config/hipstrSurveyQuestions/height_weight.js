@@ -8,7 +8,7 @@ const height_weight =
     required: true,
     questions: [
       {
-        id: '4',
+        id: 'height',
         question_header: 'Patient Height',
         question_desc: 'Height',
         enabled: true,
@@ -19,7 +19,7 @@ const height_weight =
         value: [],
       },
       {
-        id: '43',
+        id: 'height_unit',
         question_header: 'Height Unit',
         question_desc: 'What unit was used to measure height?',
         enabled: true,
@@ -32,7 +32,7 @@ const height_weight =
         value: [],
       },
       {
-        id: '5',
+        id: 'weight',
         question_header: 'Patient Weight',
         question_desc: 'Weight in Pounds',
         enabled: true,
@@ -43,7 +43,7 @@ const height_weight =
         value: [],
       },
       {
-        id: '44',
+        id: 'weight_unit',
         question_header: 'Weight Unit',
         question_desc: 'What unit was used to measure weight?',
         enabled: true,

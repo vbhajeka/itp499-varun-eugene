@@ -2,10 +2,10 @@ const level_two_toggle = {
   block_id: 'level_two_toggle',
   block_header: 'Further Details',
   enabled: true,
-  required: false,
+  required: true,
   questions: [
     {
-      id: '0',
+      id: 'enable_level_two',
       question_header:
         'Would you like to provide more details about the surgery?',
       question_desc: 'This includes radiographic and operative findings',
@@ -15,7 +15,7 @@ const level_two_toggle = {
       options: [
         {
           value: 'Yes',
-          children: ['1'],
+          children: ['enable_level_two_side'],
           blocks_enabled: [
             'random_level_two_details',
             'injection_details',
@@ -30,7 +30,7 @@ const level_two_toggle = {
       value: [],
     },
     {
-      id: '1',
+      id: 'enable_level_two_side',
       question_header: 'Which side can you give more details on?',
       question_desc: 'Select one or both',
       enabled: false,

@@ -7,20 +7,24 @@ const exam_under_anesthesia = {
   required: false,
   questions: [
     {
-      id: '25',
+      id: 'left_prom_performed',
       question_header: 'Left PROM Performed',
       question_desc: 'Was PROM performed on the left side?',
       enabled: true,
       required: true,
       type: 'MC',
       options: [
-        { value: 'Yes', children: ['26', '27', '28'], blocks_enabled: [] },
+        {
+          value: 'Yes',
+          children: ['left_prom_ff', 'left_prom_ir', 'left_prom_er'],
+          blocks_enabled: [],
+        },
         { value: 'No', children: [], blocks_enabled: [] },
       ],
       value: [],
     },
     {
-      id: '26',
+      id: 'left_prom_ff',
       question_header: 'Left PROM: FF',
       question_desc: 'Enter range',
       enabled: false,
@@ -38,7 +42,7 @@ const exam_under_anesthesia = {
       value: [],
     },
     {
-      id: '27',
+      id: 'left_prom_ir',
       question_header: 'Left PROM in 90 deg: IR',
       question_desc: 'Enter range',
       enabled: false,
@@ -60,7 +64,7 @@ const exam_under_anesthesia = {
       value: [],
     },
     {
-      id: '28',
+      id: 'left_prom_er',
       question_header: 'Left PROM in 90 deg: ER',
       question_desc: 'Enter range',
       enabled: false,
@@ -84,20 +88,24 @@ const exam_under_anesthesia = {
       value: [],
     },
     {
-      id: '29',
+      id: 'right_prom_performed',
       question_header: 'Right PROM Performed',
       question_desc: 'Was PROM performed on the right side?',
       enabled: true,
       required: false,
       type: 'MC',
       options: [
-        { value: 'Yes', children: ['30', '31', '32'], blocks_enabled: [] },
+        {
+          value: 'Yes',
+          children: ['right_prom_ff', 'right_prom_ir', 'right_prom_er'],
+          blocks_enabled: [],
+        },
         { value: 'No', children: [], blocks_enabled: [] },
       ],
       value: [],
     },
     {
-      id: '30',
+      id: 'right_prom_ff',
       question_header: 'Right PROM: FF',
       question_desc: 'Enter range',
       enabled: false,
@@ -115,7 +123,7 @@ const exam_under_anesthesia = {
       value: [],
     },
     {
-      id: '31',
+      id: 'right_prom_ir',
       question_header: 'Right PROM in 90 deg: IR',
       question_desc: 'Enter range',
       enabled: false,
@@ -137,7 +145,7 @@ const exam_under_anesthesia = {
       value: [],
     },
     {
-      id: '32',
+      id: 'right_prom_er',
       question_header: 'Right PROM in 90 deg: ER',
       question_desc: 'Enter range',
       enabled: false,

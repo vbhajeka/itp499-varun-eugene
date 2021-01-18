@@ -6,7 +6,7 @@ const left_acetabulum_articular_cartilage = {
   required: true,
   questions: [
     {
-      id: '0',
+      id: 'left_acetabulum_articular_status',
       question_header: 'Left Acetabulum Articular Cartilage',
       question_desc:
         'What was the status of the Left Acetabulum Articular Cartilage?',
@@ -17,14 +17,19 @@ const left_acetabulum_articular_cartilage = {
         { value: 'Normal', children: [], blocks_enabled: [] },
         {
           value: 'Abnormal',
-          children: ['5', '6', '7', '8'],
+          children: [
+            'left_acetabulum_lesion_loc',
+            'left_acetabulum_articular_extent_damage',
+            'left_acetabulum_articular_beck',
+            'left_acetabulum_cartilage_treatment',
+          ],
           blocks_enabled: [],
         },
       ],
       value: [],
     },
     {
-      id: '5',
+      id: 'left_acetabulum_lesion_loc',
       question_header: 'Acetabular Lesion Location',
       question_desc: 'Select areas of GREATEST Articular Cartilage Damage',
       enabled: false,
@@ -42,7 +47,7 @@ const left_acetabulum_articular_cartilage = {
       value: [],
     },
     {
-      id: '6',
+      id: 'left_acetabulum_articular_extent_damage',
       question_header: 'Extent of Damage',
       question_desc: 'Distance from the Rim to the Cotyloid Fossa',
       enabled: false,
@@ -56,7 +61,7 @@ const left_acetabulum_articular_cartilage = {
       value: [],
     },
     {
-      id: '7',
+      id: 'left_acetabulum_articular_beck',
       question_header:
         'Select Beck Classification for the Degree of Worst Cartilage Damage:',
       long_question_desc: [
@@ -99,7 +104,7 @@ const left_acetabulum_articular_cartilage = {
       value: [],
     },
     {
-      id: '8',
+      id: 'left_acetabulum_cartilage_treatment',
       question_header: 'Articular Cartilage Treatment',
       question_desc: 'What was the Treatment for the Chondral Lesion?',
       enabled: false,
@@ -117,12 +122,16 @@ const left_acetabulum_articular_cartilage = {
         { value: 'Suture / Anchor Repair', children: [], blocks_enabled: [] },
         { value: 'Fibrin Glue', children: [], blocks_enabled: [] },
         { value: 'None', children: [], blocks_enabled: [] },
-        { value: 'Other', children: ['63'], blocks_enabled: [] },
+        {
+          value: 'Other',
+          children: ['left_acetabulum_cartilage_treatment_other'],
+          blocks_enabled: [],
+        },
       ],
       value: [],
     },
     {
-      id: '63',
+      id: 'left_acetabulum_cartilage_treatment_other',
       question_header: 'Other Articular Separation Treatment',
       question_desc: 'What was the Other Chondral Lesion Treatment?',
       enabled: false,

@@ -13,3 +13,8 @@ export const BACK_TO_HOME = 'BACK_TO_HOME';
 export const SET_TOKEN = 'SET_TOKEN';
 
 export const GET_SURVEYS = 'GET_SURVEYS';
+export const TOGGLE_EXPORT_MODAL = 'TOGGLE_EXPORT_MODAL';
+export const DATE_CHANGED = 'DATE_CHANGED';
+export const SET_EXPORT_DATA = 'SET_EXPORT_DATA';
+
+export const TOGGLE_OPEN_SPECIFIC = 'TOGGLE_OPEN_SPECIFIC';

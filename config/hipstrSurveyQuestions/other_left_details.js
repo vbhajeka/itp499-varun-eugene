@@ -5,28 +5,36 @@ const other_left_details = {
   required: true,
   questions: [
     {
-      id: '0',
+      id: 'other_left_details',
       question_header: 'Other Surgery Details',
       question_desc: 'Select all that apply',
       enabled: true,
       required: false,
       type: 'SATA',
       options: [
-        { value: 'Ligamentum Teres', children: ['4'], blocks_enabled: [] },
-        { value: 'Capsular Plication', children: ['6'], blocks_enabled: [] },
+        {
+          value: 'Ligamentum Teres',
+          children: ['other_left_details_ligamentum_teres'],
+          blocks_enabled: [],
+        },
+        {
+          value: 'Capsular Plication',
+          children: ['other_left_details_capsular_plication'],
+          blocks_enabled: [],
+        },
         {
           value: 'Iliopsoas Tendon Lengthening',
-          children: ['1'],
+          children: ['other_left_details_iliosopas_details'],
           blocks_enabled: [],
         },
         {
           value: 'IT Band Lengthening (external snapping)',
-          children: ['3'],
+          children: ['other_left_details_it_band'],
           blocks_enabled: [],
         },
         {
           value: 'Trochanteric Bursectomy',
-          children: ['2'],
+          children: ['other_left_details_bursectomy_details'],
           blocks_enabled: [],
         },
         {
@@ -39,7 +47,11 @@ const other_left_details = {
           children: [],
           blocks_enabled: [],
         },
-        { value: 'Subchondroplasty', children: ['5'], blocks_enabled: [] },
+        {
+          value: 'Subchondroplasty',
+          children: ['other_left_details_subchondroplasty'],
+          blocks_enabled: [],
+        },
         { value: 'Hamstring Repair', children: [], blocks_enabled: [] },
         {
           value: 'Open Cartilage Repair',
@@ -57,12 +69,16 @@ const other_left_details = {
           blocks_enabled: [],
         },
         { value: 'ORIF', children: [], blocks_enabled: [] },
-        { value: 'Other', children: ['8'], blocks_enabled: [] },
+        {
+          value: 'Other',
+          children: ['other_left_details_other'],
+          blocks_enabled: [],
+        },
       ],
       value: [],
     },
     {
-      id: '8',
+      id: 'other_left_details_other',
       question_header: 'Other Left Details',
       question_desc: 'Enter any other details observed about the left side',
       enabled: false,
@@ -72,7 +88,7 @@ const other_left_details = {
       value: [],
     },
     {
-      id: '1',
+      id: 'other_left_details_iliosopas_details',
       question_header: 'Iliopsoas Tendon Lengthening Details',
       question_desc: 'At What Level was the Iliopsoas Tendon Lengthened?',
       enabled: false,
@@ -90,7 +106,7 @@ const other_left_details = {
       value: [],
     },
     {
-      id: '2',
+      id: 'other_left_details_bursectomy_details',
       question_header: 'Trochanteric Bursectomy Details',
       enabled: false,
       required: true,
@@ -102,7 +118,7 @@ const other_left_details = {
       value: [],
     },
     {
-      id: '3',
+      id: 'other_left_details_it_band',
       question_header: 'IT Band Lengthening (external snapping) Details',
       question_desc: 'Select all that apply',
       enabled: false,
@@ -123,7 +139,7 @@ const other_left_details = {
       value: [],
     },
     {
-      id: '4',
+      id: 'other_left_details_ligamentum_teres',
       question_header: 'Ligamentum Teres Details',
       question_desc: 'Select all that apply',
       enabled: false,
@@ -137,14 +153,14 @@ const other_left_details = {
         },
         {
           value: 'Reconstruction',
-          children: ['9'],
+          children: ['left_ligamentum_teres_Recon_graft_type'],
           blocks_enabled: [],
         },
       ],
       value: [],
     },
     {
-      id: '5',
+      id: 'other_left_details_subchondroplasty',
       question_header: 'Subchondroplasty Details',
       question_desc: 'Select all that apply',
       enabled: false,
@@ -165,7 +181,7 @@ const other_left_details = {
       value: [],
     },
     {
-      id: '6',
+      id: 'other_left_details_capsular_plication',
       question_header: 'Plication Details',
       question_desc: 'Location of Plication',
       enabled: false,
@@ -184,14 +200,14 @@ const other_left_details = {
         },
         {
           value: 'Other',
-          children: ['7'],
+          children: ['other_left_plication_details'],
           blocks_enabled: [],
         },
       ],
       value: [],
     },
     {
-      id: '7',
+      id: 'other_left_plication_details',
       question_header: 'Other Plication Details',
       question_desc: 'Enter other details observed about the Plication',
       enabled: false,
@@ -201,7 +217,7 @@ const other_left_details = {
       value: [],
     },
     {
-      id: '9',
+      id: 'left_ligamentum_teres_Recon_graft_type',
       question_header: 'Ligamentum Teres Reconstruction Graft Type',
       question_desc: 'Enter the Ligamentum Teres Reconstruction Graft Type',
       enabled: false,

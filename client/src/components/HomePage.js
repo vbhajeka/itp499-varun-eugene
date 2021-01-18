@@ -14,12 +14,16 @@ import { connect as reduxConnect } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { setSurveyData } from '../actions/blockActions';
+import { toggleExportModal } from '../actions/stateActions';
+
+import ExportModal from './ExportModal';
 
 const HomePage = ({
   submitted,
   token,
   setSurveyData,
   continueToSurvey,
+  toggleExportModal,
   isAdmin = true,
 }) => {
   const history = useHistory();
@@ -31,32 +35,6 @@ const HomePage = ({
     isLoading,
     user,
   } = useAuth0();
-
-  const getSurveys = async (sd, ed) => {
-    console.log('getting');
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const body = { startDate: sd, endDate: ed };
-
-    try {
-      const res = await axios.post('/api/getSurveys', body, config);
-      downloadCsv(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const downloadCsv = (body) => {
-    body.forEach((x) => {
-      x.surveyAnswers.forEach((y) => {
-        console.log(JSON.parse(y));
-      });
-    });
-  };
 
   const attemptLogin = () => {
     if (isLoading) {
@@ -75,6 +53,7 @@ const HomePage = ({
 
   return (
     <Fragment>
+      <ExportModal />
       <Container>
         <Grid>
           <Grid.Row>
@@ -140,7 +119,7 @@ const HomePage = ({
                       margin: '3%',
                       width: '97%',
                     }}
-                    onClick={() => getSurveys('2020-12-01', '2021-2-1')}
+                    //onClick={() => getSurveys('2020-12-01', '2021-2-1')}
                   >
                     View Previous Surveys
                   </Segment>
@@ -156,7 +135,8 @@ const HomePage = ({
                         margin: '3%',
                         width: '97%',
                       }}
-                      onClick={() => getSurveys('2020-12-01', '2021-2-1')}
+                      //onClick={() => getSurveys('2020-12-01', '2021-2-1')}
+                      onClick={() => toggleExportModal()}
                     >
                       Export Surveys
                     </Segment>
@@ -198,4 +178,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default reduxConnect(mapStateToProps, { setSurveyData })(HomePage);
+export default reduxConnect(mapStateToProps, {
+  setSurveyData,
+  toggleExportModal,
+})(HomePage);

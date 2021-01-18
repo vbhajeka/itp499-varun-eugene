@@ -8,7 +8,7 @@ const level_one_aap =
     required: true,
     questions: [
       {
-        id: '46',
+        id: 'approach_type',
         question_header: 'Approach',
         question_desc: 'Enter the type of Approach',
         enabled: true,

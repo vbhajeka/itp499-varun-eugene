@@ -5,7 +5,7 @@ const intra_operative_comp = {
   required: false,
   questions: [
     {
-      id: '0',
+      id: 'complications',
       question_header: 'Intra-Operative Complications',
       question_desc: 'Select all Intra-operative Complications that apply',
       enabled: true,
@@ -19,7 +19,11 @@ const intra_operative_comp = {
           children: [],
           blocks_enabled: [],
         },
-        { value: 'Anchors', children: ['1'], blocks_enabled: [] },
+        {
+          value: 'Anchors',
+          children: ['anchor_complications'],
+          blocks_enabled: [],
+        },
         { value: 'Suture Breakage', children: [], blocks_enabled: [] },
         { value: 'Loss of Traction', children: [], blocks_enabled: [] },
         {
@@ -36,7 +40,7 @@ const intra_operative_comp = {
       value: [],
     },
     {
-      id: '1',
+      id: 'anchor_complications',
       question_header: 'Anchor Complications',
       enabled: false,
       required: false,

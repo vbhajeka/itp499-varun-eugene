@@ -8,7 +8,7 @@ const left_femur =
     required: true,
     questions: [
       {
-        id: '0',
+        id: 'left_femur_status',
         question_header: 'Left Femur',
         question_desc: 'What was the status of the Left Femur?',
         enabled: true,
@@ -18,14 +18,18 @@ const left_femur =
           { value: 'Normal', children: [], blocks_enabled: [] },
           {
             value: 'Abnormal',
-            children: ['1', '2', '3'],
+            children: [
+              'left_femur_cam_lesion',
+              'left_femur_cartilage_lesion',
+              'left_femur_avn',
+            ],
             blocks_enabled: [],
           },
         ],
         value: [],
       },
       {
-        id: '1',
+        id: 'left_femur_cam_lesion',
         question_header: 'Cam Lesion',
         question_desc: 'Was there Cam Lesion present?',
         enabled: false,
@@ -34,7 +38,10 @@ const left_femur =
         options: [
           {
             value: 'Yes',
-            children: ['7', '98'],
+            children: [
+              'left_femur_cam_lesion_treatment',
+              'left_femur_cam_lesion_loc',
+            ],
             blocks_enabled: [],
           },
           { value: 'No', children: [], blocks_enabled: [] },
@@ -42,7 +49,7 @@ const left_femur =
         value: [],
       },
       {
-        id: '98',
+        id: 'left_femur_cam_lesion_loc',
         question_header: 'Cam Lesion',
         question_desc: 'Location of the Cam Lesion',
         enabled: false,
@@ -59,7 +66,7 @@ const left_femur =
         value: [],
       },
       {
-        id: '7',
+        id: 'left_femur_cam_lesion_treatment',
         question_header: 'Cam Lesion Treatment',
         question_desc: 'How was the Cam Lesion treated?',
         enabled: false,
@@ -72,7 +79,7 @@ const left_femur =
         value: [],
       },
       {
-        id: '2',
+        id: 'left_femur_cartilage_lesion',
         question_header: 'Femur Cartilage Lesion',
         question_desc: 'Was there Femur Cartilage Lesion present?',
         enabled: false,
@@ -81,7 +88,11 @@ const left_femur =
         options: [
           {
             value: 'Yes',
-            children: ['9', '10', '11'],
+            children: [
+              'left_femur_articular_cart_loc',
+              'left_femur_cart_damage',
+              'left_femur_cart_treatment',
+            ],
             blocks_enabled: [],
           },
           { value: 'No', children: [], blocks_enabled: [] },
@@ -89,7 +100,7 @@ const left_femur =
         value: [],
       },
       {
-        id: '9',
+        id: 'left_femur_articular_cart_loc',
         question_header: 'Articular Cartilage Location',
         question_desc: 'Select areas of GREATEST Articular Cartilage Damage',
         enabled: false,
@@ -105,7 +116,7 @@ const left_femur =
         value: [],
       },
       {
-        id: '10',
+        id: 'left_femur_cart_damage',
         question_header:
           'Select Classification for the degree of worst cartilage damage:',
         long_question_desc: [
@@ -154,7 +165,7 @@ const left_femur =
         value: [],
       },
       {
-        id: '11',
+        id: 'left_femur_cart_treatment',
         question_header: 'Femoral Head Cartilage Treatment',
         question_desc: 'What was the Treatment for the Femoral Head Cartilage?',
         enabled: false,
@@ -171,12 +182,16 @@ const left_femur =
             blocks_enabled: [],
           },
           { value: 'Fibrin Glue', children: [], blocks_enabled: [] },
-          { value: 'Other', children: ['63'], blocks_enabled: [] },
+          {
+            value: 'Other',
+            children: ['left_femur_cart_treatment_other'],
+            blocks_enabled: [],
+          },
         ],
         value: [],
       },
       {
-        id: '63',
+        id: 'left_femur_cart_treatment_other',
         question_header: 'Other Femoral Head Cartilage Treatment',
         question_desc: 'What was the Other Femoral Head Cartilage Treatment?',
         enabled: false,
@@ -187,20 +202,24 @@ const left_femur =
         value: [],
       },
       {
-        id: '3',
+        id: 'left_femur_avn',
         question_header: 'AVN',
         question_desc: 'Was there AVN present?',
         enabled: false,
         required: true,
         type: 'MC',
         options: [
-          { value: 'Yes', children: ['13'], blocks_enabled: [] },
+          {
+            value: 'Yes',
+            children: ['left_femur_avn_treatment'],
+            blocks_enabled: [],
+          },
           { value: 'No', children: [], blocks_enabled: [] },
         ],
         value: [],
       },
       {
-        id: '13',
+        id: 'left_femur_avn_treatment',
         question_header: 'AVN Treatment',
         question_desc: 'What was the Treatment for the AVN?',
         enabled: false,
@@ -215,13 +234,17 @@ const left_femur =
           { value: 'Core Decompression', children: [], blocks_enabled: [] },
           { value: 'Bone Grafting', children: [], blocks_enabled: [] },
           { value: 'Stem Cell / PRP', children: [], blocks_enabled: [] },
-          { value: 'Other', children: ['64'], blocks_enabled: [] },
+          {
+            value: 'Other',
+            children: ['left_femur_other_avn_treatment'],
+            blocks_enabled: [],
+          },
           { value: 'None', children: [], blocks_enabled: [] },
         ],
         value: [],
       },
       {
-        id: '64',
+        id: 'left_femur_other_avn_treatment',
         question_header: 'Other AVN Treatment',
         question_desc: 'What was the Other AVN Treatment?',
         enabled: false,

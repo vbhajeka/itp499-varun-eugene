@@ -168,6 +168,31 @@ const QuestionBlock = ({
 
   console.log('cancel: ', cancelModalIsOpen);
 
+  const getDefaultValue = (type, val) => {
+    if (val === []) {
+      return [];
+    }
+    if (type === 'DDS') {
+      return val[0];
+    } else {
+      return val;
+    }
+  };
+
+  const getAllQIds = () => {
+    let ids = [];
+    let retVal = '';
+    blocks.forEach((b) => {
+      b.questions.forEach((q) => {
+        ids.push(q.id);
+        retVal += q.id + ', ';
+      });
+    });
+    console.log(ids);
+    console.log(retVal);
+    return retVal;
+  };
+
   return (
     <Fragment>
       <Modal basic open={cancelModalIsOpen}>
@@ -271,10 +296,10 @@ const QuestionBlock = ({
                               multiple={q.type === 'DDM'}
                               selection
                               clearable
-                              defaultValue={q.value}
+                              defaultValue={getDefaultValue(q.type, q.value)}
                               options={getOptions(q.options)}
                               onChange={(e, s) => dropdownChange(e, s, q.id)}
-                              style={{ fontSize: '50%' }}
+                              style={{ fontSize: '1rem' }}
                             />
                           </Container>
                         )}

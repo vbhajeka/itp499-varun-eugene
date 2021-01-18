@@ -38,8 +38,6 @@ function App({
 }) {
   let visible_comp;
 
-  console.log(comp);
-
   switch (comp) {
     case 'survey':
       visible_comp = <QuestionBlock />;
@@ -89,7 +87,7 @@ function App({
 
   const setToken = async () => {
     let token = await getAccessTokenSilently();
-    console.log('token is', token);
+    console.log('token set');
     setAuth0Token(token);
     return token;
   };
@@ -100,8 +98,6 @@ function App({
       loadSurvey();
     }
   }
-
-  console.log(window.location.origin);
 
   const mql = window.matchMedia('(max-width: 767px)');
 
@@ -117,7 +113,6 @@ function App({
     } else {
       isMobile = false;
     }
-    console.log(isMobile);
   };
 
   resetMobileView(mobileView);
@@ -189,10 +184,10 @@ function App({
                     top: 0,
                     margin: '0.5rem',
                     padding: '0.5rem',
+                    backgroundColor: 'black !important',
                   }}
                   onClick={() => logout({ returnTo: window.location.origin })}
                   inverted
-                  color={'blue'}
                 >
                   <Header size={'tiny'} style={{ marginLeft: '0.75rem' }}>
                     {user.name}
