@@ -1,5 +1,6 @@
 import {
   SET_STATE_INIT,
+  SET_PREFS,
   SELECT_MC_SATA,
   DROPDOWN_SELECT,
   UPDATE_FR,
@@ -12,34 +13,6 @@ import {
 // import { realState } from './realState';
 let realState = { cont: false };
 let initState = JSON.parse(JSON.stringify(realState));
-
-// const enableChildrenRec = (block, currQ, option_selected, toEnable) => {
-//   // base cases
-//   console.log(currQ.text, option_selected);
-//   if (currQ.type === 'FR') {
-//     console.log('quitting because FR has no children');
-//     return;
-//   } else if (
-//     option_selected === undefined ||
-//     option_selected === null ||
-//     option_selected.length === 0
-//   ) {
-//     console.log('quitting because nothing was selected');
-//     return;
-//   } else {
-//     option_selected.forEach((option) => {
-//       console.log('attempting new recursive calls');
-//       currQ.options
-//         .find((o) => option === o.value)
-//         .children.forEach((c) => {
-//           console.log(c);
-//           let subQ = block.questions.find((q) => q.id === c);
-//           subQ.enabled = toEnable;
-//           enableChildrenRec(block, subQ, subQ.value, toEnable);
-//         });
-//     });
-//   }
-// };
 
 const enableChildrenRec = (blocks, currQ, option_selected, toEnable) => {
   // base cases
@@ -222,14 +195,27 @@ const clearState = () => {
   return { ...temp };
 };
 
+const setPrefsBody = (state, prefs) => {
+  // for each pref, loop through blocks until we find this particular question
+  prefs.forEach((pref) => {
+    let block = state.blocks.find((b) => b.block_id === pref.block);
+    let question = block.questions.find((q) => q.id === pref.id);
+    question.value = pref.value;
+    console.log('set question', question.id, 'to', question.value);
+  });
+  console.log(state);
+  return { ...state };
+};
+
 export default function reducer(state = realState, action) {
   const { type, payload } = action;
 
   switch (type) {
     case SET_STATE_INIT:
       return { ...payload.initState, cont: true };
+    case SET_PREFS:
+      return { ...setPrefsBody(state, payload.prefs) };
     case SELECT_MC_SATA:
-      console.log(initState);
       return { ...selectMC_SATABody(state, payload) };
     case DROPDOWN_SELECT:
       return { ...dropdownSelectBody(state, payload) };

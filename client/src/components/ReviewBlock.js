@@ -53,6 +53,7 @@ const ReviewBlock = ({
     let body = {
       surveyID: surveyID,
       answers: [],
+      prefs: [],
       doctor: user.name,
       versionID: '1.0',
     };
@@ -67,6 +68,14 @@ const ReviewBlock = ({
               value: q.value,
             };
             body.answers.push(JSON.stringify(entry));
+            if (q.isPref) {
+              let prefEntry = {
+                id: q.id,
+                block: block.block_id,
+                value: q.value,
+              };
+              body.prefs.push(JSON.stringify(prefEntry));
+            }
           }
         });
       }

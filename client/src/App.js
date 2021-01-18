@@ -8,14 +8,7 @@ import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
 import ExportPage from './components/ExportPage';
 
-import {
-  Segment,
-  Header,
-  Image,
-  Dropdown,
-  Menu,
-  Container,
-} from 'semantic-ui-react';
+import { Segment, Header, Image } from 'semantic-ui-react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -23,7 +16,7 @@ import { connect } from 'react-redux';
 
 import { setAuth0Token } from './actions/stateActions';
 
-import { setSurveyData } from './actions/blockActions';
+import { setSurveyData, setPrefs } from './actions/blockActions';
 
 import axios from 'axios';
 
@@ -33,6 +26,7 @@ function App({
   setAuth0Token,
   token,
   setSurveyData,
+  setPrefs,
   blocks,
   isMobile,
 }) {
@@ -71,7 +65,8 @@ function App({
       };
       console.log('Authenticated User is', user);
       const res = await axios.get('/api/getSurveyData', config);
-      await setSurveyData(res.data);
+      await setSurveyData(res.data.questions);
+      await setPrefs(res.data.prefs);
       return;
     } catch (err) {
       console.log(`Page load after Authentication failed: ${err}`);
@@ -115,80 +110,31 @@ function App({
             textAlign={'center'}
           >
             HipSTER Survey
-            {/* <Segment
-              inverted
-              color={'blue'}
-              style={{
-                minWidth: '15%',
-                verticalAlign: 'middle',
-                textAlign: 'center',
-                marginTop: '0.5%',
-                marginRight: '0.5%',
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                padding: '0.5em 0.5em',
-              }}
-              disabled={isLoading}
-              onClick={() => attemptLogin()}
-            >
-              {isAuthenticated && (
-                <Header size={'tiny'}>
+            {isAuthenticated && !isMobile && (
+              <Segment
+                style={{
+                  position: 'absolute',
+                  right: 0,
+                  top: 0,
+                  margin: '0.5rem',
+                  padding: '0.5rem',
+                  backgroundColor: 'black !important',
+                }}
+                onClick={() => logout({ returnTo: window.location.origin })}
+                inverted
+              >
+                <Header size={'tiny'} style={{ marginLeft: '0.75rem' }}>
+                  {user.name}
                   <Image
                     src={user.picture}
                     alt={user.name}
                     circular
                     size={'mini'}
+                    style={{ marginLeft: '0.75rem' }}
                   ></Image>
-                  {user.name}
                 </Header>
-              )}
-              {!isAuthenticated && <Header size={'tiny'}>Login</Header>}
-              </Segment> */}
-            {isAuthenticated &&
-              // <Container>
-              //   <Menu floated={'right'}>
-              //     <Menu.Item>
-              //       <Image
-              //         onClick={() => logout()}
-              //         style={{
-              //           position: 'absolute',
-              //           right: 0,
-              //           marginBottom: '1rem',
-              //         }}
-              //         src={user.picture}
-              //         alt={user.name}
-              //         circular
-              //         size={'mini'}
-              //       ></Image>
-              //     </Menu.Item>
-              //   </Menu>
-              // </Container>
-              !isMobile && (
-                <Segment
-                  style={{
-                    position: 'absolute',
-                    right: 0,
-                    top: 0,
-                    margin: '0.5rem',
-                    padding: '0.5rem',
-                    backgroundColor: 'black !important',
-                  }}
-                  onClick={() => logout({ returnTo: window.location.origin })}
-                  inverted
-                >
-                  <Header size={'tiny'} style={{ marginLeft: '0.75rem' }}>
-                    {user.name}
-                    <Image
-                      src={user.picture}
-                      alt={user.name}
-                      circular
-                      size={'mini'}
-                      style={{ marginLeft: '0.75rem' }}
-                    ></Image>
-                  </Header>
-                </Segment>
-              )}
+              </Segment>
+            )}
             {isAuthenticated && isMobile && (
               <Image
                 src={user.picture}
@@ -222,4 +168,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setAuth0Token, setSurveyData })(App);
+export default connect(mapStateToProps, {
+  setAuth0Token,
+  setSurveyData,
+  setPrefs,
+})(App);

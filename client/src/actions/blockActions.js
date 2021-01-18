@@ -6,15 +6,22 @@ import {
   NEXT_BLOCK,
   PREV_BLOCK,
   SUBMIT_SURVEY,
+  SET_PREFS,
 } from './types';
 
 import axios from 'axios';
 
 export const setSurveyData = (initState) => (dispatch) => {
-  console.log('in dispath');
   dispatch({
     type: SET_STATE_INIT,
     payload: { initState },
+  });
+};
+
+export const setPrefs = (prefs) => (dispatch) => {
+  dispatch({
+    type: SET_PREFS,
+    payload: { prefs },
   });
 };
 

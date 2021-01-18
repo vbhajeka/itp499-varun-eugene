@@ -4,6 +4,7 @@ const sgMail = require('@sendgrid/mail');
 const jwToken = require('jsonwebtoken');
 
 const Survey = require('../../models/SurveyResponse');
+const UserPref = require('../../models/UserPreference');
 
 const { check, validationResult } = require('express-validator');
 
@@ -63,6 +64,7 @@ router.post(
     console.log(decoded);
 
     const emailAddy = decoded.payload['http://hipstr-survey/email'];
+    const auth0UserId = decoded.payload.sub;
 
     console.log('accepted token');
 
@@ -70,7 +72,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { surveyID, answers, doctor, versionID } = req.body;
+    const { surveyID, answers, prefs, doctor, versionID } = req.body;
 
     try {
       let surveyData = new Survey({
@@ -87,12 +89,25 @@ router.post(
       });
 
       res.send('survey submitted!');
+
+      // save last charted values
+      const filter = { userId: auth0UserId };
+      const update = { surveyPrefs: prefs };
+
+      await UserPref.findOneAndUpdate(
+        filter,
+        update,
+        { new: true, upsert: true, useFindAndModify: false },
+        function (err) {
+          if (err) return console.error(err);
+          console.log('saved to prefs');
+        }
+      );
     } catch (err) {
       console.log(err);
     }
 
     const resultsHtml = generateHtml(answers);
-    console.log(resultsHtml);
 
     // survey is submitted to db, now send email
     sgMail.setApiKey(process.env.SENDGRID_KEY);
@@ -108,7 +123,7 @@ router.post(
     sgMail
       .send(msg)
       .then(() => {
-        console.log('Email sent');
+        console.log('Email sent to ', emailAddy);
       })
       .catch((error) => {
         console.error(error);
