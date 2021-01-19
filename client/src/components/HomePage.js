@@ -1,6 +1,6 @@
 import { Grid, Segment, Image, Container } from 'semantic-ui-react';
 
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 import '../index.css';
@@ -8,26 +8,14 @@ import { Fragment } from 'react';
 
 import { logo } from '../images/logo';
 
-import axios from 'axios';
-
 import { connect as reduxConnect } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { setSurveyData } from '../actions/blockActions';
 import { toggleExportModal } from '../actions/stateActions';
 
 import ExportModal from './ExportModal';
 
-const HomePage = ({
-  submitted,
-  token,
-  setSurveyData,
-  continueToSurvey,
-  toggleExportModal,
-  isAdmin = true,
-}) => {
-  const history = useHistory();
-
+const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
   const {
     isAuthenticated,
     loginWithRedirect,
@@ -124,14 +112,13 @@ const HomePage = ({
                   <Grid.Column>
                     <Segment
                       inverted
-                      color={'green'}
+                      color={'orange'}
                       style={{
                         lineHeight: '2rem',
                         fontSize: '1.5rem',
                         margin: '3%',
                         width: '97%',
                       }}
-                      //onClick={() => getSurveys('2020-12-01', '2021-2-1')}
                       onClick={() => toggleExportModal()}
                     >
                       Export Surveys
@@ -171,10 +158,10 @@ const mapStateToProps = (state) => {
     submitted: state.state.submitted,
     token: state.state.auth0Token,
     continueToSurvey: state.blocks.cont,
+    isAdmin: state.state.isAdmin,
   };
 };
 
 export default reduxConnect(mapStateToProps, {
-  setSurveyData,
   toggleExportModal,
 })(HomePage);

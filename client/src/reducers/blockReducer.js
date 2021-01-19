@@ -10,7 +10,6 @@ import {
   BACK_TO_HOME,
 } from '../actions/types';
 
-// import { realState } from './realState';
 let realState = { cont: false };
 let initState = JSON.parse(JSON.stringify(realState));
 
@@ -43,7 +42,6 @@ const setStateInitBody = (init) => {
 
 const enableChildrenRec = (blocks, currQ, option_selected, toEnable) => {
   // base cases
-  console.log(currQ.text, option_selected);
   if (currQ.type === 'FR') {
     console.log('quitting because FR has no children');
     return;
@@ -60,10 +58,6 @@ const enableChildrenRec = (blocks, currQ, option_selected, toEnable) => {
       currQ.options
         .find((o) => option === o.value)
         .children.forEach((c) => {
-          console.log(c);
-          // let subQ = block.questions.find((q) => q.id === c);
-          // subQ.enabled = toEnable;
-          // enableChildrenRec(block, subQ, subQ.value, toEnable);
           blocks.forEach((b) => {
             b.questions.forEach((bq) => {
               if (bq.id === c) {
@@ -76,18 +70,6 @@ const enableChildrenRec = (blocks, currQ, option_selected, toEnable) => {
     });
   }
 };
-
-// const enableBlocks = (blocks, currQ, options, value) => {
-//   options.forEach((x) => {
-//     const currOptions = currQ.options.find((o) => o.value === x);
-//     if (currOptions.blocks_enabled) {
-//       console.log(currOptions.blocks_enabled);
-//       currOptions.blocks_enabled.forEach((be) => {
-//         blocks.find((b) => b.block_id === be).enabled = value;
-//       });
-//     }
-//   });
-// };
 
 const enableBlocks = (blocks, currQ, options, value) => {
   options.forEach((x) => {
@@ -103,7 +85,9 @@ const enableBlocks = (blocks, currQ, options, value) => {
       // find partially enabled block
       currOptions.blocks_partially_enabled.forEach((be) => {
         let part = blocks.find((b) => b.block_id === be.id);
+        // update toEnable value at currQ's position
         part.toEnable[be.index] = value;
+        // now reevaluate part's enabled boolean
         part.enabled = !part.toEnable.includes(false);
       });
     }
@@ -135,8 +119,8 @@ const selectMC_SATABody = (state, payload) => {
     currQ.value.push(payload.option_selected);
   }
 
-  console.log('del:', newDeselections);
-  console.log('add:', newSelections);
+  // console.log('del:', newDeselections);
+  // console.log('add:', newSelections);
 
   if (newDeselections.length > 0) {
     enableChildrenRec(state.blocks, currQ, newDeselections, false);
@@ -167,16 +151,14 @@ const dropdownSelectBody = (state, payload) => {
   const newDeletions = currQ.value.filter(
     (x) => !payload.option_selected.includes(x)
   );
-  console.log('add:', newAdditions);
-  console.log('del:', newDeletions);
+
+  // console.log('add:', newAdditions);
+  // console.log('del:', newDeletions);
 
   let addition = newAdditions.length > 0 && newAdditions[0].length > 0;
   let deletion = newDeletions.length > 0 && newDeletions[0].length > 0;
 
-  console.log(addition, deletion);
-
   // always overwrite value because the entire value is sent in payload
-  console.log(payload.option_selected.length, payload.option_selected);
   currQ.value =
     payload.option_selected.length === 1 && payload.option_selected[0] === ''
       ? []
@@ -249,9 +231,8 @@ const setPrefsBody = (state, prefs) => {
     let block = state.blocks.find((b) => b.block_id === pref.block);
     let question = block.questions.find((q) => q.id === pref.id);
     question.value = pref.value;
-    console.log('set question', question.id, 'to', question.value);
   });
-  console.log(state);
+  console.log('set prefs!');
   return { ...state };
 };
 

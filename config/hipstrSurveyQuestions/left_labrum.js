@@ -296,7 +296,6 @@ const left_labrum =
         question_desc: 'What was the length of the Graft in centimeters?',
         enabled: false,
         required: true,
-        isPref: true,
         type: 'FR',
         fr_type: 'number',
         options: [],

@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
   let decoded = jwToken.decode(token, { complete: true });
 
   // get last charted value on this user
-  let prefs = await await UserPref.findOne(
+  let prefs = await UserPref.findOne(
     { userId: decoded.payload.sub },
     { useFindAndModify: false }
   ).exec();
@@ -26,7 +26,9 @@ router.get('/', async (req, res) => {
   console.log(prefs);
 
   // if this user has any last charted vals, parse them
-  if (prefs !== null) prefs = prefs.surveyPrefs.map(JSON.parse);
+  if (prefs !== null) {
+    prefs = prefs.surveyPrefs.map(JSON.parse);
+  }
 
   const responseBody = {
     questions: surveyInitState,

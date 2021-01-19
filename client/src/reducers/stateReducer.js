@@ -5,6 +5,7 @@ import {
   SUBMIT_SURVEY,
   TOGGLE_EXPORT_MODAL,
   DATE_CHANGED,
+  SET_STATE_INIT,
 } from '../actions/types';
 
 import axios from 'axios';
@@ -20,6 +21,7 @@ const initialState = {
     endDate: '',
     datesLegal: false,
   },
+  isAdmin: false,
 };
 
 const toggleCancelModal = (state) => {
@@ -78,7 +80,9 @@ export default function reducer(state = initialState, action) {
       return {
         ...handleDateChanged(state, payload.date === 'start', payload.val),
       };
-
+    case SET_STATE_INIT:
+      state.isAdmin = payload.isAdmin;
+      return { ...state };
     default:
       return state;
   }

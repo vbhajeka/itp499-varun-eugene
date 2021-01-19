@@ -11,10 +11,10 @@ import {
 
 import axios from 'axios';
 
-export const setSurveyData = (initState) => (dispatch) => {
+export const setSurveyData = (initState, isAdmin) => (dispatch) => {
   dispatch({
     type: SET_STATE_INIT,
-    payload: { initState },
+    payload: { initState, isAdmin },
   });
 };
 

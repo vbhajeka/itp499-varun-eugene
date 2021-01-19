@@ -120,7 +120,7 @@ const ExportPage = ({ surveys, toggleOpenSpecific, ids }) => {
           </Grid.Row>
         </Grid>
       </Container>
-      <Container style={{ overflowX: 'scroll', marginBottom: '6.5%' }}>
+      <Container style={{ overflowX: 'auto', marginBottom: '6.5%' }}>
         {surveys.map((s) => (
           <Container
             key={s.date}

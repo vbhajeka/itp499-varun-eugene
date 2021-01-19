@@ -115,19 +115,23 @@ router.post(
       to: emailAddy, // Change to your recipient
       from: 'hipreg1@gmail.com', // Change to your verified sender
       subject: 'HIPSTR Survey Submission Confirmation',
-      // text:
-      //   "Uh oh! Looks like this feature isn't quite ready yet! Bear with us, and you'll recieve your HIPSTR survey results soon!",
-      // html: resultsHtml,
       html: resultsHtml,
     };
-    sgMail
-      .send(msg)
-      .then(() => {
-        console.log('Email sent to ', emailAddy);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+
+    try {
+      await sgMail.send(msg);
+      console.log('Email sent to ', emailAddy);
+    } catch (err) {
+      console.error(err);
+    }
+    // sgMail
+    //   .send(msg)
+    //   .then(() => {
+    //     console.log('Email sent to ', emailAddy);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   }
 );
 

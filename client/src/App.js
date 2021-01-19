@@ -11,7 +11,6 @@ import ExportPage from './components/ExportPage';
 import { Segment, Header, Image } from 'semantic-ui-react';
 
 import { useAuth0 } from '@auth0/auth0-react';
-
 import { connect } from 'react-redux';
 
 import { setAuth0Token } from './actions/stateActions';
@@ -19,6 +18,8 @@ import { setAuth0Token } from './actions/stateActions';
 import { setSurveyData, setPrefs } from './actions/blockActions';
 
 import axios from 'axios';
+
+const jwToken = require('jsonwebtoken');
 
 function App({
   comp,
@@ -65,8 +66,21 @@ function App({
       };
       console.log('Authenticated User is', user);
       const res = await axios.get('/api/getSurveyData', config);
-      await setSurveyData(res.data.questions);
-      await setPrefs(res.data.prefs);
+
+      // decode token
+      let decoded = jwToken.decode(token, { complete: true });
+
+      await setSurveyData(
+        res.data.questions,
+        decoded.payload[`http://hipstr-survey/roles`] &&
+          decoded.payload[`http://hipstr-survey/roles`].includes('survey_admin')
+      );
+
+      // if the user has prefs, load them
+      if (res.data.prefs) {
+        await setPrefs(res.data.prefs);
+      }
+
       return;
     } catch (err) {
       console.log(`Page load after Authentication failed: ${err}`);

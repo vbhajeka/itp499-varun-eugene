@@ -15,7 +15,6 @@ const level_two_toggle = {
       options: [
         {
           value: 'Yes',
-          // children: ['enable_level_two_side'],
           children: [],
           blocks_enabled: [
             'random_level_two_details',
@@ -34,27 +33,6 @@ const level_two_toggle = {
       ],
       value: [],
     },
-    // {
-    //   id: 'enable_level_two_side',
-    //   question_header: 'Which side can you give more details on?',
-    //   question_desc: 'Select one or both',
-    //   enabled: false,
-    //   required: true,
-    //   type: 'SATA',
-    //   options: [
-    //     {
-    //       value: 'Left',
-    //       children: [],
-    //       blocks_enabled: ['angle_details_left'],
-    //     },
-    //     {
-    //       value: 'Right',
-    //       children: [],
-    //       blocks_enabled: ['angle_details_right'],
-    //     },
-    //   ],
-    //   value: [],
-    // },
   ],
 };
 

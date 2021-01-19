@@ -61,7 +61,7 @@ const QuestionBlock = ({
   };
 
   const dropdownChange = (event, { value }, qId) => {
-    console.log(value, qId);
+    // console.log(value, qId);
     dropDownSelect(block_id, qId, value);
   };
 
@@ -74,7 +74,7 @@ const QuestionBlock = ({
   };
 
   const onTextChange = (qId, val) => {
-    console.log(qId, val);
+    // console.log(qId, val);
     updateFRAction(block_id, qId, val);
   };
 
@@ -131,7 +131,6 @@ const QuestionBlock = ({
   };
 
   const getProgress = () => {
-    console.log(blocks);
     const numEnabled = blocks.filter((b) => b.enabled);
     let numCompleted = 1;
     for (
@@ -257,7 +256,6 @@ const QuestionBlock = ({
                       <Container text fluid style={{ maxWidth: '30%' }}>
                         <Header size={'tiny'}>{q.question_header}</Header>
                         <p>{q.question_desc}</p>
-                        {console.log(q.img)}
                         {q.img !== undefined &&
                           q.img !== null &&
                           q.img !== '' && <Image src={q.img} fluid />}

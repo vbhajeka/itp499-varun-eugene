@@ -13,46 +13,34 @@ import axios from 'axios';
 
 import store from './store';
 
-let authConfigRes = {
-  loading: true,
-  domain: null,
-  clientId: null,
-  audience: null,
-};
-const getAuthInfo = async () => {
+// function to get auth0 env vars from the server, then render page
+const getAuth0Environment = async () => {
   console.log('in this func');
   try {
+    // call api
     const res = await axios.get('/auth0/config');
-    const authVars = {
-      loading: false,
+    // set results
+    const auth0Vars = {
       domain: res.data.domain,
       clientId: res.data.clientId,
       audience: res.data.audience,
     };
-    return authVars;
+    // now that we've recieved auth0 env vars from the server, we can safely render the Auth0Provider
+    renderIndexPage(auth0Vars);
   } catch (err) {
     console.log(err);
   }
 };
 
-authConfigRes = getAuthInfo(authConfigRes);
-
-ReactDOM.render(
-  <Fragment>
-    {authConfigRes.loading && authConfigRes.domain === null && (
-      <div> Loading</div>
-    )}
-    {!(authConfigRes.loading && authConfigRes.domain === null) && (
+const renderIndexPage = (auth0ConfigRes) => {
+  ReactDOM.render(
+    <Fragment>
       <Fragment>
         <Auth0Provider
-          // domain={authConfigRes.domain}
-          // clientId={authConfigRes.clientId}
-          // redirectUri={window.location.origin}
-          // audience={authConfigRes.audience}
-          domain='dev-g1b86-e1.us.auth0.com'
-          clientId='EavhqaPMrv16U1GY0WYHOPwfinV4wiHB'
+          domain={auth0ConfigRes.domain}
+          clientId={auth0ConfigRes.clientId}
           redirectUri={window.location.origin}
-          audience='https://dev-g1b86-e1.us.auth0.com/api/v2/'
+          audience={auth0ConfigRes.audience}
           scope='read:current_user update:current_user_metadata'
         >
           <Router>
@@ -86,7 +74,10 @@ ReactDOM.render(
           </Router>
         </Auth0Provider>
       </Fragment>
-    )}
-  </Fragment>,
-  document.getElementById('root')
-);
+    </Fragment>,
+    document.getElementById('root')
+  );
+};
+
+// load index page
+getAuth0Environment();

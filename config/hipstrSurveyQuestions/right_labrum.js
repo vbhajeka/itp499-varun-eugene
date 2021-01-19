@@ -223,6 +223,7 @@ const right_labrum =
         question_desc: 'What was the type of Labral Graft?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'MC',
         options: [
           {
@@ -244,6 +245,7 @@ const right_labrum =
         question_desc: 'What was the Graft Type?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'MC',
         options: [
           { value: 'IT Band', children: [], blocks_enabled: [] },
@@ -264,6 +266,7 @@ const right_labrum =
         question_desc: 'What was the Graft Type?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'MC',
         options: [
           { value: 'IT Band', children: [], blocks_enabled: [] },
@@ -282,6 +285,7 @@ const right_labrum =
         question_desc: 'Enter Other Graft Type',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'FR',
         fr_type: 'text',
         value: [],
@@ -303,6 +307,7 @@ const right_labrum =
         question_desc: 'Who manufactured the implant?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           {
@@ -353,6 +358,7 @@ const right_labrum =
         question_desc: 'What was the Other Implant Manufacturer?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'FR',
         fr_type: 'text',
         options: [],
@@ -364,6 +370,7 @@ const right_labrum =
         question_desc: 'What was the Arthex Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           { value: 'Pushlock', children: [], blocks_enabled: [] },
@@ -393,6 +400,7 @@ const right_labrum =
         question_desc: 'What was the Other Arthex Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'FR',
         fr_type: 'text',
         options: [],
@@ -404,6 +412,7 @@ const right_labrum =
         question_desc: 'What was the Biomet Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           {
@@ -425,6 +434,7 @@ const right_labrum =
         question_desc: 'What was the Other Biomet Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'FR',
         fr_type: 'text',
         options: [],
@@ -436,6 +446,7 @@ const right_labrum =
         question_desc: 'What was the Conmed Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           {
@@ -460,6 +471,7 @@ const right_labrum =
         question_desc: 'What was the Other Conmed Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'FR',
         fr_type: 'text',
         options: [],
@@ -471,6 +483,7 @@ const right_labrum =
         question_desc: 'What was the Smith & Nephew Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           { value: 'Bioraptor Knotless', children: [], blocks_enabled: [] },
@@ -498,6 +511,7 @@ const right_labrum =
         question_desc: 'What was the Other Smith & Nephew Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'FR',
         fr_type: 'text',
         options: [],
@@ -509,6 +523,7 @@ const right_labrum =
         question_desc: 'What was the Stryker / Pivot Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           { value: 'Iconix', children: [], blocks_enabled: [] },
@@ -528,6 +543,7 @@ const right_labrum =
         question_desc: 'What was the Other Stryker / Pivot Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'FR',
         fr_type: 'text',
         options: [],
@@ -539,6 +555,7 @@ const right_labrum =
         question_desc: 'What was the Medacta Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           { value: 'Mectalock PPEK', children: [], blocks_enabled: [] },
@@ -559,6 +576,7 @@ const right_labrum =
         question_desc: 'What was the Other Medacta Implant System?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'FR',
         fr_type: 'text',
         options: [],
@@ -570,6 +588,7 @@ const right_labrum =
         question_desc: 'How many anchors were used?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'DDS',
         options: [
           { value: '1', children: [], blocks_enabled: [] },
@@ -591,6 +610,7 @@ const right_labrum =
         question_desc: 'What was the material of the anchor?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           { value: 'All-suture Based', children: [], blocks_enabled: [] },
@@ -606,6 +626,7 @@ const right_labrum =
         question_desc: 'What type of anchor was used?',
         enabled: false,
         required: true,
+        isPref: true,
         type: 'SATA',
         options: [
           { value: 'Knotted', children: [], blocks_enabled: [] },
