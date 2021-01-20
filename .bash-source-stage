@@ -1,16 +1,10 @@
-export SERVER_PORT=5000
+export MONGO_USER='hipster-admin'
+export MONGO_PWD='ZSWukjiAtEqoovCU'
+export MONGO_HOST='hipster-hip-registry.n5w16.mongodb.net'
+export MONGO_DB='HipSTER-Survey-Stage'
 
-export AUTH0_DOMAIN='dev-g1b86-e1.us.auth0.com'
-export AUTH0_AUDIENCE='https://dev-g1b86-e1.us.auth0.com/api/v2/'
-export AUTH0_CLIENT_ID='wO9s77bRKdrOrhKU78JElBzOvBNC5Jf0'
+export AUTH0_DOMAIN='hipster-hip-registry.us.auth0.com'
+export AUTH0_CLIENT_ID='OsESxX7i0rd7njZlQKvpH1ODqOMGI4OF'
+export AUTH0_AUDIENCE='https://hipster-hip-registry.us.auth0.com/api/v2/'
 
-export MY_CORS_APP_ORIGIN='http://localhost:3000'
-export MY_CORS_APP_SUBMIT='http://localhost:3000/review'
-
-export SENDGRID_KEY='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'
-
-export MONGO_HOST='varun-test.pjq6b.mongodb.net'
-export MONGO_DB='HipSTER-Stage'
-export MONGO_USER='hipster-admin-stage'
-export MONGO_PWD='it2ZKAtifyIAN1LI'
-
+export SENDGRID_KEY='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'
