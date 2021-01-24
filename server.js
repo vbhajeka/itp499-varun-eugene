@@ -96,14 +96,14 @@ app.use('/api/getSurveys', require('./routes/api/getSurveys'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
+  console.log('Forcing SSL Use');
+  app.use(forceSSL);
+
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
-
-  console.log('Forcing SSL Use');
-  app.use(forceSSL);
 } else {
   app.use(cors({ origin: process.env.MY_CORS_APP_ORIGIN }));
   app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
