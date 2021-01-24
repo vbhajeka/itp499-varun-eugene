@@ -1,7 +1,7 @@
 {
-  "name": "mern-course-varun",
+  "name": "hipster-survey-server",
   "version": "1.0.0",
-  "description": "practice-course",
+  "description": "Server for HipSTER Survey",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

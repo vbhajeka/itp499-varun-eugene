@@ -22,6 +22,7 @@ const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
     logout,
     isLoading,
     user,
+    error,
   } = useAuth0();
 
   const attemptLogin = () => {
@@ -35,20 +36,61 @@ const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
     }
   };
 
+  let homePageMessage = null;
+  const queryString = window.location.search;
+  if (queryString) {
+    let params = {};
+    queryString
+      .substr(1)
+      .split('&')
+      .forEach((item) => {
+        let s = item.split('='),
+          key = s[0],
+          value = s[1] && decodeURIComponent(s[1]); //  null-coalescing / short-circuit
+        (params[key] = params[key] || []).push(value); // null-coalescing / short-circuit
+      });
+    console.log('Query Parameters are' + JSON.stringify(params));
+    if (
+      params.error &&
+      params.error_description &&
+      params.error_description.length > 0
+    ) {
+      homePageMessage = { msg: params.error_description[0], type: 'err' };
+    }
+  }
+
+  if (submitted) {
+    homePageMessage = {
+      msg: `Thank you for your submission! A copy has been emailed to ${user.email}!`,
+      type: 'suc',
+    };
+  }
+
+  // if (error) {
+  //   homePageMessage = {
+  //     msg: `Authentication Error, please reload page & login again: ${error}`,
+  //     type: 'err',
+  //   };
+  // }
+
   return (
     <Fragment>
       <ExportModal />
       <Container>
         <Grid>
           <Grid.Row>
-            {submitted && (
+            {homePageMessage && (
               <Segment
-                style={{ position: 'absolute', top: 0, width: '100%' }}
-                color={'green'}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  width: '100%',
+                  fontSize: '1rem',
+                }}
+                color={'black'}
                 inverted
               >
-                Thank you for Submitting! An email with your selections has been
-                sent to {user.email}!
+                {homePageMessage.msg}
               </Segment>
             )}
           </Grid.Row>

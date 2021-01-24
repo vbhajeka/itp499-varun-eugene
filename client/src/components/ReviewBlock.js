@@ -21,6 +21,8 @@ import { modalActions } from '../actions/stateActions';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
+import axios from 'axios';
+
 const ReviewBlock = ({
   ping,
   blocks,
@@ -31,7 +33,7 @@ const ReviewBlock = ({
 
   token,
 }) => {
-  const { user } = useAuth0();
+  const { user, getAccessTokenSilently } = useAuth0();
 
   // make sure we have questions to display - if not, redirect to home page
   const history = useHistory();
@@ -48,9 +50,9 @@ const ReviewBlock = ({
     return retVal.substring(0, retVal.length - 2);
   };
 
-  const reviewClicked = () => {
+  const reviewClicked = async () => {
     console.log('beginning review actions');
-    let body = {
+    let surveyData = {
       surveyID: surveyID,
       answers: [],
       prefs: [],
@@ -67,21 +69,38 @@ const ReviewBlock = ({
               question: q.question_header,
               value: q.value,
             };
-            body.answers.push(JSON.stringify(entry));
+            surveyData.answers.push(JSON.stringify(entry));
             if (q.isPref) {
               let prefEntry = {
                 id: q.id,
                 block: block.block_id,
                 value: q.value,
               };
-              body.prefs.push(JSON.stringify(prefEntry));
+              surveyData.prefs.push(JSON.stringify(prefEntry));
             }
           }
         });
       }
     });
-    console.log(body);
-    submitAction(body, token);
+    console.log(`survey data is ${surveyData}`);
+    try {
+      let token = await getAccessTokenSilently();
+      console.log('ReviewBlk.js: token set ' + token);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const body = JSON.stringify(surveyData);
+
+      const res = await axios.post('/api/submitSurvey', body, config);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+    submitAction();
   };
 
   return (

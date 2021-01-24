@@ -1,15 +1,11 @@
 import {
   TOGGLE_CANCEL_MODAL,
   BACK_TO_HOME,
-  SET_TOKEN,
   SUBMIT_SURVEY,
   TOGGLE_EXPORT_MODAL,
   DATE_CHANGED,
   SET_STATE_INIT,
 } from '../actions/types';
-
-import axios from 'axios';
-import { setExportData } from '../actions/exportActions';
 
 const initialState = {
   auth0Token: null,
@@ -67,9 +63,6 @@ export default function reducer(state = initialState, action) {
     case BACK_TO_HOME:
       state.cancelModalIsOpen = false;
       state.submitted = false;
-      return { ...state };
-    case SET_TOKEN:
-      state.auth0Token = payload.token;
       return { ...state };
     case SUBMIT_SURVEY:
       state.submitted = true;

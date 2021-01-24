@@ -8,3 +8,6 @@ export AUTH0_CLIENT_ID='OsESxX7i0rd7njZlQKvpH1ODqOMGI4OF'
 export AUTH0_AUDIENCE='https://hipster-hip-registry.us.auth0.com/api/v2/'
 
 export SENDGRID_KEY='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'
+export SENDGRID_EMAIL_FROM='hipreg1@gmail.com'
+export SENDGRID_EMAIL_SUBJECT='HIPSTR Survey Submission Confirmation'
+export SENDGRID_ICON='https://varun-survey-stage.herokuapp.com/favicon.ico'

@@ -22,6 +22,10 @@ const SurveyResponseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  doctor_email: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = Survey = mongoose.model(

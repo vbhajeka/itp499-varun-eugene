@@ -9,8 +9,6 @@ import {
   SET_PREFS,
 } from './types';
 
-import axios from 'axios';
-
 export const setSurveyData = (initState, isAdmin) => (dispatch) => {
   dispatch({
     type: SET_STATE_INIT,
@@ -66,28 +64,7 @@ export const prevBlockAction = () => (dispatch) => {
   });
 };
 
-export const submitAction = (surveyData, token) => async (dispatch) => {
-  console.log('reviewing');
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-  };
-
-  console.log(config);
-
-  const body = JSON.stringify(surveyData);
-
-  try {
-    const res = await axios.post('/api/submitSurvey', body, config);
-    // const res = await axios.post('/api/checkToken', {}, config);
-
-    console.log(res);
-  } catch (err) {
-    console.log(err);
-  }
-
+export const submitAction = () => async (dispatch) => {
   dispatch({
     type: SUBMIT_SURVEY,
     payload: {},

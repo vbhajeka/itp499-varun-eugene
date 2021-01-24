@@ -13,6 +13,7 @@ import {
 
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { toggleExportModal, exportDateChanged } from '../actions/stateActions';
 import { setExportData } from '../actions/exportActions';
@@ -23,10 +24,11 @@ const ExportModal = ({
   exportDateChanged,
   datesLegal,
   dates,
-  token,
   setExportData,
 }) => {
   const history = useHistory();
+
+  const { getAccessTokenSilently } = useAuth0();
 
   const onDateChange = (field, val) => {
     console.log(field, val);
@@ -34,20 +36,21 @@ const ExportModal = ({
   };
 
   const getSurvey = async () => {
-    console.log('getting');
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
     const body = {
       startDate: dates.start,
       endDate: dates.end,
     };
 
     try {
+      let token = await getAccessTokenSilently();
+      console.log('ExportModal.js: token set ' + token);
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
       const res = await axios.post('/api/getSurveys', body, config);
       console.log(res);
       setExportData(res.data.result, res.data.ids);
@@ -152,7 +155,6 @@ const mapStateToProps = (state) => {
       start: state.state.exportModal.startDate,
       end: state.state.exportModal.endDate,
     },
-    token: state.state.auth0Token,
   };
 };
 

@@ -13,24 +13,13 @@ import { Segment, Header, Image } from 'semantic-ui-react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { connect } from 'react-redux';
 
-import { setAuth0Token } from './actions/stateActions';
-
 import { setSurveyData, setPrefs } from './actions/blockActions';
 
 import axios from 'axios';
 
 const jwToken = require('jsonwebtoken');
 
-function App({
-  comp,
-  ping,
-  setAuth0Token,
-  token,
-  setSurveyData,
-  setPrefs,
-  blocks,
-  isMobile,
-}) {
+function App({ comp, ping, setSurveyData, setPrefs, blocks, isMobile }) {
   let visible_comp;
 
   switch (comp) {
@@ -52,15 +41,11 @@ function App({
 
   const { logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-  const setToken = async () => {
-    let token = await getAccessTokenSilently();
-    console.log('token set');
-    setAuth0Token(token);
-    return token;
-  };
-
   const loadHomePageOptions = async () => {
     try {
+      let token = await getAccessTokenSilently();
+      console.log('App.js: token set ' + token);
+
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
@@ -90,25 +75,31 @@ function App({
 
   if (isAuthenticated) {
     // get fresh token before calling backend for fresh survey
-    setToken();
-    if (token && blocks === undefined) loadHomePageOptions();
+    // setToken();
+    if (/*token &&*/ blocks === undefined) loadHomePageOptions();
   } else {
     console.log('Waiting for User to Login');
   }
 
-  const mql = window.matchMedia('(max-width: 767px)');
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    isMobile = true;
+  } else {
+    isMobile = false;
+  }
 
-  let mobileView = mql.matches;
+  // const mql = window.matchMedia('(max-width: 767px)');
 
-  const resetMobileView = (mobileView) => {
-    if (mobileView) {
-      isMobile = true;
-    } else {
-      isMobile = false;
-    }
-  };
+  // let mobileView = mql.matches;
 
-  resetMobileView(mobileView);
+  // const resetMobileView = (mobileView) => {
+  //   if (mobileView) {
+  //     isMobile = true;
+  //   } else {
+  //     isMobile = false;
+  //   }
+  // };
+
+  // resetMobileView(mobileView);
 
   return (
     <div className='App'>
@@ -162,7 +153,7 @@ function App({
         </div>
       </div>
       <Segment style={{ width: '100%' }} id='bottomBar' className='bars'>
-        <p style={{ float: 'right' }}>Copyright Marc Safran 2021 &#169;</p>
+        <p style={{ float: 'right' }}>&#169; Copyright 2021 Dr. Marc Safran</p>
         <p style={{ float: 'left' }}>V 1.0</p>
       </Segment>
     </div>
@@ -173,13 +164,11 @@ const mapStateToProps = (state) => {
   return {
     ping: state.blocks.ping,
     cancelModalIsOpen: state.state.cancelModalIsOpen,
-    token: state.state.auth0Token,
     blocks: state.blocks.blocks,
   };
 };
 
 export default connect(mapStateToProps, {
-  setAuth0Token,
   setSurveyData,
   setPrefs,
 })(App);

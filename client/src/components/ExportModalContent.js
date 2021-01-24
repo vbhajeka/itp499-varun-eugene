@@ -62,17 +62,21 @@ const ExportModalContent = ({ toggleOpenSpecific, isOpen, surveys, index }) => {
               style={{
                 backgroundColor: 'white',
                 padding: '3%',
-                borderRadius: '10px',
+                borderRadius: '5px',
               }}
             >
-              <Header size={'tiny'} color={'blue'} style={{ fontSize: '70%' }}>
-                Review Selections
+              <Header
+                size={'tiny'}
+                color={'blue'}
+                style={{ fontSize: '1.2rem' }}
+              >
+                Survey Submission
               </Header>
             </Container>
             <Container
               style={{
-                overflowX: 'scroll',
-                marginTop: '2%',
+                overflowX: 'auto',
+                marginTop: '5%',
               }}
             >
               {blocks.map((block) => (
@@ -87,12 +91,12 @@ const ExportModalContent = ({ toggleOpenSpecific, isOpen, surveys, index }) => {
                 >
                   <Header
                     size={'tiny'}
-                    style={{ fontSize: '55%' }}
+                    style={{ fontSize: '1.1rem' }}
                     color={'blue'}
                   >
                     {block.blockName}
                   </Header>
-                  <Table striped celled style={{ fontSize: '45%' }}>
+                  <Table striped celled style={{ fontSize: '1rem' }}>
                     <Table.Body>
                       {block.questions.map((q) => (
                         <Table.Row key={`${q.id}`}>

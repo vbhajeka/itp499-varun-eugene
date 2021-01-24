@@ -12,8 +12,6 @@ export const SUBMIT_SURVEY = 'SUBMIT_SURVEY';
 export const TOGGLE_CANCEL_MODAL = 'TOGGLE_CANCEL_MODAL';
 export const BACK_TO_HOME = 'BACK_TO_HOME';
 
-export const SET_TOKEN = 'SET_TOKEN';
-
 export const GET_SURVEYS = 'GET_SURVEYS';
 export const TOGGLE_EXPORT_MODAL = 'TOGGLE_EXPORT_MODAL';
 export const DATE_CHANGED = 'DATE_CHANGED';
