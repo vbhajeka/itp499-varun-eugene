@@ -61,7 +61,11 @@ const ExportModal = ({
 
       if (res.data.result.length === 0) {
         updateHPMessage(
-          `There were no surveys submitted from ${dates.start} to ${dates.end}`
+          `There were no surveys submitted from ${new Date(
+            dates.start
+          ).toLocaleDateString()} to ${new Date(
+            dates.end
+          ).toLocaleDateString()}`
         );
         toggleExportModal();
       } else {
