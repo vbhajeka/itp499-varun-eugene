@@ -132,7 +132,8 @@ router.post(
     }
     const { surveyID, answers, prefs, doctor, versionID } = req.body;
 
-    let response = '';
+    let prefsFailed = false;
+    let emailFailed = false;
 
     try {
       let surveyData = new Survey({
@@ -149,6 +150,7 @@ router.post(
         console.log(survey.surveyID + ' saved to collection.');
       });
     } catch (err) {
+      // failed to write to db
       res.status(500).send('Error is ' + err);
     }
 
@@ -167,6 +169,7 @@ router.post(
         }
       );
     } catch (err) {
+      prefsFailed = true;
       console.error(`Could not save prefs: ${err}`);
     }
 
@@ -191,9 +194,18 @@ router.post(
       response = 'Success!';
     } catch (err) {
       console.error(`Could not send email: ${err}`);
-      response = 'Survey submitted, could not send email';
+      emailFailed = true;
     }
-    res.send(response);
+
+    let resMesg = { msgs: [] };
+
+    if (prefsFailed) {
+      resMesg.msgs.push('Failed to save last charted value');
+    }
+    if (emailFailed) {
+      resMesg.msgs.push(`Failed to send a confirmation email to ${emailAddy}`);
+    }
+    res.send(resMesg);
   }
 );
 

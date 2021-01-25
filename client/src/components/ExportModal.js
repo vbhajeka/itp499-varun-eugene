@@ -15,7 +15,11 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { toggleExportModal, exportDateChanged } from '../actions/stateActions';
+import {
+  toggleExportModal,
+  exportDateChanged,
+  updateHPMessage,
+} from '../actions/stateActions';
 import { setExportData } from '../actions/exportActions';
 
 const ExportModal = ({
@@ -25,6 +29,7 @@ const ExportModal = ({
   datesLegal,
   dates,
   setExportData,
+  updateHPMessage,
 }) => {
   const history = useHistory();
 
@@ -53,12 +58,24 @@ const ExportModal = ({
 
       const res = await axios.post('/api/getSurveys', body, config);
       console.log(res);
-      setExportData(res.data.result, res.data.ids);
-      toggleExportModal();
-      history.push('/export');
-      return <div>empty</div>;
+
+      if (res.data.result.length === 0) {
+        updateHPMessage(
+          `There were no surveys submitted from ${dates.start} to ${dates.end}`
+        );
+        toggleExportModal();
+      } else {
+        setExportData(res.data.result, res.data.ids);
+        toggleExportModal();
+        updateHPMessage(``);
+        history.push('/export');
+        return <div>empty</div>;
+      }
     } catch (err) {
       console.log(err);
+      updateHPMessage(
+        `There was an error retrieving surveys. Please try again`
+      );
       toggleExportModal();
     }
   };
@@ -162,4 +179,5 @@ export default connect(mapStateToProps, {
   toggleExportModal,
   exportDateChanged,
   setExportData,
+  updateHPMessage,
 })(ExportModal);

@@ -1,16 +1,14 @@
 import {
   TOGGLE_CANCEL_MODAL,
   BACK_TO_HOME,
-  SUBMIT_SURVEY,
   TOGGLE_EXPORT_MODAL,
   DATE_CHANGED,
   SET_STATE_INIT,
+  CHANGE_HP_MESSAGE,
 } from '../actions/types';
 
 const initialState = {
-  auth0Token: null,
   cancelModalIsOpen: false,
-  submitted: false,
   exportModal: {
     isOpen: false,
     startDate: '',
@@ -18,6 +16,7 @@ const initialState = {
     datesLegal: false,
   },
   isAdmin: false,
+  homePageMessage: '',
 };
 
 const toggleCancelModal = (state) => {
@@ -54,6 +53,11 @@ const handleDateChanged = (state, isStart, val) => {
   return { ...state };
 };
 
+const changeMessage = (state, msg) => {
+  state.homePageMessage = msg;
+  return state;
+};
+
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
 
@@ -62,10 +66,6 @@ export default function reducer(state = initialState, action) {
       return { ...toggleCancelModal(state) };
     case BACK_TO_HOME:
       state.cancelModalIsOpen = false;
-      state.submitted = false;
-      return { ...state };
-    case SUBMIT_SURVEY:
-      state.submitted = true;
       return { ...state };
     case TOGGLE_EXPORT_MODAL:
       return { ...toggleExportModal(state) };
@@ -76,6 +76,8 @@ export default function reducer(state = initialState, action) {
     case SET_STATE_INIT:
       state.isAdmin = payload.isAdmin;
       return { ...state };
+    case CHANGE_HP_MESSAGE:
+      return { ...changeMessage(state, payload.msg) };
     default:
       return state;
   }

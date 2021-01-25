@@ -11,7 +11,6 @@ import {
 } from 'semantic-ui-react';
 
 import { toggleOpenSpecific } from '../actions/exportActions';
-import { toggleExportModal } from '../actions/stateActions';
 
 import './components.css';
 

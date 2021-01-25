@@ -55,11 +55,6 @@ const renderIndexPage = (auth0ConfigRes) => {
                   />
                   <Route
                     exact
-                    path='/confirm'
-                    render={() => <App comp='confirm' />}
-                  />
-                  <Route
-                    exact
                     path='/review'
                     render={() => <App comp='review' />}
                   />

@@ -3,7 +3,6 @@ import './App.css';
 import './index.css';
 
 import HomePage from './components/HomePage';
-import ConfirmPage from './components/ConfirmPage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
 import ExportPage from './components/ExportPage';
@@ -14,20 +13,26 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { connect } from 'react-redux';
 
 import { setSurveyData, setPrefs } from './actions/blockActions';
+import { updateHPMessage } from './actions/stateActions';
 
 import axios from 'axios';
 
 const jwToken = require('jsonwebtoken');
 
-function App({ comp, ping, setSurveyData, setPrefs, blocks, isMobile }) {
+function App({
+  comp,
+  ping,
+  setSurveyData,
+  setPrefs,
+  blocks,
+  isMobile,
+  updateHPMessage,
+}) {
   let visible_comp;
 
   switch (comp) {
     case 'survey':
       visible_comp = <QuestionBlock />;
-      break;
-    case 'confirm':
-      visible_comp = <ConfirmPage />;
       break;
     case 'review':
       visible_comp = <ReviewBlock />;
@@ -74,9 +79,7 @@ function App({ comp, ping, setSurveyData, setPrefs, blocks, isMobile }) {
   };
 
   if (isAuthenticated) {
-    // get fresh token before calling backend for fresh survey
-    // setToken();
-    if (/*token &&*/ blocks === undefined) loadHomePageOptions();
+    if (blocks === undefined) loadHomePageOptions();
   } else {
     console.log('Waiting for User to Login');
   }
@@ -86,20 +89,6 @@ function App({ comp, ping, setSurveyData, setPrefs, blocks, isMobile }) {
   } else {
     isMobile = false;
   }
-
-  // const mql = window.matchMedia('(max-width: 767px)');
-
-  // let mobileView = mql.matches;
-
-  // const resetMobileView = (mobileView) => {
-  //   if (mobileView) {
-  //     isMobile = true;
-  //   } else {
-  //     isMobile = false;
-  //   }
-  // };
-
-  // resetMobileView(mobileView);
 
   return (
     <div className='App'>
@@ -171,4 +160,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   setSurveyData,
   setPrefs,
+  updateHPMessage,
 })(App);

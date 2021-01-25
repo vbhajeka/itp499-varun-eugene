@@ -3,6 +3,7 @@ import {
   BACK_TO_HOME,
   TOGGLE_EXPORT_MODAL,
   DATE_CHANGED,
+  CHANGE_HP_MESSAGE,
 } from '../actions/types';
 
 export const modalActions = (action) => (dispatch) => {
@@ -23,5 +24,12 @@ export const exportDateChanged = (date, val) => (dispatch) => {
   dispatch({
     type: DATE_CHANGED,
     payload: { date, val },
+  });
+};
+
+export const updateHPMessage = (msg) => (dispatch) => {
+  dispatch({
+    type: CHANGE_HP_MESSAGE,
+    payload: { msg },
   });
 };

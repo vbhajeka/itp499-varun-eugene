@@ -17,11 +17,13 @@ import { Link, useHistory } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 
 import { submitAction } from '../actions/blockActions';
-import { modalActions } from '../actions/stateActions';
+import { modalActions, updateHPMessage } from '../actions/stateActions';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
 import axios from 'axios';
+
+const jwToken = require('jsonwebtoken');
 
 const ReviewBlock = ({
   ping,
@@ -30,8 +32,7 @@ const ReviewBlock = ({
   cancelModalIsOpen,
   submitAction,
   modalActions,
-
-  token,
+  updateHPMessage,
 }) => {
   const { user, getAccessTokenSilently } = useAuth0();
 
@@ -95,11 +96,33 @@ const ReviewBlock = ({
 
       const body = JSON.stringify(surveyData);
 
+      const decoded = jwToken.decode(token, { complete: true });
+      const emailAddy = decoded.payload['http://hipstr-survey/email'];
+
       const res = await axios.post('/api/submitSurvey', body, config);
       console.log(res);
+
+      if (res.data.msgs.length > 0) {
+        let msg = '';
+        res.data.msgs.forEach((m) => (msg += m));
+        updateHPMessage(msg);
+      } else {
+        updateHPMessage(
+          `Successfully submitted survey! An email with your selections has been sent to ${emailAddy}`
+        );
+      }
+
+      // make sure these are being sent by backend
+      // Survey saved, preferences saved and email sent
+      // Survey saved and email saved
+      // Survey saved but email not sent
+      // updateHomepageMessage(res.data {msg, type})
     } catch (err) {
+      // db write failed - go back to homepage with error 'Error with submission of survey.'
+      updateHPMessage('Error with submission of Survey');
       console.log(err);
     }
+
     submitAction();
   };
 
@@ -233,11 +256,11 @@ const mapStateToProps = (state) => {
     blocks: state.blocks.blocks,
     surveyID: state.blocks.surveyID,
     cancelModalIsOpen: state.state.cancelModalIsOpen,
-
-    token: state.state.auth0Token,
   };
 };
 
-export default connect(mapStateToProps, { submitAction, modalActions })(
-  ReviewBlock
-);
+export default connect(mapStateToProps, {
+  submitAction,
+  modalActions,
+  updateHPMessage,
+})(ReviewBlock);

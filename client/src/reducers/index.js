@@ -15,7 +15,7 @@ const appReducer = combineReducers({
 const rootReducer = (state, action) => {
   if (action.type === SUBMIT_SURVEY) {
     console.log('here');
-    state = undefined;
+    state.blocks = undefined;
   }
 
   return appReducer(state, action);

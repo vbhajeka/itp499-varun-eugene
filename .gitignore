@@ -1,4 +1,3 @@
 node_modules/
 config/default.json
-.bash-source
-.bash-source-stage
+.bash*

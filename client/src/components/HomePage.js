@@ -15,63 +15,30 @@ import { toggleExportModal } from '../actions/stateActions';
 
 import ExportModal from './ExportModal';
 
-const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
+const HomePage = ({
+  toggleExportModal,
+  isAdmin,
+  isMobile,
+  homePageMessage,
+}) => {
   const {
     isAuthenticated,
     loginWithRedirect,
     logout,
     isLoading,
-    user,
     error,
   } = useAuth0();
 
-  const attemptLogin = () => {
-    if (isLoading) {
-      return;
-    }
-    if (!isAuthenticated) {
-      loginWithRedirect();
-    } else {
-      logout({ returnTo: window.location.origin });
-    }
-  };
-
-  let homePageMessage = null;
-  const queryString = window.location.search;
-  if (queryString) {
-    let params = {};
-    queryString
-      .substr(1)
-      .split('&')
-      .forEach((item) => {
-        let s = item.split('='),
-          key = s[0],
-          value = s[1] && decodeURIComponent(s[1]); //  null-coalescing / short-circuit
-        (params[key] = params[key] || []).push(value); // null-coalescing / short-circuit
-      });
-    console.log('Query Parameters are' + JSON.stringify(params));
-    if (
-      params.error &&
-      params.error_description &&
-      params.error_description.length > 0
-    ) {
-      homePageMessage = { msg: params.error_description[0], type: 'err' };
-    }
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    isMobile = true;
+  } else {
+    isMobile = false;
   }
 
-  if (submitted) {
-    homePageMessage = {
-      msg: `Thank you for your submission! A copy has been emailed to ${user.email}!`,
-      type: 'suc',
-    };
+  if (error) {
+    homePageMessage = `${error}`;
+    console.log(error);
   }
-
-  // if (error) {
-  //   homePageMessage = {
-  //     msg: `Authentication Error, please reload page & login again: ${error}`,
-  //     type: 'err',
-  //   };
-  // }
 
   return (
     <Fragment>
@@ -90,7 +57,7 @@ const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
                 color={'black'}
                 inverted
               >
-                {homePageMessage.msg}
+                {homePageMessage}
               </Segment>
             )}
           </Grid.Row>
@@ -135,7 +102,7 @@ const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
               </Grid.Row>
 
               <Grid.Row columns={isAdmin ? 2 : 1}>
-                <Grid.Column>
+                {/* <Grid.Column>
                   <Segment
                     inverted
                     color={'green'}
@@ -149,8 +116,8 @@ const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
                   >
                     View Previous Surveys
                   </Segment>
-                </Grid.Column>
-                {isAdmin && (
+                </Grid.Column> */}
+                {isAdmin && !isMobile && (
                   <Grid.Column>
                     <Segment
                       inverted
@@ -170,7 +137,7 @@ const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
               </Grid.Row>
             </Container>
           )}
-          {!isAuthenticated && (
+          {!isAuthenticated && !error && (
             <Container style={{ padding: '4rem' }}>
               <Grid>
                 <Grid.Row columns={'1'}>
@@ -179,10 +146,31 @@ const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
                       disabled={isLoading}
                       inverted
                       color={'blue'}
-                      onClick={() => attemptLogin()}
+                      onClick={() => loginWithRedirect()}
                       style={{ lineHeight: '2rem', fontSize: '1.5rem' }}
                     >
                       Click here to login and fill out survey
+                    </Segment>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Container>
+          )}
+          {!isAuthenticated && error && (
+            <Container style={{ padding: '4rem' }}>
+              <Grid>
+                <Grid.Row columns={'1'}>
+                  <Grid.Column>
+                    <Segment
+                      disabled={isLoading}
+                      inverted
+                      color={'red'}
+                      onClick={() =>
+                        logout({ returnTo: window.location.origin })
+                      }
+                      style={{ lineHeight: '2rem', fontSize: '1.5rem' }}
+                    >
+                      Logout and Try Again
                     </Segment>
                   </Grid.Column>
                 </Grid.Row>
@@ -197,10 +185,9 @@ const HomePage = ({ submitted, toggleExportModal, isAdmin }) => {
 
 const mapStateToProps = (state) => {
   return {
-    submitted: state.state.submitted,
-    token: state.state.auth0Token,
     continueToSurvey: state.blocks.cont,
     isAdmin: state.state.isAdmin,
+    homePageMessage: state.state.homePageMessage,
   };
 };
 
