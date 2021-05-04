@@ -136,7 +136,7 @@ const left_acetabulum =
       },
       {
         id: 'left_acetabulum_post_rim',
-        question_header: 'Posterior Rim Fracture',
+        question_header: 'Traumatic Posterior Rim Fracture',
         question_desc: 'Was there an Acute Posterior Rim Fracture?',
         enabled: false,
         required: true,
@@ -153,7 +153,7 @@ const left_acetabulum =
       },
       {
         id: 'left_acetabulum_post_rim_type',
-        question_header: 'Posterior Rim Fracture',
+        question_header: 'Traumatic Posterior Rim Fracture',
         question_desc: 'What type of Fracture?',
         enabled: false,
         required: true,

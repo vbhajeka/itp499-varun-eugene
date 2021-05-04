@@ -13,6 +13,11 @@ const other_left_details = {
       type: 'SATA',
       options: [
         {
+          value: 'Synovextomy',
+          children: ['other_left_details_synvextomy'],
+          blocks_enabled: [],
+        },
+        {
           value: 'Ligamentum Teres',
           children: ['other_left_details_ligamentum_teres'],
           blocks_enabled: [],
@@ -72,6 +77,23 @@ const other_left_details = {
         {
           value: 'Other',
           children: ['other_left_details_other'],
+          blocks_enabled: [],
+        },
+      ],
+      value: [],
+    },
+    {
+      id: 'other_left_details_synvextomy',
+      question_header: 'Synvextomy Details',
+      question_desc: 'Was the synvextomy partial or total?',
+      enabled: false,
+      required: true,
+      type: 'MC',
+      options: [
+        { value: 'Partial', children: [], blocks_enabled: [] },
+        {
+          value: 'Total',
+          children: [],
           blocks_enabled: [],
         },
       ],

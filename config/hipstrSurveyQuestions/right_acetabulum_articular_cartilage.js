@@ -35,7 +35,7 @@ const right_acetabulum_articular_cartilage = {
       enabled: false,
       required: true,
       type: 'SATA',
-      img: `/hip-images/hip-regions.png`,
+      img: `/hip-images/hipRegionsRight.png`,
       options: [
         { value: '1', children: [], blocks_enabled: [] },
         { value: '2', children: [], blocks_enabled: [] },

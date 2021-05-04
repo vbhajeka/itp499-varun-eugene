@@ -77,7 +77,7 @@ const left_labrum =
         question_desc: 'What was the type of Labral Tear?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Flap', children: [], blocks_enabled: [] },
           { value: 'Fibrillated', children: [], blocks_enabled: [] },
@@ -107,7 +107,11 @@ const left_labrum =
           { value: 'Hypotrophic', children: [], blocks_enabled: [] },
           { value: 'Ossified', children: [], blocks_enabled: [] },
           { value: 'Calcific', children: [], blocks_enabled: [] },
-          { value: 'Mucinoid', children: [], blocks_enabled: [] },
+          {
+            value: 'Mucinoid (Yellow Discoloration)',
+            children: [],
+            blocks_enabled: [],
+          },
           { value: 'Bruised', children: [], blocks_enabled: [] },
           {
             value: 'Other',
@@ -130,8 +134,13 @@ const left_labrum =
       },
       {
         id: 'left_labrum_tear_clockface_from',
-        question_header: 'Tear clockface "from"',
-        long_question_desc: ["Anterior - 3 o'clock", "Lateral - 12 o'clock"],
+        question_header:
+          'Tear clockface "from" (anterior / medial most aspect)',
+        long_question_desc: [
+          'Use as referenced: ',
+          "Anterior - 3 o'clock",
+          "Lateral - 12 o'clock",
+        ],
         enabled: false,
         required: true,
         type: 'DDS',
@@ -153,8 +162,12 @@ const left_labrum =
       },
       {
         id: 'left_labrum_tear_clockface_to',
-        question_header: 'Tear clockface "to"',
-        long_question_desc: ["Anterior - 3 o'clock", "Lateral - 12 o'clock"],
+        question_header: 'Tear clockface "to" (anterior / medial most aspect)',
+        long_question_desc: [
+          'Use as referenced: ',
+          "Anterior - 3 o'clock",
+          "Lateral - 12 o'clock",
+        ],
         enabled: false,
         required: true,
         type: 'DDS',
@@ -180,7 +193,7 @@ const left_labrum =
         question_desc: 'How was the tear treated?',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           { value: 'Debridement', children: [], blocks_enabled: [] },
           { value: 'Labrectomy', children: [], blocks_enabled: [] },
@@ -642,16 +655,25 @@ const left_labrum =
         required: true,
         type: 'SATA',
         options: [
-          { value: 'Simple', children: [], blocks_enabled: [] },
-          { value: 'Mattress', children: [], blocks_enabled: [] },
-          { value: 'Hybrid', children: [], blocks_enabled: [] },
+          { value: 'Simple / Cerclage', children: [], blocks_enabled: [] },
+          {
+            value: 'Mattress / Base Fixation',
+            children: [],
+            blocks_enabled: [],
+          },
+          { value: 'Hybrid Combination', children: [], blocks_enabled: [] },
         ],
         value: [],
       },
       {
         id: 'left_labrum_other_clockface_from',
-        question_header: 'Other clockface "from"',
-        long_question_desc: ["Anterior - 3 o'clock", "Lateral - 12 o'clock"],
+        question_header:
+          'Other clockface "from" (anterior / medial most aspect)',
+        long_question_desc: [
+          'Use as referenced: ',
+          "Anterior - 3 o'clock",
+          "Lateral - 12 o'clock",
+        ],
         enabled: false,
         required: true,
         type: 'DDS',
@@ -673,8 +695,12 @@ const left_labrum =
       },
       {
         id: 'left_labrum_other_clockface_to',
-        question_header: 'Other clockface "to"',
-        long_question_desc: ["Anterior - 3 o'clock", "Lateral - 12 o'clock"],
+        question_header: 'Other clockface "to" (anterior / medial most aspect)',
+        long_question_desc: [
+          'Use as referenced: ',
+          "Anterior - 3 o'clock",
+          "Lateral - 12 o'clock",
+        ],
         enabled: false,
         required: true,
         type: 'DDS',

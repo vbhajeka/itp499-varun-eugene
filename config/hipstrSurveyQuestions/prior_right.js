@@ -34,10 +34,10 @@ const prior_right =
       {
         id: 'prior_right_surgery_type',
         question_header: 'Right Hip Surgery Type',
-        question_desc: 'Select Surgery Type',
+        question_desc: 'Select Most Recent Surgery Type(s)',
         enabled: false,
         required: true,
-        type: 'MC',
+        type: 'SATA',
         options: [
           {
             value: 'Arthroscopy',
@@ -113,7 +113,7 @@ const prior_right =
         question_header: 'All Prior Right Hip Surgeries',
         question_desc: 'Select all prior surgeries',
         enabled: false,
-        required: false,
+        required: true,
         type: 'SATA',
         options: [
           {
