@@ -7,7 +7,7 @@
 Login with one of these two users. All other users are disabled from filling out the survey
 
 - admin user - experimental-surgery-survey-admin@gmail.com : exper!mental-adm1n
-- reular user - experimental-surgery-survey@gmail.com : exper!mental-us3r
+- reuglar user - experimental-surgery-survey@gmail.com : exper!mental-us3r
 
 ### Technologies Used:
 
