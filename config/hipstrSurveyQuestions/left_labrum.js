@@ -135,7 +135,7 @@ const left_labrum =
       {
         id: 'left_labrum_tear_clockface_from',
         question_header:
-          'Tear clockface "from" (anterior / medial most aspect)',
+          'Tear clockface "from" (lateral / posterior most aspect)',
         long_question_desc: [
           'Use as referenced: ',
           "Anterior - 3 o'clock",
@@ -668,7 +668,7 @@ const left_labrum =
       {
         id: 'left_labrum_other_clockface_from',
         question_header:
-          'Other clockface "from" (anterior / medial most aspect)',
+          'Other clockface "from" (lateral / posterior most aspect)',
         long_question_desc: [
           'Use as referenced: ',
           "Anterior - 3 o'clock",

@@ -6,8 +6,26 @@
 
 Login with one of these two users. All other users are disabled from filling out the survey
 
-- admin user - experimental-surgery-survey-admin@gmail.com : exper!mental-adm1n
-- reuglar user - experimental-surgery-survey@gmail.com : exper!mental-us3r
+- regular user 
+    - username - experimental-surgery-survey@gmail.com 
+    - password - exper!mental-us3r
+- admin user 
+    - username - experimental-surgery-survey-admin@gmail.com 
+    - password - exper!mental-adm1n
+
+### Demo Screenshots
+###### Application Landing Page & Login for Doctors on their Phones
+
+![](https://raw.githubusercontent.com/vbhajeka/Experimental-Surgery-Survey/main/sized-screenshots/1-LandingPage.png)   ![](https://raw.githubusercontent.com/vbhajeka/Experimental-Surgery-Survey/main/sized-screenshots/2-LoginDetails.png)
+###### Survey in Action for Doctors on their Phones
+
+   ![](https://raw.githubusercontent.com/vbhajeka/Experimental-Surgery-Survey/main/sized-screenshots/3-BeginSurvey.png) ![](https://raw.githubusercontent.com/vbhajeka/Experimental-Surgery-Survey/main/sized-screenshots/4-SurveyInActions.png) ![](https://raw.githubusercontent.com/vbhajeka/Experimental-Surgery-Survey/main/sized-screenshots/5-Review.png)
+###### Export Survey for Admin on a Computer
+
+![](https://raw.githubusercontent.com/vbhajeka/Experimental-Surgery-Survey/main/sized-screenshots/6-Export.png)
+![](https://raw.githubusercontent.com/vbhajeka/Experimental-Surgery-Survey/main/sized-screenshots/8-ViewSubmitted.png)
+
+
 
 ### Technologies Used:
 
