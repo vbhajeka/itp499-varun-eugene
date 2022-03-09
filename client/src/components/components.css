@@ -1,0 +1,85 @@
+.segment.selectedOption {
+  background: #f5c542;
+  color: black;
+}
+
+.segment.optionSegments {
+  color: black;
+}
+
+.buttonSegEnabled {
+  cursor: pointer;
+}
+
+.buttonSegDisabled {
+  cursor: auto;
+}
+
+.textArea {
+  max-width: 100%;
+  font-size: 70%;
+}
+
+.segContainer {
+  margin: 0.5rem;
+}
+
+#questionTitleHeader {
+  color: white;
+}
+
+.questionBlock {
+  background-color: white;
+  padding: 3%;
+  border-radius: 10px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.inputField {
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 1%;
+}
+
+#exportModalDateContainer {
+  width: 50%;
+  background-color: rgba(255, 2555, 255, 0.8);
+  padding: 4rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+
+/* normal styling*/
+@media (min-width: 767px) {
+  .selectButtons {
+    width: 45%;
+  }
+}
+
+/* mobile styling */
+@media (max-width: 767px) {
+  .selectButtons {
+    width: 100%;
+  }
+
+  .questionBlock {
+    padding: 6%;
+  }
+
+  .bottomButtons {
+    left: 0;
+  }
+
+  .buttonSegEnabled {
+    font-size: 0.8rem !important;
+  }
+
+  .buttonSegDisabled {
+    font-size: 0.8rem !important;
+  }
+
+  .inputField {
+    font-size: 0.9rem;
+  }
+}

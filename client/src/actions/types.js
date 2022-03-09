@@ -1,0 +1,22 @@
+export const SET_STATE_INIT = 'SET_STATE_INIT';
+export const SET_PREFS = 'SET_PREFS';
+
+export const SELECT_MC_SATA = 'SELECT_MC_SATA';
+export const DROPDOWN_SELECT = 'DROPDOWN_SELECT';
+export const UPDATE_FR = 'UPDATE_FR';
+export const NEXT_BLOCK = 'NEXT_BLOCK';
+export const PREV_BLOCK = 'PREV_BLOCK';
+
+export const SUBMIT_SURVEY = 'SUBMIT_SURVEY';
+
+export const TOGGLE_CANCEL_MODAL = 'TOGGLE_CANCEL_MODAL';
+export const BACK_TO_HOME = 'BACK_TO_HOME';
+
+export const GET_SURVEYS = 'GET_SURVEYS';
+export const TOGGLE_EXPORT_MODAL = 'TOGGLE_EXPORT_MODAL';
+export const DATE_CHANGED = 'DATE_CHANGED';
+export const SET_EXPORT_DATA = 'SET_EXPORT_DATA';
+
+export const TOGGLE_OPEN_SPECIFIC = 'TOGGLE_OPEN_SPECIFIC';
+
+export const CHANGE_HP_MESSAGE = 'CHANGE_HP_MESSAGE';

@@ -1,0 +1,13 @@
+export MONGO_USER='mongo-user'
+export MONGO_PWD='mongo-pwd'
+export MONGO_HOST='mongo-host.n5w16.mongodb.net'
+export MONGO_DB='Database-Name'
+
+export AUTH0_DOMAIN='auth0-domain.us.auth0.com'
+export AUTH0_CLIENT_ID='auth0-client-id'
+export AUTH0_AUDIENCE='https://auth0-domain.us.auth0.com/api/v2/'
+
+export SENDGRID_KEY='sendgrid-key'
+export SENDGRID_EMAIL_FROM='sample-email@gmail.com'
+export SENDGRID_EMAIL_SUBJECT='Sample App Email Subject'
+export SENDGRID_ICON='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'

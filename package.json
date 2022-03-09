@@ -1,0 +1,46 @@
+{
+  "name": "hipster-survey-server",
+  "version": "1.0.0",
+  "description": "Server for HipSTER Survey",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && INLINE_RUNTIME_CHUNK=false npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vbhajeka/MERN-course-varun.git"
+  },
+  "author": "Varun Bhajekar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vbhajeka/MERN-course-varun/issues"
+  },
+  "homepage": "https://github.com/vbhajeka/MERN-course-varun#readme",
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "express-validator": "^6.8.0",
+    "gravatar": "^1.8.1",
+    "helmet": "^4.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.12.2",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.8",
+    "morgan": "^1.10.0",
+    "request": "^2.88.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  }
+}
