@@ -89,6 +89,7 @@ app.post('/api/checkToken', (req, res) => {
 
 //my unsecured routes
 app.use('/auth0/config', require('./routes/auth0/config'));
+app.use('/computeEcoScore', require('./routes/api/computeEcoScore'));
 // my secured routes
 app.use('/api/getSurveyData', require('./routes/api/getSurveyData'));
 app.use('/api/submitSurvey', require('./routes/api/submitSurvey'));
@@ -109,6 +110,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(cors({ origin: process.env.MY_CORS_APP_SUBMIT }));
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.SERVER_PORT || 5000;
 
 app.listen(PORT, () => console.log(`server started on port ${PORT}`));

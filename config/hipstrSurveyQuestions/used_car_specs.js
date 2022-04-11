@@ -1,0 +1,55 @@
+const used_car_specs = {
+  block_id: 'used_car_specs',
+  block_header: 'Current Car Information',
+  block_description: "Give us some details about a used car you're looking at",
+  enabled: false,
+  required: true,
+  questions: [
+    {
+      id: 'used_car_make',
+      question_header: 'Make and model',
+      question_desc: 'Enter the make of the car',
+      enabled: true,
+      required: true,
+      type: 'FR',
+      fr_type: 'text',
+      value: [],
+    },
+    {
+      id: 'used_car_model',
+      question_header: 'Make and model',
+      question_desc: 'Enter the model of the car',
+      enabled: true,
+      required: true,
+      type: 'FR',
+      fr_type: 'text',
+      value: [],
+    },
+    {
+      id: 'used_car_type',
+      question_header: 'Type of car',
+      question_desc: 'Enter the type of the car',
+      enabled: true,
+      required: true,
+      type: 'MC',
+      options: [
+        { value: 'Gasoline', children: [], blocks_enabled: [] },
+        { value: 'Hybrid', children: [], blocks_enabled: [] },
+        { value: 'Electric', children: [], blocks_enabled: [] },
+      ],
+      value: [],
+    },
+    {
+      id: 'used_car_mileage',
+      question_header: 'Mileage of car',
+      question_desc: 'Enter the mileage of the car per gallon',
+      enabled: true,
+      required: true,
+      type: 'FR',
+      fr_type: 'number',
+      value: [],
+    },
+  ],
+};
+
+module.exports = used_car_specs;

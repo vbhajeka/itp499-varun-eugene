@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import '../index.css';
 import { Fragment } from 'react';
+import axios from 'axios';
 
 import { logo } from '../images/logo';
+import { new_logo } from '../images/new_logo';
+import { newer_logo } from '../images/newer_logo';
 
 import { connect as reduxConnect } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -25,6 +28,7 @@ const HomePage = ({
     isAuthenticated,
     loginWithRedirect,
     logout,
+    getAccessTokenSilently,
     isLoading,
     error,
   } = useAuth0();
@@ -39,6 +43,34 @@ const HomePage = ({
     homePageMessage = `${error}`;
     console.log(error);
   }
+
+  const callPost = async () => {
+    console.log('hello');
+    try {
+      let token = await getAccessTokenSilently();
+      console.log('ReviewBlk.js: token set ' + token);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const ecoData = {
+        lat_pre: 34.024733,
+        long_pre: -118.2901094,
+        lat_dest: 34.0160111,
+        long_dest: -118.4872476,
+      };
+
+      const body = { ecoData };
+
+      const res = await axios.post('/computeEcoScore', body, config);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Fragment>
@@ -72,10 +104,13 @@ const HomePage = ({
                 }}
               >
                 <Image
-                  src={logo}
+                  // src={logo}
+                  // src={new_logo}
+                  src={newer_logo}
                   alt='Red dot'
                   centered
                   style={{ marginTop: '4%' }}
+                  onClick={() => callPost()}
                 />
               </div>
             </Grid.Column>

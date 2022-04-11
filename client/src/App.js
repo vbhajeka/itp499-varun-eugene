@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
 import ExportPage from './components/ExportPage';
+import AboutPage from './components/AboutPage';
 
 import { Segment, Header, Image } from 'semantic-ui-react';
 
@@ -39,6 +40,10 @@ function App({
       break;
     case 'export':
       visible_comp = <ExportPage />;
+      break;
+    case 'about':
+      visible_comp = <AboutPage />;
+      console.log('here');
       break;
     default:
       visible_comp = <HomePage />;
@@ -99,7 +104,7 @@ function App({
             size={'large'}
             textAlign={'center'}
           >
-            HipSTER Survey
+            PlanCommute
             {isAuthenticated && !isMobile && (
               <Segment
                 style={{
@@ -142,7 +147,7 @@ function App({
         </div>
       </div>
       <Segment style={{ width: '100%' }} id='bottomBar' className='bars'>
-        <p style={{ float: 'right' }}>&#169; Copyright 2021 Dr. Marc Safran</p>
+        {/* <p style={{ float: 'right' }}>&#169; Copyright 2021 Dr. Marc Safran</p> */}
         <p style={{ float: 'left' }}>V 1.0</p>
       </Segment>
     </div>
