@@ -1,4 +1,4 @@
-import { Grid, Segment, Image, Container } from 'semantic-ui-react';
+import { Grid, Header, Segment, Container } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
 
@@ -7,16 +7,14 @@ import '../index.css';
 import { Fragment } from 'react';
 import axios from 'axios';
 
-import { logo } from '../images/logo';
-import { new_logo } from '../images/new_logo';
-import { newer_logo } from '../images/newer_logo';
-
 import { connect as reduxConnect } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { toggleExportModal } from '../actions/stateActions';
-
 import ExportModal from './ExportModal';
+
+import { newer_logo } from '../images/newer_logo';
+
+import { toggleExportModal } from '../actions/stateActions';
 
 const HomePage = ({
   toggleExportModal,
@@ -74,7 +72,7 @@ const HomePage = ({
 
   return (
     <Fragment>
-      <ExportModal />
+      {/* <ExportModal />
       <Container>
         <Grid>
           <Grid.Row>
@@ -137,21 +135,6 @@ const HomePage = ({
               </Grid.Row>
 
               <Grid.Row columns={isAdmin ? 2 : 1}>
-                {/* <Grid.Column>
-                  <Segment
-                    inverted
-                    color={'green'}
-                    style={{
-                      lineHeight: '2rem',
-                      fontSize: '1.5rem',
-                      margin: '3%',
-                      width: '97%',
-                    }}
-                    //onClick={() => getSurveys('2020-12-01', '2021-2-1')}
-                  >
-                    View Previous Surveys
-                  </Segment>
-                </Grid.Column> */}
                 {isAdmin && !isMobile && (
                   <Grid.Column>
                     <Segment
@@ -213,6 +196,48 @@ const HomePage = ({
             </Container>
           )}
         </Grid>
+      </Container> */}
+
+      <Container>
+        <br />
+        <br />
+        <br />
+        <br />
+        <Header as='h1' textAlign='center'>
+          Interested in buying a car in LA?
+          <br />
+          Want to be greener?
+        </Header>
+        <br />
+        <Header as='h1' textAlign='center'>
+          See how much you’d save with an all electric or hybrid vehicle.{' '}
+        </Header>
+        <br />
+        <Header as='h1' textAlign='center'>
+          Or see other, more impactful, options for your commute.{' '}
+        </Header>
+        <br />
+        <br />
+        <Container style={{ position: 'absolute', bottom: '3.6%' }}>
+          <Grid.Row columns={1}>
+            <Grid.Column>
+              <Link to='/survey'>
+                <Segment
+                  inverted
+                  color={'green'}
+                  style={{
+                    lineHeight: '2rem',
+                    fontSize: '1.5rem',
+                    margin: '3%',
+                    width: '97%',
+                  }}
+                >
+                  Plan Your Commute
+                </Segment>
+              </Link>
+            </Grid.Column>
+          </Grid.Row>
+        </Container>
       </Container>
     </Fragment>
   );

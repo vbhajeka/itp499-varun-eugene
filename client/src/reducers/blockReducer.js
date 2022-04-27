@@ -114,6 +114,9 @@ const selectMC_SATABody = (state, payload) => {
     }
     newSelections = [payload.option_selected];
     currQ.value = [payload.option_selected];
+    if (payload.enumVal != undefined) {
+      currQ.enumVal = [payload.enumVal];
+    }
   } else if (currQ.type === 'SATA') {
     newSelections = [payload.option_selected];
     currQ.value.push(payload.option_selected);

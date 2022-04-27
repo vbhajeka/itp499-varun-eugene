@@ -18,6 +18,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 import { submitAction } from '../actions/blockActions';
 import { modalActions, updateHPMessage } from '../actions/stateActions';
+import { saveAddys } from '../actions/resultsActions';
 
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -33,6 +34,7 @@ const ReviewBlock = ({
   submitAction,
   modalActions,
   updateHPMessage,
+  saveAddys,
 }) => {
   const { user, getAccessTokenSilently } = useAuth0();
 
@@ -124,6 +126,14 @@ const ReviewBlock = ({
     }
 
     submitAction();
+  };
+
+  const saveAddresses = () => {
+    const homeAddy = `${blocks[2].questions[0].value} ${blocks[2].questions[1].value}, ${blocks[2].questions[2].value} ${blocks[2].questions[3].value}`;
+
+    const workAddy = `${blocks[2].questions[4].value} ${blocks[2].questions[5].value}, ${blocks[2].questions[6].value} ${blocks[2].questions[7].value}`;
+
+    saveAddys(homeAddy, workAddy);
   };
 
   return (
@@ -230,13 +240,13 @@ const ReviewBlock = ({
               </Segment>
             </Grid.Column>
             <Grid.Column>
-              <Link to='/'>
+              <Link to='/results'>
                 <Segment
                   style={{ margin: '2%' }}
                   inverted
                   color={'green'}
-                  onClick={() => reviewClicked()}
                   className={'buttonSegEnabled'}
+                  onClick={() => saveAddresses()}
                 >
                   Submit
                 </Segment>
@@ -263,4 +273,5 @@ export default connect(mapStateToProps, {
   submitAction,
   modalActions,
   updateHPMessage,
+  saveAddys,
 })(ReviewBlock);

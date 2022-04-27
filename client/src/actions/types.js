@@ -23,3 +23,9 @@ export const CHANGE_HP_MESSAGE = 'CHANGE_HP_MESSAGE';
 
 export const SWITCH_TRANSIT_MODE = 'SWITCH_TRANSIT_MODE';
 export const STORE_MAP = 'STORE_MAP';
+
+export const SAVE_DRIVE = 'SAVE_DRIVE';
+export const SAVE_BIKE = 'SAVE_BIKE';
+export const SAVE_TRANSIT = 'SAVE_TRANSIT';
+
+export const SAVE_ADDYS = 'SAVE_ADDYS';

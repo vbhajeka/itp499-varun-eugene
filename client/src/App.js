@@ -10,6 +10,7 @@ import AboutPage from './components/AboutPage';
 import ResultsPage from './components/ResultsPage';
 
 import { Segment, Header, Image } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import { useAuth0 } from '@auth0/auth0-react';
 import { connect } from 'react-redux';
@@ -133,15 +134,63 @@ function App({
                 </Header>
               </Segment>
             )}
-            {isAuthenticated && isMobile && (
-              <Image
-                src={user.picture}
-                alt={user.name}
-                circular
-                size={'mini'}
-                onClick={() => logout({ returnTo: window.location.origin })}
-                floated={'right'}
-              ></Image>
+            {comp != 'about' && (
+              <Link to='/about'>
+                <Segment
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    margin: '0.5rem',
+                    padding: '0.5rem',
+                    backgroundColor: 'black !important',
+                    opacity: '0.9',
+                  }}
+                  textAlign='center'
+                  color='green'
+                  inverted
+                >
+                  <Header
+                    size={'tiny'}
+                    style={{
+                      // marginLeft: '0.75rem',
+                      // marginRight: '0.75rem',
+                      // marginTop: '0.5rem',
+                      // marginBottom: '0.5rem',
+                      margin: '0.25rem 0.75rem',
+                    }}
+                  >
+                    More Information
+                  </Header>
+                </Segment>
+              </Link>
+            )}
+            {comp === 'about' && (
+              <Link to='/'>
+                <Segment
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    margin: '0.5rem',
+                    padding: '0.5rem',
+                    backgroundColor: 'black !important',
+                    opacity: '0.9',
+                  }}
+                  textAlign='center'
+                  color='green'
+                  inverted
+                >
+                  <Header
+                    size={'tiny'}
+                    style={{
+                      margin: '0.25rem 0.75rem',
+                    }}
+                  >
+                    Back to Home
+                  </Header>
+                </Segment>
+              </Link>
             )}
           </Header>
         </Segment>

@@ -23,32 +23,29 @@ export const setPrefs = (prefs) => (dispatch) => {
   });
 };
 
-export const blockAction = (block_id, question_id, option_selected) => (
-  dispatch
-) => {
-  dispatch({
-    type: SELECT_MC_SATA,
-    payload: { block_id, question_id, option_selected },
-  });
-};
+export const blockAction =
+  (block_id, question_id, option_selected, enumVal) => (dispatch) => {
+    dispatch({
+      type: SELECT_MC_SATA,
+      payload: { block_id, question_id, option_selected, enumVal },
+    });
+  };
 
-export const dropDownSelect = (block_id, question_id, option_selected) => (
-  dispatch
-) => {
-  dispatch({
-    type: DROPDOWN_SELECT,
-    payload: { block_id, question_id, option_selected },
-  });
-};
+export const dropDownSelect =
+  (block_id, question_id, option_selected) => (dispatch) => {
+    dispatch({
+      type: DROPDOWN_SELECT,
+      payload: { block_id, question_id, option_selected },
+    });
+  };
 
-export const updateFRAction = (block_id, question_id, option_selected) => (
-  dispatch
-) => {
-  dispatch({
-    type: UPDATE_FR,
-    payload: { block_id, question_id, option_selected },
-  });
-};
+export const updateFRAction =
+  (block_id, question_id, option_selected) => (dispatch) => {
+    dispatch({
+      type: UPDATE_FR,
+      payload: { block_id, question_id, option_selected },
+    });
+  };
 
 export const nextBlockAction = () => (dispatch) => {
   dispatch({

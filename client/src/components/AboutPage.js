@@ -39,38 +39,59 @@ const AboutPage = ({
 
   return (
     <Fragment>
-      <Container text style={{ color: 'white' }}>
-        <Image
-          // src={logo}
-          // src={new_logo}
-          src={newer_logo}
-          alt='Red dot'
-          centered
-          style={{ marginTop: '4%' }}
-        />
-        <div>
-          Battery Electric Vehicles and Plug-In Hybrid Vehicles do reduce
-          greenhouse gas emissions and pollute the air less, but there is a
-          space for further development.
-        </div>
-        <div>
-          Some of the most functional, frustration and traffic-free cities rely
-          heavily on bikes and public transportation.
-        </div>
-        <div>
-          By facilitating a shift towards those modes of transportation, we can
-          create a cleaner, easier city.
-        </div>
-        <div>
-          These methods of transportation are more accessible than you think.
-        </div>
-        <div>
-          Public transit is shown to be 10 times safer than driving and makes
-          communities safer Electric bikes and scooters are everywhere, thanks
-          to rideshare companies. You might have accessible options available
-          for your needs so you can drive less, pollute less, and help build a
-          better city!
-        </div>
+      <Container
+        style={{ overflowX: 'auto', marginBottom: '6.5%', marginTop: '2%' }}
+      >
+        <Segment raised>
+          <Grid centered columns={2}>
+            <Grid.Column verticalAlign='top' width={6}>
+              <Image
+                src='https://aaaliving.acg.aaa.com/wp-content/uploads/2021/08/questions-about-electric-car-768x432.jpg'
+                size='large'
+              />
+            </Grid.Column>
+            <Grid.Column width={10}>
+              <Container text fluid>
+                Battery Electric Vehicles and Plug-In Hybrid Vehicles do reduce
+                greenhouse gas emissions and pollute the air less, but there is
+                a space for further development.
+                <br />
+                <br />
+                Some of the most functional, frustration and traffic-free cities
+                rely heavily on bikes and public transportation. By facilitating
+                a shift towards those modes of transportation, we can create a
+                cleaner, easier city.{' '}
+                <a src='https://youtu.be/d8RRE2rDw4k'>Here</a> is a video
+                describing the impact good bike and transit systems have on
+                traffic.
+              </Container>
+            </Grid.Column>
+          </Grid>
+
+          <Grid centered columns={2}>
+            <Grid.Column width={11}>
+              <Container text fluid>
+                These methods of transportation are more accessible than you
+                think. Public transit is shown to be 10 times safer than driving
+                and makes communities safer, as shown by a{' '}
+                <a src='https://mobilitylab.org/2016/09/08/transit-10-times-safer-driving-makes-communities-safer-says-new-apta-report/'>
+                  study by the American Public Transit Association
+                </a>
+                . Electric bikes and scooters are everywhere, thanks to
+                rideshare companies. <br />
+                <br />
+                You might have accessible options available for your needs so
+                you can drive less, pollute less, and help build a better city.
+              </Container>
+            </Grid.Column>
+            <Grid.Column verticalAlign='top' width={5}>
+              <Image
+                src='https://bloximages.newyork1.vip.townnews.com/laloyolan.com/content/tncms/assets/v3/editorial/d/6c/d6cea4b1-e0e0-5e2a-a4f1-cbd269347d23/58d8533746ed4.image.jpg?resize=400%2C266'
+                size='large'
+              />
+            </Grid.Column>
+          </Grid>
+        </Segment>
       </Container>
     </Fragment>
   );

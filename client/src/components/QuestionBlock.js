@@ -218,7 +218,13 @@ const QuestionBlock = ({
           </Button>
         </Modal.Actions>
       </Modal>
-      <Progress percent={getProgress()} color={'blue'} progress active />
+      <Progress
+        percent={getProgress()}
+        color={'blue'}
+        style={{ marginBottom: '1.5rem' }}
+        progress
+        active
+      />
       <Container
         fluid
         id='header'
@@ -281,7 +287,7 @@ const QuestionBlock = ({
                               inverted
                               color={isSelected(q.value, o)}
                               onClick={() =>
-                                blockAction(block_id, q.id, o.value)
+                                blockAction(block_id, q.id, o.value, o.enumVal)
                               }
                               key={o.value}
                               style={{

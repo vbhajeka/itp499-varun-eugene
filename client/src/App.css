@@ -67,9 +67,10 @@
 
 #middle {
   height: 80%;
-  background-color: black;
+  width: 90%;
+  background-color: white;
   border-radius: 10px;
-  opacity: 0.85;
+  opacity: 0.75;
   padding: 3%;
   display: flex;
   flex-direction: column;
