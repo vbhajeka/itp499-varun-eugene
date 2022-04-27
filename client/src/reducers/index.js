@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import blockReducer from './blockReducer';
 import stateReducer from './stateReducer';
 import exportReducer from './exportReducer';
+import resultsReducer from './resultsReducer';
 
 import { SUBMIT_SURVEY } from '../actions/types';
 
@@ -10,6 +11,7 @@ const appReducer = combineReducers({
   blocks: blockReducer,
   state: stateReducer,
   exportData: exportReducer,
+  results: resultsReducer,
 });
 
 const rootReducer = (state, action) => {

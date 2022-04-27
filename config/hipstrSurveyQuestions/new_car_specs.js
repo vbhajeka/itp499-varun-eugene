@@ -1,13 +1,13 @@
 const new_car_specs = {
   block_id: 'new_car_specs',
-  block_header: 'Current Car Information',
+  block_header: 'New Car Information',
   block_description: "Give us some details about a new car you're looking at",
   enabled: false,
   required: true,
   questions: [
     {
       id: 'new_car_make',
-      question_header: 'Make and model',
+      question_header: 'Make',
       question_desc: 'Enter the make of your new desired car',
       enabled: true,
       required: true,

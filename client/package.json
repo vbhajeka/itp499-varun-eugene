@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
+    "@googlemaps/markerclustererplus": "^1.2.10",
+    "@googlemaps/react-wrapper": "^1.1.32",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "google-map-react": "^2.1.10",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",

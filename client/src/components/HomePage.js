@@ -49,12 +49,12 @@ const HomePage = ({
     try {
       let token = await getAccessTokenSilently();
       console.log('ReviewBlk.js: token set ' + token);
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      };
+      // const config = {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //     'Content-Type': 'application/json',
+      //   },
+      // };
 
       const ecoData = {
         lat_pre: 34.024733,
@@ -65,7 +65,7 @@ const HomePage = ({
 
       const body = { ecoData };
 
-      const res = await axios.post('/computeEcoScore', body, config);
+      const res = await axios.post('/computeEcoScore', body);
       console.log(res);
     } catch (err) {
       console.log(err);

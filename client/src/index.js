@@ -68,6 +68,11 @@ const renderIndexPage = (auth0ConfigRes) => {
                     path='/about'
                     render={() => <App comp='about' />}
                   />
+                  <Route
+                    exact
+                    path='/results'
+                    render={() => <App comp='results' />}
+                  />
                 </Switch>
               </section>
             </Provider>

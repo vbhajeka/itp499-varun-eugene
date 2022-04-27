@@ -7,6 +7,7 @@ import QuestionBlock from './components/QuestionBlock';
 import ReviewBlock from './components/ReviewBlock';
 import ExportPage from './components/ExportPage';
 import AboutPage from './components/AboutPage';
+import ResultsPage from './components/ResultsPage';
 
 import { Segment, Header, Image } from 'semantic-ui-react';
 
@@ -43,7 +44,9 @@ function App({
       break;
     case 'about':
       visible_comp = <AboutPage />;
-      console.log('here');
+      break;
+    case 'results':
+      visible_comp = <ResultsPage />;
       break;
     default:
       visible_comp = <HomePage />;
@@ -54,7 +57,7 @@ function App({
   const loadHomePageOptions = async () => {
     try {
       let token = await getAccessTokenSilently();
-      console.log('App.js: token set ' + token);
+      // console.log('App.js: token set ' + token);
 
       const config = {
         headers: { Authorization: `Bearer ${token}` },
