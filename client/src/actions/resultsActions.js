@@ -7,6 +7,7 @@ import {
   SAVE_ADDYS,
   PING,
   SET_ECO_SCORE,
+	SET_BLURB, 
 } from './types';
 
 export const switchMode = () => (dispatch) => {
@@ -65,3 +66,10 @@ export const setEcoScore = (type, score) => (dispatch) => {
     type: SET_ECO_SCORE,
   });
 };
+
+export const setBlurb = (type, blurbData) => (dispatch) => {
+	dispatch({
+    payload: { type, blurbData },
+    type: SET_BLURB,
+  });
+}

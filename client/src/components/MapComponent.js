@@ -22,6 +22,7 @@ import {
   saveTransit,
   pingFunc,
   setEcoScore,
+  setBlurb,
 } from '../actions/resultsActions';
 
 import GoogleMapReact from 'google-map-react';
@@ -54,6 +55,13 @@ const MapComponent = ({
   ping,
   pingFunc,
   setEcoScore,
+
+  blurbHybrid,
+  blurbElectric,
+  blurbBike,
+  blurbTransit,
+  blurbCombo,
+  setBlurb,
 }) => {
   const defaultProps = {
     center: {
@@ -139,12 +147,91 @@ const MapComponent = ({
     console.log('rendering map');
   }
   const setMessage = (googleResponse) => {
+		const newCar = blocks[0].questions[1].value[0] === 'New Car';
+
     switch (mode) {
       case 0:
-        // calculate drive score
+        // calculate values
+				// From Survey 
+				var mileageGas = parseInt(blocks[1].questions[1].value[0]);
+				var taxCreditHybrid = rebateInfo.newCar[incomeScore].hybrid;
+				var taxCreditElectric = rebateInfo.newCar[incomeScore].electric;
+				var manufactureCostHybrid = 2000;
+				var manufactureCostElectric = 2500;
+				if(newCar) {
+					manufactureCostHybrid = 0;
+					manufactureCostElectric = 0;
+				}
+
+				// From API
+				var rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+				timeDriving = parseInt(rawTime[rawTime.length - 3]);
+				console.log('timeDriving type ' + typeof timeDriving);
+				if (rawTime.length > 3) {
+					timeDriving += parseInt(rawTime[0]) * 60;
+				}
+
+				var rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+				distanceDriving = parseFloat(rawDistance[0]);
+
+				var distanceDriving = googleResponse.routes[0].legs[0].duration.text;
+				var timeDriving = 30;
+
+				// Other values 
+				var dailyCommuteDistanceDriving = 2 * distanceDriving;
+				var mileageHybrid = 35;
+				var mileageElectric = 0.33;
+				var priceGas = 6;
+				var priceElectricity = 0.50;
+				var costPerMileGas = priceGas / mileageGas;
+				var costPerMileHybrid = priceGas / mileageHybrid;
+				var costPerMileElectric = priceElectricity * mileageElectric;
+				var N = 1000;
+
+
+				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
+				var dailyCostHybrid = costPerMileHybrid * dailyCommuteDistanceDriving; 
+				var dailyCostElectric = costPerMileElectric * dailyCommuteDistanceDriving;
+				var dailySavingsHybrid = dailyCostGas - dailyCostHybrid;
+				var dailySavingsElectric = dailyCostGas - dailyCostElectric; 
+
+				var monthlyDistance = dailyCommuteDistanceDriving * 22;
+				var monthlyCostGas = costPerMileGas * monthlyDistance;
+				var monthlyCostHybrid = costPerMileHybrid * monthlyDistance;
+				var monthlyCostElectric = costPerMileElectric * monthlyDistance;
+				var monthlySavingsHybrid = monthlyCostGas - monthlyCostHybrid;
+				var monthlySavingsElectric = monthlyCostGas - monthlyCostElectric;
+
+				var yearlySavingsHybrid = monthlySavingsHybrid * 12;
+				var yearlySavingsElectric = monthlySavingsElectric * 12; 
+
+				var rebateDaysHybrid = taxCreditHybrid / dailyCostHybrid;
+				var rebateDaysElectric = taxCreditElectric / dailyCostElectric;
+
+				var consumptionHybrid = 28.9 * dailyCommuteDistanceDriving / mileageHybrid;
+				var consumptionElectric = 0.5 * dailyCommuteDistanceDriving / mileageElectric;
+				var ecoScoreHybrid = N / (manufactureCostHybrid + consumptionHybrid);
+				var ecoScoreElectric = N / (manufactureCostElectric + consumptionElectric);
+
+				var blurbDataHybrid = { 
+					ecoScoreHybrid: ecoScoreHybrid,
+					dailySavingsHybid: dailySavingsHybrid,
+					monthlySavingsHybrid: monthlySavingsHybrid,
+					yearlySavingsHybrid: yearlySavingsHybrid,
+					taxCreditHybrid: taxCreditHybrid,
+					rebateDaysHybrid: rebateDaysHybrid,
+				};
+				var blurbDataElectric = {
+					ecoScoreElectric: ecoScoreElectric,
+					dailySavingsElectric: dailySavingsElectric,
+					monthlySavingsElectric: monthlySavingsElectric,
+					yearlySavingsElectric: yearlySavingsElectric,
+					taxCreditElectric: taxCreditElectric,
+					rebateDaysElectric: rebateDaysElectric,
+				}
         // ecoScoreElectric = 30;
-        setEcoScore('hybrid', 50);
-        setEcoScore('electric', 30);
+        setBlurb('hybrid', blurbDataHybrid);
+        setEcoScore('electric', blurbDataElectric);
         break;
       case 1:
         // calculate bike score
@@ -334,6 +421,12 @@ const mapStateToProps = (state) => {
     ecoScoreBike: state.results.ecoBike,
     ecoScoreTransit: state.results.ecoTransit,
     ecoScoreCombo: state.results.ecoCombo,
+
+	blurbHybrid: state.results.blurbHybrid,
+	blurbElectric: state.results.blurbElectric,
+	blurbBike: state.results.blurbBike,
+	blurbTransit: state.results.blurbTransit,
+	blurbCombo: state.results.blurbCombo, 
   };
 };
 
@@ -345,4 +438,5 @@ export default reduxConnect(mapStateToProps, {
   saveTransit,
   pingFunc,
   setEcoScore,
+  setBlurb, 
 })(MapComponent);
