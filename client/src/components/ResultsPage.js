@@ -1,10 +1,10 @@
 import {
   Container,
   Header,
-  Grid,
   Segment,
   Button,
   Icon,
+  Image,
 } from 'semantic-ui-react';
 
 import React, { Fragment } from 'react';
@@ -17,9 +17,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { toggleExportModal } from '../actions/stateActions';
 
-import { switchMode } from '../actions/resultsActions';
+import { switchMode, viewResultsFunc } from '../actions/resultsActions';
 
-// import GoogleMapReact from 'google-map-react';
+import { leafWorld } from '../images/leafWorld';
 
 import MapComponent from './MapComponent';
 
@@ -29,6 +29,8 @@ const ResultsPage = ({
   mode,
   modeMsg,
   switchMode,
+  viewResultsFunc,
+  viewResults,
 }) => {
   const { error } = useAuth0();
 
@@ -61,26 +63,68 @@ const ResultsPage = ({
 
   return (
     <Fragment>
-      <Container
-        fluid
-        style={{
-          overflowX: 'hidden',
-          marginBottom: '2%',
-          marginTop: '2%',
-        }}
-      >
-        <Header as='h1'>{header}</Header>
+      {viewResults && (
+        <Container
+          fluid
+          style={{
+            overflowX: 'hidden',
+            marginBottom: '2%',
+            marginTop: '2%',
+          }}
+        >
+          <Header as='h1'>{header}</Header>
 
-        <MapComponent mode={mode} content={modeMsg} />
-        <Button onClick={() => switchMode()}>
-          <Segment>
-            <Container text textAlign='center'>
-              But what about other options?
-            </Container>
-            <Icon name='angle double down' />
-          </Segment>
-        </Button>
-      </Container>
+          <MapComponent mode={mode} content={modeMsg} />
+          <Button onClick={() => switchMode()}>
+            <Segment>
+              <Container text textAlign='center'>
+                But what about other options?
+              </Container>
+              <Icon name='angle double down' />
+            </Segment>
+          </Button>
+        </Container>
+      )}
+      {!viewResults && (
+        <Container
+          fluid
+          style={{
+            overflowX: 'hidden',
+            marginBottom: '2%',
+            marginTop: '2%',
+          }}
+        >
+          <Header as='h1'>Your Eco Score</Header>
+          <Container fluid text>
+            <br />
+            <Header as='h2'>
+              In our recommendations, we evaluate an Eco Score for each mode of
+              transportation. Higher scores mean a lower carbon footprint.
+            </Header>
+          </Container>
+          <Container>
+            <Image
+              src={leafWorld}
+              alt='Red dot'
+              centered
+              style={{ marginTop: '4%' }}
+              size={'medium'}
+            />
+          </Container>
+          <Container
+            textAlign='center'
+            style={{ position: 'absolute', bottom: '3.6%' }}
+          >
+            <Button onClick={() => viewResultsFunc()}>
+              <Segment inverted color={'green'}>
+                <Container text textAlign='center'>
+                  View my Results!
+                </Container>
+              </Segment>
+            </Button>
+          </Container>
+        </Container>
+      )}
     </Fragment>
   );
 };
@@ -92,10 +136,13 @@ const mapStateToProps = (state) => {
     homePageMessage: state.state.homePageMessage,
     mode: state.results.transitMode,
     modeMsg: state.results.transitModeMessage,
+
+    viewResults: state.results.viewResults,
   };
 };
 
 export default reduxConnect(mapStateToProps, {
   toggleExportModal,
   switchMode,
+  viewResultsFunc,
 })(ResultsPage);

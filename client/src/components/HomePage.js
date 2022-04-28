@@ -221,9 +221,26 @@ const HomePage = ({
         <Container style={{ position: 'absolute', bottom: '3.6%' }}>
           <Grid.Row columns={1}>
             <Grid.Column>
-              <Link to='/survey'>
+              {isAuthenticated && (
+                <Link to='/survey'>
+                  <Segment
+                    inverted
+                    color={'green'}
+                    style={{
+                      lineHeight: '2rem',
+                      fontSize: '1.5rem',
+                      margin: '3%',
+                      width: '97%',
+                    }}
+                  >
+                    Plan Your Commute
+                  </Segment>
+                </Link>
+              )}
+              {!isAuthenticated && (
                 <Segment
                   inverted
+                  disabled
                   color={'green'}
                   style={{
                     lineHeight: '2rem',
@@ -234,7 +251,7 @@ const HomePage = ({
                 >
                   Plan Your Commute
                 </Segment>
-              </Link>
+              )}
             </Grid.Column>
           </Grid.Row>
         </Container>

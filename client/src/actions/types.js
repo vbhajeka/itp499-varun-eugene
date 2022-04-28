@@ -29,6 +29,6 @@ export const SAVE_BIKE = 'SAVE_BIKE';
 export const SAVE_TRANSIT = 'SAVE_TRANSIT';
 
 export const SAVE_ADDYS = 'SAVE_ADDYS';
-export const PING = 'PING';
 export const SET_ECO_SCORE = 'SET_ECO_SCORE';
 export const SET_BLURB = 'SET_BLURB';
+export const VIEW_RESULTS = 'VIEW_RESULTS';

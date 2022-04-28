@@ -13,7 +13,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['2656 Ellendale Pl'],
+      value: [],
     },
     {
       id: 'addr_home_city',
@@ -23,7 +23,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['Los Angeles'],
+      value: [],
     },
     {
       id: 'addr_home_state',
@@ -33,7 +33,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['CA'],
+      value: [],
     },
     {
       id: 'addr_home_zip',
@@ -43,7 +43,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['90007'],
+      value: [],
     },
     {
       id: 'addr_work_street',
@@ -53,7 +53,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['12125 Venice Blvd'],
+      value: [],
     },
     {
       id: 'addr_work_city',
@@ -63,7 +63,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['Los Angeles'],
+      value: [],
     },
     {
       id: 'addr_work_state',
@@ -73,7 +73,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['CA'],
+      value: [],
     },
     {
       id: 'addr_work_zip',
@@ -83,7 +83,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['90066'],
+      value: [],
     },
   ],
 };

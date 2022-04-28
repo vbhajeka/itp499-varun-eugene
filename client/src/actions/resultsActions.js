@@ -5,9 +5,9 @@ import {
   SAVE_BIKE,
   SAVE_TRANSIT,
   SAVE_ADDYS,
-  PING,
   SET_ECO_SCORE,
-	SET_BLURB, 
+  SET_BLURB,
+  VIEW_RESULTS,
 } from './types';
 
 export const switchMode = () => (dispatch) => {
@@ -52,13 +52,6 @@ export const saveAddys = (home, work) => (dispatch) => {
   });
 };
 
-export const pingFunc = () => (dispatch) => {
-  dispatch({
-    payload: {},
-    type: PING,
-  });
-};
-
 export const setEcoScore = (type, score) => (dispatch) => {
   console.log('uhhhhhh');
   dispatch({
@@ -68,8 +61,16 @@ export const setEcoScore = (type, score) => (dispatch) => {
 };
 
 export const setBlurb = (type, blurbData) => (dispatch) => {
-	dispatch({
+  dispatch({
     payload: { type, blurbData },
     type: SET_BLURB,
   });
-}
+};
+
+export const viewResultsFunc = () => (dispatch) => {
+  console.log('duh');
+  dispatch({
+    payload: {},
+    type: VIEW_RESULTS,
+  });
+};

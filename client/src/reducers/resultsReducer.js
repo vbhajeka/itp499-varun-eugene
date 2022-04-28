@@ -5,9 +5,9 @@ import {
   SAVE_BIKE,
   SAVE_TRANSIT,
   SAVE_ADDYS,
-  PING,
   SET_ECO_SCORE,
-	SET_BLURB,
+  SET_BLURB,
+  VIEW_RESULTS,
 } from '../actions/types';
 
 const initialState = {
@@ -31,57 +31,57 @@ const initialState = {
   },
   homeAddy: null,
   workAddy: null,
-  ping: true,
   ecoElectric: 0,
   ecoHybrid: 0,
   ecoBike: 0,
   ecoTransit: 0,
   ecoCombo: 0,
+  viewResults: false,
 
-	blurbHybrid: {
-		ecoScoreHybrid: 0,
-		dailySavingsHybid: 0,
-		monthlySavingsHybrid: 0,
-		yearlySavingsHybrid: 0,
-		taxCreditHybrid: 0,
-		rebateDaysHybrid: 0,
-	},
-	blurbElectric: {
-		ecoScoreElectric: 0,
-		dailySavingsElectric: 0,
-		monthlySavingsElectric: 0,
-		yearlySavingsElectric: 0,
-		taxCreditElectric: 0,
-		rebateDaysElectric: 0,
-	}, 
-	blurbBike: {
-		ecoScoreBike: 0,
-		timeBike: 0,
-		timeDiffBike: 0,
-		dailySavingsBike: 0,
-		monthlySavingsBike: 0,
-		yearlySavingsBike: 0,
-	}, 
-	blurbTransit: {
-		ecoScoreTransit: 0,
-		timeTransit: 0,
-		timeDiffTransit: 0,
-		transitFare: 0,
-		dailySavingsTransit: 0,
-		monthlySavingsTransit: 0,
-		yearlySavingsTransit: 0,
-	}, 
-	blurbCombo: {
-		ecoScoreCombo: 0,
-		timeTransit: 0,
-		timeDiffTransit: 0,
-		timeBike: 0,
-		timeDiffBike: 0,
-		transitFare: 0,
-		dailySavingsCombo: 0,
-		monthlySavingsCombo: 0,
-		yearlySavingsCombo: 0,
-	}, 
+  blurbHybrid: {
+    ecoScoreHybrid: 0,
+    dailySavingsHybrid: 0,
+    monthlySavingsHybrid: 0,
+    yearlySavingsHybrid: 0,
+    taxCreditHybrid: 0,
+    rebateDaysHybrid: 0,
+  },
+  blurbElectric: {
+    ecoScoreElectric: 0,
+    dailySavingsElectric: 0,
+    monthlySavingsElectric: 0,
+    yearlySavingsElectric: 0,
+    taxCreditElectric: 0,
+    rebateDaysElectric: 0,
+  },
+  blurbBike: {
+    ecoScoreBike: 0,
+    timeBike: 0,
+    timeDiffBike: 0,
+    dailySavingsBike: 0,
+    monthlySavingsBike: 0,
+    yearlySavingsBike: 0,
+  },
+  blurbTransit: {
+    ecoScoreTransit: 0,
+    timeTransit: 0,
+    timeDiffTransit: 0,
+    transitFare: 0,
+    dailySavingsTransit: 0,
+    monthlySavingsTransit: 0,
+    yearlySavingsTransit: 0,
+  },
+  blurbCombo: {
+    ecoScoreCombo: 0,
+    timeTransit: 0,
+    timeDiffTransit: 0,
+    timeBike: 0,
+    timeDiffBike: 0,
+    transitFare: 0,
+    dailySavingsCombo: 0,
+    monthlySavingsCombo: 0,
+    yearlySavingsCombo: 0,
+  },
 };
 
 const rotateMode = (state) => {
@@ -131,12 +131,6 @@ const saveAddresses = (state, home, work) => {
   return state;
 };
 
-const ping = (state) => {
-  state.ping = !state.ping;
-  console.log('pinged');
-  return state;
-};
-
 const setEcoScore = (state, type, score) => {
   switch (type) {
     case 'electric':
@@ -162,7 +156,7 @@ const setEcoScore = (state, type, score) => {
 
 const setBlurb = (state, type, blurbData) => {
   switch (type) {
-		case 'electric':
+    case 'electric':
       state.blurbElectric = blurbData;
       break;
     case 'hybrid':
@@ -181,7 +175,12 @@ const setBlurb = (state, type, blurbData) => {
     // do nothing
   }
   return state;
-}
+};
+
+const viewRes = (state) => {
+  state.viewResults = true;
+  return state;
+};
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
@@ -205,12 +204,12 @@ export default function reducer(state = initialState, action) {
       };
     case SAVE_ADDYS:
       return { ...saveAddresses(state, payload.home, payload.work) };
-    case PING:
-      return { ...ping(state) };
+    case VIEW_RESULTS:
+      return { ...viewRes(state) };
     case SET_ECO_SCORE:
       return { ...setEcoScore(state, payload.type, payload.score) };
-		case SET_BLURB:
-			return { ...setBlurb(state, payload.type, payload.blurbData) };
+    case SET_BLURB:
+      return { ...setBlurb(state, payload.type, payload.blurbData) };
     default:
       return state;
   }

@@ -15,12 +15,13 @@ import { connect as reduxConnect } from 'react-redux';
 
 import { toggleExportModal } from '../actions/stateActions';
 
+import { useHistory } from 'react-router-dom';
+
 import {
   storeMaps,
   saveDrive,
   saveBike,
   saveTransit,
-  pingFunc,
   setEcoScore,
   setBlurb,
 } from '../actions/resultsActions';
@@ -29,7 +30,6 @@ import GoogleMapReact from 'google-map-react';
 
 const MapComponent = ({
   mode,
-  content,
   transitMode,
   gmap,
   gmaps,
@@ -40,21 +40,8 @@ const MapComponent = ({
   homeAddy,
   workAddy,
 
-  ecoScoreElectric,
-  ecoScoreHybrid,
-  ecoScoreBike,
-  ecoScoreTransit,
-  ecoScoreCombo,
-
   blocks,
   rebateInfo,
-  driveData,
-  bikeData,
-  transitData,
-
-  ping,
-  pingFunc,
-  setEcoScore,
 
   blurbHybrid,
   blurbElectric,
@@ -63,6 +50,12 @@ const MapComponent = ({
   blurbCombo,
   setBlurb,
 }) => {
+  const history = useHistory();
+  if (blocks === undefined) {
+    history.push('/');
+    return <div>empty</div>;
+  }
+
   const defaultProps = {
     center: {
       lat: 34.001928,
@@ -118,9 +111,9 @@ const MapComponent = ({
   } else {
   }
   const setMessage = (googleResponse) => {
-		// From Survey 
-		var mileageGas = parseInt(blocks[1].questions[1].value[0]);
-		if(isNaN(mileageGas)) mileageGas = 24; 
+    // From Survey
+    var mileageGas = parseInt(blocks[1].questions[1].value[0]);
+    if (isNaN(mileageGas)) mileageGas = 24;
     const newCar = blocks[0].questions[1].value[0] === 'New Car';
     const household = parseInt(blocks[0].questions[2].value);
     var incomeScore = -1;
@@ -164,19 +157,19 @@ const MapComponent = ({
       newOrUsed = 'used';
     }
 
-		// From API
-		var rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
-		var timeDriving = parseInt(rawTime[rawTime.length - 3]);
-		console.log('timeDriving type ' + typeof timeDriving);
-		if (rawTime.length > 3) {
-			timeDriving += parseInt(rawTime[0]) * 60;
-		}
+    // From API
+    var rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+    var timeDriving = parseInt(rawTime[rawTime.length - 3]);
+    console.log('timeDriving type ' + typeof timeDriving);
+    if (rawTime.length > 3) {
+      timeDriving += parseInt(rawTime[0]) * 60;
+    }
 
-		var rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
-		var distanceDriving = parseFloat(rawDistance[0]);
-		
-		
-		var rawTime;
+    var rawDistance =
+      googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+    var distanceDriving = parseFloat(rawDistance[0]);
+
+    var rawTime;
     var timeDriving;
     var timeBike;
     var timeTransit;
@@ -191,7 +184,8 @@ const MapComponent = ({
       if (rawTime.length > 3) {
         timeDriving += parseInt(rawTime[0]) * 60;
       }
-      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      rawDistance =
+        googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
       distanceDriving = parseFloat(rawDistance[0]);
     }
     if (mode === 1) {
@@ -200,7 +194,8 @@ const MapComponent = ({
       if (rawTime.length > 3) {
         timeBike += parseInt(rawTime[0]) * 60;
       }
-      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      rawDistance =
+        googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
       distanceBike = parseFloat(rawDistance[0]);
     }
     if (mode === 2) {
@@ -209,29 +204,32 @@ const MapComponent = ({
       if (rawTime.length > 3) {
         timeTransit += parseInt(rawTime[0]) * 60;
       }
-      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      rawDistance =
+        googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
       distanceTransit = parseFloat(rawDistance[0]);
-    } 
-		if (mode === 3) {
-			rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+    }
+    if (mode === 3) {
+      rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
       timeBike = parseInt(rawTime[rawTime.length - 3]);
       if (rawTime.length > 3) {
         timeBike += parseInt(rawTime[0]) * 60;
       }
-      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      rawDistance =
+        googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
       distanceBike = parseFloat(rawDistance[0]);
 
-			rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+      rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
       timeTransit = parseInt(rawTime[rawTime.length - 3]);
       if (rawTime.length > 3) {
         timeTransit += parseInt(rawTime[0]) * 60;
       }
-      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      rawDistance =
+        googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
       distanceTransit = parseFloat(rawDistance[0]);
-		}
+    }
 
-		// Other values 
-		var dailyCommuteDistanceDriving = 2 * distanceDriving;
+    // Other values
+    var dailyCommuteDistanceDriving = 2 * distanceDriving;
     var mileageHybrid = 35;
     var mileageElectric = 0.33;
     var priceGas = 6;
@@ -246,122 +244,129 @@ const MapComponent = ({
     switch (mode) {
       case 0:
         // calculate values
-				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
-				var dailyCostHybrid = costPerMileHybrid * dailyCommuteDistanceDriving; 
-				var dailyCostElectric = costPerMileElectric * dailyCommuteDistanceDriving;
-				var dailySavingsHybrid = dailyCostGas - dailyCostHybrid;
-				var dailySavingsElectric = dailyCostGas - dailyCostElectric; 
+        var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
+        var dailyCostHybrid = costPerMileHybrid * dailyCommuteDistanceDriving;
+        var dailyCostElectric =
+          costPerMileElectric * dailyCommuteDistanceDriving;
+        var dailySavingsHybrid = dailyCostGas - dailyCostHybrid;
+        var dailySavingsElectric = dailyCostGas - dailyCostElectric;
 
-				var monthlyDistance = dailyCommuteDistanceDriving * 22;
-				var monthlyCostGas = costPerMileGas * monthlyDistance;
-				var monthlyCostHybrid = costPerMileHybrid * monthlyDistance;
-				var monthlyCostElectric = costPerMileElectric * monthlyDistance;
-				var monthlySavingsHybrid = monthlyCostGas - monthlyCostHybrid;
-				var monthlySavingsElectric = monthlyCostGas - monthlyCostElectric;
+        var monthlyDistance = dailyCommuteDistanceDriving * 22;
+        var monthlyCostGas = costPerMileGas * monthlyDistance;
+        var monthlyCostHybrid = costPerMileHybrid * monthlyDistance;
+        var monthlyCostElectric = costPerMileElectric * monthlyDistance;
+        var monthlySavingsHybrid = monthlyCostGas - monthlyCostHybrid;
+        var monthlySavingsElectric = monthlyCostGas - monthlyCostElectric;
 
-				var yearlySavingsHybrid = monthlySavingsHybrid * 12;
-				var yearlySavingsElectric = monthlySavingsElectric * 12; 
+        var yearlySavingsHybrid = monthlySavingsHybrid * 12;
+        var yearlySavingsElectric = monthlySavingsElectric * 12;
 
-				var rebateDaysHybrid = taxCreditHybrid / dailyCostHybrid;
-				var rebateDaysElectric = taxCreditElectric / dailyCostElectric;
+        var rebateDaysHybrid = taxCreditHybrid / dailyCostHybrid;
+        var rebateDaysElectric = taxCreditElectric / dailyCostElectric;
 
-				var consumptionHybrid = 28.9 * dailyCommuteDistanceDriving / mileageHybrid;
-				var consumptionElectric = 0.5 * dailyCommuteDistanceDriving / mileageElectric;
-				var ecoScoreHybrid = N / (manufactureCostHybrid + consumptionHybrid);
-				var ecoScoreElectric = N / (manufactureCostElectric + consumptionElectric);
+        var consumptionHybrid =
+          (28.9 * dailyCommuteDistanceDriving) / mileageHybrid;
+        var consumptionElectric =
+          (0.5 * dailyCommuteDistanceDriving) / mileageElectric;
+        var ecoScoreHybrid = N / (manufactureCostHybrid + consumptionHybrid);
+        var ecoScoreElectric =
+          N / (manufactureCostElectric + consumptionElectric);
 
-				var blurbDataHybrid = { 
-					ecoScoreHybrid: Math.round(ecoScoreHybrid * 100) / 100,
-					dailySavingsHybid: Math.round(dailySavingsHybid * 100) / 100,
-					monthlySavingsHybrid: Math.round(monthlySavingsHybrid * 100) / 100,
-					yearlySavingsHybrid: Math.round(yearlySavingsHybrid * 100) / 100,
-					taxCreditHybrid: Math.round(taxCreditHybrid * 100) / 100,
-					rebateDaysHybrid: Math.round(rebateDaysHybrid * 100) / 100,
-				};
-				var blurbDataElectric = {
-					ecoScoreElectric: Math.round(ecoScoreElectric * 100) / 100,
-					dailySavingsElectric: Math.round(dailySavingsElectric * 100) / 100,
-					monthlySavingsElectric: Math.round(monthlySavingsElectric * 100) / 100,
-					yearlySavingsElectric: Math.round(yearlySavingsElectric * 100) / 100,
-					taxCreditElectric: Math.round(taxCreditElectric * 100) / 100,
-					rebateDaysElectric: Math.round(rebateDaysElectric * 100) / 100,
-				}
+        var blurbDataHybrid = {
+          ecoScoreHybrid: Math.round(ecoScoreHybrid * 100) / 100,
+          dailySavingsHybrid: Math.round(dailySavingsHybrid * 100) / 100,
+          monthlySavingsHybrid: Math.round(monthlySavingsHybrid * 100) / 100,
+          yearlySavingsHybrid: Math.round(yearlySavingsHybrid * 100) / 100,
+          taxCreditHybrid: Math.round(taxCreditHybrid * 100) / 100,
+          rebateDaysHybrid: Math.round(rebateDaysHybrid * 100) / 100,
+        };
+        var blurbDataElectric = {
+          ecoScoreElectric: Math.round(ecoScoreElectric * 100) / 100,
+          dailySavingsElectric: Math.round(dailySavingsElectric * 100) / 100,
+          monthlySavingsElectric:
+            Math.round(monthlySavingsElectric * 100) / 100,
+          yearlySavingsElectric: Math.round(yearlySavingsElectric * 100) / 100,
+          taxCreditElectric: Math.round(taxCreditElectric * 100) / 100,
+          rebateDaysElectric: Math.round(rebateDaysElectric * 100) / 100,
+        };
         // ecoScoreElectric = 30;
         setBlurb('hybrid', blurbDataHybrid);
         setBlurb('electric', blurbDataElectric);
         break;
       case 1:
-				// Bike Calculations 
-				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
+        // Bike Calculations
+        var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
 
-				var timeDiffBike = timeBike - timeDriving;
-				var dailySavingsBike = dailyCostGas - 0;
-				var monthlySavingsBike = 22 * dailySavingsBike;
-				var yearlySavingsBike = 12 * monthlySavingsBike;
-				var ecoScoreBike = 10 * distanceBike;
+        var timeDiffBike = timeBike - timeDriving;
+        var dailySavingsBike = dailyCostGas - 0;
+        var monthlySavingsBike = 22 * dailySavingsBike;
+        var yearlySavingsBike = 12 * monthlySavingsBike;
+        var ecoScoreBike = 10 * distanceBike;
 
-				var blurbBike = {
-					ecoScoreBike: ecoScoreBike,
-					timeBike: timeBike,
-					timeDiffBike: timeDiffBike,
-					dailySavingsBike: dailySavingsBike,
-					monthlySavingsBike: monthlySavingsBike,
-					yearlySavingsBike: yearlySavingsBike,
-				};
+        var blurbBike = {
+          ecoScoreBike: Math.round(ecoScoreBike * 100) / 100,
+          timeBike: Math.round(timeBike * 100) / 100,
+          timeDiffBike: Math.round(timeDiffBike * 100) / 100,
+          dailySavingsBike: Math.round(dailySavingsBike * 100) / 100,
+          monthlySavingsBike: Math.round(monthlySavingsBike * 100) / 100,
+          yearlySavingsBike: Math.round(yearlySavingsBike * 100) / 100,
+        };
 
-				setBlurb('bike', blurbBike);
+        setBlurb('bike', blurbBike);
         break;
       case 2:
         // calculate transit score
-				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
+        var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
 
-				var timeDiffTransit = timeTransit - timeDriving;
-				var dailySavingsTransit = dailyCostGas - (2 * transitFare);
-				var monthlySavingsTransit = 22 * dailySavingsTransit;
-				var yearlySavingsTransit = 12 * monthlySavingsTransit;
-				var consumptionTransit = 0.5 * (2 * distanceTransit) * transitElectricityUseKwhPMi;
-				var ecoScoreTransit = N / (consumptionTransit);
+        var timeDiffTransit = timeTransit - timeDriving;
+        var dailySavingsTransit = dailyCostGas - 2 * transitFare;
+        var monthlySavingsTransit = 22 * dailySavingsTransit;
+        var yearlySavingsTransit = 12 * monthlySavingsTransit;
+        var consumptionTransit =
+          0.5 * (2 * distanceTransit) * transitElectricityUseKwhPMi;
+        var ecoScoreTransit = N / consumptionTransit;
 
-				var blurbTransit = {
-					ecoScoreTransit: Math.round(ecoScoreTransit * 100) / 100,
-					timeTransit: Math.round(timeTransit * 100) / 100,
-					timeDiffTransit: Math.round(timeDiffTransit * 100) / 100,
-					transitFare: Math.round(transitFare * 100) / 100,
-					dailySavingsTransit: Math.round(dailySavingsTransit * 100) / 100,
-					monthlySavingsTransit: Math.round(monthlySavingsTransit * 100) / 100,
-					yearlySavingsTransit: Math.round(yearlySavingsTransit * 100) / 100,
-				}; 
+        var blurbTransit = {
+          ecoScoreTransit: Math.round(ecoScoreTransit * 100) / 100,
+          timeTransit: Math.round(timeTransit * 100) / 100,
+          timeDiffTransit: Math.round(timeDiffTransit * 100) / 100,
+          transitFare: Math.round(transitFare * 100) / 100,
+          dailySavingsTransit: Math.round(dailySavingsTransit * 100) / 100,
+          monthlySavingsTransit: Math.round(monthlySavingsTransit * 100) / 100,
+          yearlySavingsTransit: Math.round(yearlySavingsTransit * 100) / 100,
+        };
         setBlurb('transit', blurbTransit);
         break;
       case 3:
         // calculate combo score
-				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
-				var timeDiffBike = timeBike - timeDriving;
-				var timeDiffTransit = timeTransit - timeDriving;
+        var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
+        var timeDiffBike = timeBike - timeDriving;
+        var timeDiffTransit = timeTransit - timeDriving;
 
-				var dailySavingsBikeTransit = dailyCostGas - transitFare;
-				var monthlySavingsBikeTransit = 22 * dailySavingsBikeTransit;
-				var yearlySavingsBikeTransit = 12 * monthlySavingsBikeTransit;
-				var consumptionBikeTransit = 0.5 * (1 * distanceTransit) * transitElectricityUseKwhPMi;
-				var ecoScoreBikeTransit = N / (consumptionBikeTransit);
+        var dailySavingsBikeTransit = dailyCostGas - transitFare;
+        var monthlySavingsBikeTransit = 22 * dailySavingsBikeTransit;
+        var yearlySavingsBikeTransit = 12 * monthlySavingsBikeTransit;
+        var consumptionBikeTransit =
+          0.5 * (1 * distanceTransit) * transitElectricityUseKwhPMi;
+        var ecoScoreBikeTransit = N / consumptionBikeTransit;
 
-				var blurbCombo = {
-					ecoScoreCombo: Math.round(ecoScoreBikeTransit * 100) / 100,
-					timeTransit: Math.round(timeTransit * 100) / 100,
-					timeDiffTransit: Math.round(timeDiffTransit * 100) / 100,
-					timeBike: Math.round(timeBike * 100) / 100,
-					timeDiffBike: Math.round(timeDiffBike * 100) / 100,
-					transitFare: Math.round(transitFare * 100) / 100,
-					dailySavingsCombo: Math.round(dailySavingsBikeTransit * 100) / 100,
-					monthlySavingsCombo: Math.round(monthlySavingsBikeTransit * 100) / 100,
-					yearlySavingsCombo: Math.round(yearlySavingsBikeTransit * 100) / 100,
-				};
+        var blurbCombo = {
+          ecoScoreCombo: Math.round(ecoScoreBikeTransit * 100) / 100,
+          timeTransit: Math.round(timeTransit * 100) / 100,
+          timeDiffTransit: Math.round(timeDiffTransit * 100) / 100,
+          timeBike: Math.round(timeBike * 100) / 100,
+          timeDiffBike: Math.round(timeDiffBike * 100) / 100,
+          transitFare: Math.round(transitFare * 100) / 100,
+          dailySavingsCombo: Math.round(dailySavingsBikeTransit * 100) / 100,
+          monthlySavingsCombo:
+            Math.round(monthlySavingsBikeTransit * 100) / 100,
+          yearlySavingsCombo: Math.round(yearlySavingsBikeTransit * 100) / 100,
+        };
         setBlurb('combo', blurbCombo);
         break;
-			default: 
-				// do nothing
+      default:
+      // do nothing
     }
-    pingFunc();
   };
 
   return (
@@ -385,8 +390,8 @@ const MapComponent = ({
               </div>
             </Segment>
           </Grid.Column>
-          <Grid.Column fluid width={8}>
-            <Container>
+          <Grid.Column width={8}>
+            <Container fluid>
               {mode === 0 && (
                 <Container fluid width={8}>
                   <Header as='h3'>
@@ -448,20 +453,21 @@ const MapComponent = ({
                     To Bike to work:{' '}
                   </Header>
                   <Header as='h4'>
-                    Eco score: {ecoScoreBike}
-                    {console.log(`ecoScoreBike is ${ecoScoreBike}`)}
+                    Eco score: {blurbBike.ecoScoreBike}
                   </Header>{' '}
                   <p>
-                    Biking to work one way will take 40 minutes, which is 10
-                    minutes longer than driving.
+                    Biking to work one way will take {blurbBike.timeBike}{' '}
+                    minutes, which is {blurbBike.timeDiffBike} minutes longer
+                    than driving.
                   </p>
                   <p>
-                    However, biking is free! You save $ 25 every day compared to
-                    driving a gas car.
+                    However, biking is free! You save $
+                    {blurbBike.dailySavingsBike} every day compared to driving a
+                    gas car.
                   </p>
                   <p>
-                    Each month, you would save $ 550, which would be $6600 every
-                    year!
+                    Each month, you would save ${blurbBike.monthlySavingsBike},
+                    which would be ${blurbBike.yearlySavingsBike} every year!
                   </p>
                 </Container>
               )}
@@ -472,49 +478,53 @@ const MapComponent = ({
                     To take Public Transit to work:{' '}
                   </Header>
                   <Header as='h4'>
-                    Eco score: {ecoScoreTransit}
-                    {console.log(`ecoScoreTransit is ${ecoScoreTransit}`)}
+                    Eco score: {blurbTransit.ecoScoreTransit}
                   </Header>{' '}
                   <p>
-                    Taking public transportation to work one way will take 45
-                    minutes, which is 15 minutes longer than driving.
+                    Taking public transportation to work one way will take{' '}
+                    {blurbTransit.timeTransit}
+                    minutes, which is {blurbTransit.timeDiffTransit} minutes
+                    longer than driving.
                   </p>
                   <p>
-                    Transit costs $1.25 one way. You save $ 22.50 every day
-                    compared to driving a gas car.
+                    Transit costs ${blurbTransit.transitFare} one way. You save
+                    ${blurbTransit.dailySavingsTransit} every day compared to
+                    driving a gas car.
                   </p>
                   <p>
-                    Each month, you would save $ 495, which would be $5940 every
-                    year!
+                    Each month, you would save $
+                    {blurbTransit.monthlySavingsTransit}, which would be $
+                    {blurbTransit.yearlySavingsTransit} every year!
                   </p>
                 </Container>
               )}
               {mode === 3 && (
                 <Container fluid width={8}>
                   <Header as='h3'>
-                    <Icon name='bicycle' />
-                    <Icon name='bus' />
+                    <Icon name='bicycle' /> <Icon name='bus' />
                     To Bike and take Public Transit to work:{' '}
                   </Header>
-                  <Header as='h4'>
-                    Eco score: {ecoScoreCombo}
-                    {console.log(`ecoScoreCombo is ${ecoScoreCombo}`)}
-                  </Header>
+                  <Header as='h4'>Eco score: {blurbCombo.ecoScoreCombo}</Header>
                   <p>
-                    Taking public transportation to work one way will take 45
-                    minutes, which is 15 minutes longer than driving.
+                    Taking public transportation to work one way will take{' '}
+                    {blurbCombo.timeTransit}
+                    minutes, which is {blurbCombo.timeDiffTransit} minutes
+                    longer than driving.
                   </p>
                   <p>
-                    Biking to work one way will take 40 minutes, which is 10
+                    Biking to work one way will take {blurbCombo.timeBike}{' '}
+                    minutes, which is {blurbCombo.timeDiffBike}
                     minutes longer than driving.
                   </p>
                   <p>
-                    Transit costs $1.25 one way. You save $ 23.75 every day
-                    compared to driving a gas car.
+                    Transit costs ${blurbCombo.transitFare} one way. You save $
+                    {blurbCombo.dailySavingsCombo} every day compared to driving
+                    a gas car.
                   </p>
                   <p>
-                    Each month, you would save $ 522.50, which would be $6270{' '}
-                    every year!
+                    Each month, you would save ${' '}
+                    {blurbCombo.monthlySavingsCombo}, which would be $
+                    {blurbCombo.yearlySavingsCombo} every year!
                   </p>
                 </Container>
               )}
@@ -544,7 +554,6 @@ const mapStateToProps = (state) => {
     driveData: state.results.driveData,
     bikeData: state.results.bikeData,
     transitData: state.results.transitData,
-    ping: state.results.ping,
 
     ecoScoreElectric: state.results.ecoElectric,
     ecoScoreHybrid: state.results.ecoHybrid,
@@ -566,7 +575,6 @@ export default reduxConnect(mapStateToProps, {
   saveDrive,
   saveBike,
   saveTransit,
-  pingFunc,
   setEcoScore,
   setBlurb,
 })(MapComponent);
