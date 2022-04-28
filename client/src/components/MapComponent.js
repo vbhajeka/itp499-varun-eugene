@@ -147,48 +147,134 @@ const MapComponent = ({
     console.log('rendering map');
   }
   const setMessage = (googleResponse) => {
-		const newCar = blocks[0].questions[1].value[0] === 'New Car';
+		// From Survey 
+		var mileageGas = parseInt(blocks[1].questions[1].value[0]);
+		if(isNaN(mileageGas)) mileageGas = 24; 
+    const newCar = blocks[0].questions[1].value[0] === 'New Car';
+    const household = parseInt(blocks[0].questions[2].value);
+    var incomeScore = -1;
+
+    switch (household) {
+      case 1:
+        incomeScore = blocks[0].questions[3].enumVal[0];
+        break;
+      case 2:
+        incomeScore = blocks[0].questions[4].enumVal[0];
+        break;
+      case 3:
+        incomeScore = blocks[0].questions[5].enumVal[0];
+        break;
+      case 4:
+        incomeScore = blocks[0].questions[6].enumVal[0];
+        break;
+      case 5:
+        incomeScore = blocks[0].questions[7].enumVal[0];
+        break;
+      default:
+        incomeScore = blocks[0].questions[8].enumVal[0];
+        break;
+    }
+
+    var taxCreditHybrid;
+    var taxCreditElectric;
+    var manufactureCostHybrid = 0;
+    var manufactureCostElectric = 0;
+    var newOrUsed;
+
+    if (newCar) {
+      taxCreditHybrid = rebateInfo.newCar[incomeScore].hybrid;
+      taxCreditElectric = rebateInfo.newCar[incomeScore].electric;
+      manufactureCostHybrid = 2000;
+      manufactureCostElectric = 2500;
+      newOrUsed = 'new';
+    } else {
+      taxCreditHybrid = rebateInfo.usedCar[incomeScore].hybrid;
+      taxCreditElectric = rebateInfo.usedCar[incomeScore].electric;
+      newOrUsed = 'used';
+    }
+
+		// From API
+		var rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+		var timeDriving = parseInt(rawTime[rawTime.length - 3]);
+		console.log('timeDriving type ' + typeof timeDriving);
+		if (rawTime.length > 3) {
+			timeDriving += parseInt(rawTime[0]) * 60;
+		}
+
+		var rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+		var distanceDriving = parseFloat(rawDistance[0]);
+		
+		
+		var rawTime;
+    var timeDriving;
+    var timeBike;
+    var timeTransit;
+    var rawDistance;
+    var distanceDriving;
+    var distanceBike;
+    var distanceTransit;
+    if (mode === 0) {
+      rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+      timeDriving = parseInt(rawTime[rawTime.length - 3]);
+      console.log('timeDriving type ' + typeof timeDriving);
+      if (rawTime.length > 3) {
+        timeDriving += parseInt(rawTime[0]) * 60;
+      }
+      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      distanceDriving = parseFloat(rawDistance[0]);
+    }
+    if (mode === 1) {
+      rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+      timeBike = parseInt(rawTime[rawTime.length - 3]);
+      if (rawTime.length > 3) {
+        timeBike += parseInt(rawTime[0]) * 60;
+      }
+      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      distanceBike = parseFloat(rawDistance[0]);
+    }
+    if (mode === 2) {
+      rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+      timeTransit = parseInt(rawTime[rawTime.length - 3]);
+      if (rawTime.length > 3) {
+        timeTransit += parseInt(rawTime[0]) * 60;
+      }
+      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      distanceTransit = parseFloat(rawDistance[0]);
+    } 
+		if (mode === 3) {
+			rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+      timeBike = parseInt(rawTime[rawTime.length - 3]);
+      if (rawTime.length > 3) {
+        timeBike += parseInt(rawTime[0]) * 60;
+      }
+      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      distanceBike = parseFloat(rawDistance[0]);
+
+			rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
+      timeTransit = parseInt(rawTime[rawTime.length - 3]);
+      if (rawTime.length > 3) {
+        timeTransit += parseInt(rawTime[0]) * 60;
+      }
+      rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
+      distanceTransit = parseFloat(rawDistance[0]);
+		}
+
+		// Other values 
+		var dailyCommuteDistanceDriving = 2 * distanceDriving;
+    var mileageHybrid = 35;
+    var mileageElectric = 0.33;
+    var priceGas = 6;
+    var priceElectricity = 0.5;
+    var costPerMileGas = priceGas / mileageGas;
+    var costPerMileHybrid = priceGas / mileageHybrid;
+    var costPerMileElectric = priceElectricity * mileageElectric;
+    var transitFare = 1.25;
+    var transitElectricityUseKwhPMi = 2;
+    var N = 1000;
 
     switch (mode) {
       case 0:
         // calculate values
-				// From Survey 
-				var mileageGas = parseInt(blocks[1].questions[1].value[0]);
-				var taxCreditHybrid = rebateInfo.newCar[incomeScore].hybrid;
-				var taxCreditElectric = rebateInfo.newCar[incomeScore].electric;
-				var manufactureCostHybrid = 2000;
-				var manufactureCostElectric = 2500;
-				if(newCar) {
-					manufactureCostHybrid = 0;
-					manufactureCostElectric = 0;
-				}
-
-				// From API
-				var rawTime = googleResponse.routes[0].legs[0].duration.text.split(/(\s+)/);
-				timeDriving = parseInt(rawTime[rawTime.length - 3]);
-				console.log('timeDriving type ' + typeof timeDriving);
-				if (rawTime.length > 3) {
-					timeDriving += parseInt(rawTime[0]) * 60;
-				}
-
-				var rawDistance = googleResponse.routes[0].legs[0].distance.text.split(/(\s+)/);
-				distanceDriving = parseFloat(rawDistance[0]);
-
-				var distanceDriving = googleResponse.routes[0].legs[0].duration.text;
-				var timeDriving = 30;
-
-				// Other values 
-				var dailyCommuteDistanceDriving = 2 * distanceDriving;
-				var mileageHybrid = 35;
-				var mileageElectric = 0.33;
-				var priceGas = 6;
-				var priceElectricity = 0.50;
-				var costPerMileGas = priceGas / mileageGas;
-				var costPerMileHybrid = priceGas / mileageHybrid;
-				var costPerMileElectric = priceElectricity * mileageElectric;
-				var N = 1000;
-
-
 				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
 				var dailyCostHybrid = costPerMileHybrid * dailyCommuteDistanceDriving; 
 				var dailyCostElectric = costPerMileElectric * dailyCommuteDistanceDriving;
@@ -231,20 +317,78 @@ const MapComponent = ({
 				}
         // ecoScoreElectric = 30;
         setBlurb('hybrid', blurbDataHybrid);
-        setEcoScore('electric', blurbDataElectric);
+        setBlurb('electric', blurbDataElectric);
         break;
       case 1:
-        // calculate bike score
-        setEcoScore('bike', 50);
+				// Bike Calculations 
+				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
+
+				var timeDiffBike = timeBike - timeDriving;
+				var dailySavingsBike = dailyCostGas - 0;
+				var monthlySavingsBike = 22 * dailySavingsBike;
+				var yearlySavingsBike = 12 * monthlySavingsBike;
+				var ecoScoreBike = 10 * distanceBike;
+
+				var blurbBike = {
+					ecoScoreBike: ecoScoreBike,
+					timeBike: timeBike,
+					timeDiffBike: timeDiffBike,
+					dailySavingsBike: dailySavingsBike,
+					monthlySavingsBike: monthlySavingsBike,
+					yearlySavingsBike: yearlySavingsBike,
+				};
+
+				setBlurb('bike', blurbBike);
         break;
       case 2:
         // calculate transit score
-        setEcoScore('transit', 50);
+				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
+
+				var timeDiffTransit = timeTransit - timeDriving;
+				var dailySavingsTransit = dailyCostGas - (2 * transitFare);
+				var monthlySavingsTransit = 22 * dailySavingsTransit;
+				var yearlySavingsTransit = 12 * monthlySavingsTransit;
+				var consumptionTransit = 0.5 * (2 * distanceTransit) * transitElectricityUseKwhPMi;
+				var ecoScoreTransit = N / (consumptionTransit);
+
+				var blurbTransit = {
+					ecoScoreTransit: ecoScoreTransit,
+					timeTransit: timeTransit,
+					timeDiffTransit: timeDiffTransit,
+					transitFare: transitFare,
+					dailySavingsTransit: dailySavingsTransit,
+					monthlySavingsTransit: monthlySavingsTransit,
+					yearlySavingsTransit: yearlySavingsTransit,
+				}; 
+        setBlurb('transit', blurbTransit);
         break;
-      default:
+      case 3:
         // calculate combo score
-        setEcoScore('combo', 30);
+				var dailyCostGas = costPerMileGas * dailyCommuteDistanceDriving;
+				var timeDiffBike = timeBike - timeDriving;
+				var timeDiffTransit = timeTransit - timeDriving;
+
+				var dailySavingsBikeTransit = dailyCostGas - transitFare;
+				var monthlySavingsBikeTransit = 22 * dailySavingsBikeTransit;
+				var yearlySavingsBikeTransit = 12 * monthlySavingsBikeTransit;
+				var consumptionBikeTransit = 0.5 * (1 * distanceTransit) * transitElectricityUseKwhPMi;
+				var ecoScoreBikeTransit = N / (consumptionBikeTransit);
+
+				var blurbCombo = {
+					ecoScoreCombo: ecoScoreBikeTransit,
+					timeTransit: timeTransit,
+					timeDiffTransit: timeDiffTransit,
+					timeBike: timeBike,
+					timeDiffBike: timeDiffBike,
+					transitFare: transitFare,
+					dailySavingsCombo: dailySavingsBikeTransit,
+					monthlySavingsCombo: monthlySavingsBikeTransit,
+					yearlySavingsCombo: yearlySavingsBikeTransit,
+				};
+        setBlurb('combo', blurbCombo);
         break;
+			default: 
+				// do nothing
     }
     pingFunc();
   };
