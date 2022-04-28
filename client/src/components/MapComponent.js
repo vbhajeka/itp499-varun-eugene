@@ -106,37 +106,9 @@ const MapComponent = ({
         console.log(response);
 
         setMessage(response);
-        // switch (mode) {
-        //   case 0:
-        //     console.log('saving drive data');
-        //     saveDrive(
-        //       response.routes[0].legs[0].duration.text,
-        //       response.routes[0].legs[0].distance.text,
-        //       msg
-        //     );
-
-        //     break;
-        //   case 1:
-        //     saveBike(
-        //       response.routes[0].legs[0].duration.text,
-        //       response.routes[0].legs[0].distance.text,
-        //       msg
-        //     );
-        //     break;
-        //   case 2:
-        //     saveTransit(
-        //       response.routes[0].legs[0].duration.text,
-        //       response.routes[0].legs[0].distance.text,
-        //       msg
-        //     );
-        //     break;
-        //   default:
-        //   // no new data, this is a combo
-        // }
 
         directionsRenderer.setDirections(response);
         directionsRenderer.setMap(map);
-        console.log(driveData);
       })
       .catch((e) => console.log(e));
   };
@@ -144,7 +116,6 @@ const MapComponent = ({
   if (buttonPressed) {
     handleApiLoaded(gmap, gmaps);
   } else {
-    console.log('rendering map');
   }
   const setMessage = (googleResponse) => {
 		// From Survey 
@@ -300,20 +271,20 @@ const MapComponent = ({
 				var ecoScoreElectric = N / (manufactureCostElectric + consumptionElectric);
 
 				var blurbDataHybrid = { 
-					ecoScoreHybrid: ecoScoreHybrid,
-					dailySavingsHybid: dailySavingsHybrid,
-					monthlySavingsHybrid: monthlySavingsHybrid,
-					yearlySavingsHybrid: yearlySavingsHybrid,
-					taxCreditHybrid: taxCreditHybrid,
-					rebateDaysHybrid: rebateDaysHybrid,
+					ecoScoreHybrid: Math.round(ecoScoreHybrid * 100) / 100,
+					dailySavingsHybid: Math.round(dailySavingsHybid * 100) / 100,
+					monthlySavingsHybrid: Math.round(monthlySavingsHybrid * 100) / 100,
+					yearlySavingsHybrid: Math.round(yearlySavingsHybrid * 100) / 100,
+					taxCreditHybrid: Math.round(taxCreditHybrid * 100) / 100,
+					rebateDaysHybrid: Math.round(rebateDaysHybrid * 100) / 100,
 				};
 				var blurbDataElectric = {
-					ecoScoreElectric: ecoScoreElectric,
-					dailySavingsElectric: dailySavingsElectric,
-					monthlySavingsElectric: monthlySavingsElectric,
-					yearlySavingsElectric: yearlySavingsElectric,
-					taxCreditElectric: taxCreditElectric,
-					rebateDaysElectric: rebateDaysElectric,
+					ecoScoreElectric: Math.round(ecoScoreElectric * 100) / 100,
+					dailySavingsElectric: Math.round(dailySavingsElectric * 100) / 100,
+					monthlySavingsElectric: Math.round(monthlySavingsElectric * 100) / 100,
+					yearlySavingsElectric: Math.round(yearlySavingsElectric * 100) / 100,
+					taxCreditElectric: Math.round(taxCreditElectric * 100) / 100,
+					rebateDaysElectric: Math.round(rebateDaysElectric * 100) / 100,
 				}
         // ecoScoreElectric = 30;
         setBlurb('hybrid', blurbDataHybrid);
@@ -352,13 +323,13 @@ const MapComponent = ({
 				var ecoScoreTransit = N / (consumptionTransit);
 
 				var blurbTransit = {
-					ecoScoreTransit: ecoScoreTransit,
-					timeTransit: timeTransit,
-					timeDiffTransit: timeDiffTransit,
-					transitFare: transitFare,
-					dailySavingsTransit: dailySavingsTransit,
-					monthlySavingsTransit: monthlySavingsTransit,
-					yearlySavingsTransit: yearlySavingsTransit,
+					ecoScoreTransit: Math.round(ecoScoreTransit * 100) / 100,
+					timeTransit: Math.round(timeTransit * 100) / 100,
+					timeDiffTransit: Math.round(timeDiffTransit * 100) / 100,
+					transitFare: Math.round(transitFare * 100) / 100,
+					dailySavingsTransit: Math.round(dailySavingsTransit * 100) / 100,
+					monthlySavingsTransit: Math.round(monthlySavingsTransit * 100) / 100,
+					yearlySavingsTransit: Math.round(yearlySavingsTransit * 100) / 100,
 				}; 
         setBlurb('transit', blurbTransit);
         break;
@@ -375,15 +346,15 @@ const MapComponent = ({
 				var ecoScoreBikeTransit = N / (consumptionBikeTransit);
 
 				var blurbCombo = {
-					ecoScoreCombo: ecoScoreBikeTransit,
-					timeTransit: timeTransit,
-					timeDiffTransit: timeDiffTransit,
-					timeBike: timeBike,
-					timeDiffBike: timeDiffBike,
-					transitFare: transitFare,
-					dailySavingsCombo: dailySavingsBikeTransit,
-					monthlySavingsCombo: monthlySavingsBikeTransit,
-					yearlySavingsCombo: yearlySavingsBikeTransit,
+					ecoScoreCombo: Math.round(ecoScoreBikeTransit * 100) / 100,
+					timeTransit: Math.round(timeTransit * 100) / 100,
+					timeDiffTransit: Math.round(timeDiffTransit * 100) / 100,
+					timeBike: Math.round(timeBike * 100) / 100,
+					timeDiffBike: Math.round(timeDiffBike * 100) / 100,
+					transitFare: Math.round(transitFare * 100) / 100,
+					dailySavingsCombo: Math.round(dailySavingsBikeTransit * 100) / 100,
+					monthlySavingsCombo: Math.round(monthlySavingsBikeTransit * 100) / 100,
+					yearlySavingsCombo: Math.round(yearlySavingsBikeTransit * 100) / 100,
 				};
         setBlurb('combo', blurbCombo);
         break;
@@ -420,38 +391,53 @@ const MapComponent = ({
                 <Container fluid width={8}>
                   <Header as='h3'>
                     <Icon name='car' />
-                    For a new Hybrid car:{' '}
+                    For a{' '}
+                    {blocks[0].questions[1].value[0] === 'New Car'
+                      ? `New`
+                      : `Used`}{' '}
+                    Hybrid car:{' '}
                   </Header>
                   <Header as='h4'>
-                    Eco score: {ecoScoreHybrid}
-                    {console.log(`ecoScoreHybrid is ${ecoScoreHybrid}`)}
+                    Eco score: {blurbHybrid.ecoScoreHybrid}
                   </Header>
-                  <p>For your daily commute, you save $ 16.43.</p>
                   <p>
-                    Every month, you save $ 427.14, and every year you save
-                    $5125.71 .
+                    For your daily commute, you save $
+                    {blurbHybrid.dailySavingsHybid}.
                   </p>
                   <p>
-                    You may be eligible for a $4250 tax credit. This would
-                    offset gas costs for 583 days.
+                    Every month, you save ${blurbHybrid.monthlySavingsHybrid},
+                    and every year you save ${blurbHybrid.yearlySavingsHybrid}.
+                  </p>
+                  <p>
+                    You may be eligible for a ${blurbHybrid.taxCreditHybrid} tax
+                    credit. This would offset gas costs for{' '}
+                    {blurbHybrid.rebateDaysHybrid} days.
                   </p>
 
                   <Header as='h3'>
                     <Icon name='car' />
-                    For a new Electric car:{' '}
+                    For a{' '}
+                    {blocks[0].questions[1].value[0] === 'New Car'
+                      ? `New`
+                      : `Used`}{' '}
+                    Electric car:{' '}
                   </Header>
                   <Header as='h4'>
-                    Eco score: {ecoScoreElectric}
-                    {console.log(`ecoScoreElectric is ${ecoScoreElectric}`)}
+                    Eco score: {blurbElectric.ecoScoreElectric}
                   </Header>
-                  <p>For your daily commute, you save $ 16.75.</p>
                   <p>
-                    Every month, you save $ 435.50, and every year you save $
-                    5226.00.
+                    For your daily commute, you save $
+                    {blurbElectric.dailySavingsElectric}.
                   </p>
                   <p>
-                    You may be eligible for a $7500 tax credit. This would
-                    offset gas costs for 909 days.
+                    Every month, you save $
+                    {blurbElectric.monthlySavingsElectric}, and every year you
+                    save ${blurbElectric.yearlySavingsElectric}.
+                  </p>
+                  <p>
+                    You may be eligible for a ${blurbElectric.taxCreditElectric}{' '}
+                    tax credit. This would offset gas costs for{' '}
+                    {blurbElectric.rebateDaysElectric} days.
                   </p>
                 </Container>
               )}
@@ -566,11 +552,11 @@ const mapStateToProps = (state) => {
     ecoScoreTransit: state.results.ecoTransit,
     ecoScoreCombo: state.results.ecoCombo,
 
-	blurbHybrid: state.results.blurbHybrid,
-	blurbElectric: state.results.blurbElectric,
-	blurbBike: state.results.blurbBike,
-	blurbTransit: state.results.blurbTransit,
-	blurbCombo: state.results.blurbCombo, 
+    blurbHybrid: state.results.blurbHybrid,
+    blurbElectric: state.results.blurbElectric,
+    blurbBike: state.results.blurbBike,
+    blurbTransit: state.results.blurbTransit,
+    blurbCombo: state.results.blurbCombo,
   };
 };
 
@@ -582,5 +568,5 @@ export default reduxConnect(mapStateToProps, {
   saveTransit,
   pingFunc,
   setEcoScore,
-  setBlurb, 
+  setBlurb,
 })(MapComponent);
