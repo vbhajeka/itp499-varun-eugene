@@ -20,7 +20,7 @@ const basic_details = {
         },
         { value: 'No', children: [], blocks_enabled: [] },
       ],
-      value: [],
+      value: ['Yes'],
     },
     {
       id: 'new_used_car',
@@ -37,7 +37,7 @@ const basic_details = {
         },
         { value: 'Used Car', children: [], blocks_enabled: [] },
       ],
-      value: [],
+      value: ['New Car'],
     },
 
     {

@@ -43,6 +43,22 @@ const ResultsPage = ({
     console.log(error);
   }
 
+  var header;
+  switch (mode) {
+    case 0:
+      header = 'If you plan to drive a Hybrid or Electric car...';
+      break;
+    case 1:
+      header = 'Have you considered biking...?';
+      break;
+    case 2:
+      header = 'You can always use public transport...';
+      break;
+    default:
+      header =
+        'Need coffee before your exercise? Try biking one way and taking the bus back';
+  }
+
   return (
     <Fragment>
       <Container
@@ -53,7 +69,7 @@ const ResultsPage = ({
           marginTop: '2%',
         }}
       >
-        <Header as='h1'>If you buy a skafsdjkfds car...</Header>
+        <Header as='h1'>{header}</Header>
 
         <MapComponent mode={mode} content={modeMsg} />
         <Button onClick={() => switchMode()}>

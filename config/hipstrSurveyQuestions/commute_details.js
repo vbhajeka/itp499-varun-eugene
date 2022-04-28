@@ -53,7 +53,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['10745 Dickson Ct'],
+      value: ['12125 Venice Blvd'],
     },
     {
       id: 'addr_work_city',
@@ -83,18 +83,7 @@ const commute_details = {
       required: true,
       type: 'FR',
       fr_type: 'text',
-      value: ['90095'],
-    },
-    {
-      id: 'miles_errands',
-      question_header:
-        'How many miles do you drive apart from your commute, per month?',
-      question_desc: '',
-      enabled: true,
-      required: true,
-      type: 'FR',
-      fr_type: 'number',
-      value: [],
+      value: ['90066'],
     },
   ],
 };

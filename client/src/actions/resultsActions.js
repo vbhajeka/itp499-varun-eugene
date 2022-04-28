@@ -5,6 +5,8 @@ import {
   SAVE_BIKE,
   SAVE_TRANSIT,
   SAVE_ADDYS,
+  PING,
+  SET_ECO_SCORE,
 } from './types';
 
 export const switchMode = () => (dispatch) => {
@@ -46,5 +48,20 @@ export const saveAddys = (home, work) => (dispatch) => {
   dispatch({
     payload: { home, work },
     type: SAVE_ADDYS,
+  });
+};
+
+export const pingFunc = () => (dispatch) => {
+  dispatch({
+    payload: {},
+    type: PING,
+  });
+};
+
+export const setEcoScore = (type, score) => (dispatch) => {
+  console.log('uhhhhhh');
+  dispatch({
+    payload: { type, score },
+    type: SET_ECO_SCORE,
   });
 };

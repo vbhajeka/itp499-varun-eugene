@@ -5,6 +5,8 @@ import {
   SAVE_BIKE,
   SAVE_TRANSIT,
   SAVE_ADDYS,
+  PING,
+  SET_ECO_SCORE,
 } from '../actions/types';
 
 const initialState = {
@@ -28,6 +30,12 @@ const initialState = {
   },
   homeAddy: null,
   workAddy: null,
+  ping: true,
+  ecoElectric: 0,
+  ecoHybrid: 0,
+  ecoBike: 0,
+  ecoTransit: 0,
+  ecoCombo: 0,
 };
 
 const rotateMode = (state) => {
@@ -77,6 +85,35 @@ const saveAddresses = (state, home, work) => {
   return state;
 };
 
+const ping = (state) => {
+  state.ping = !state.ping;
+  console.log('pinged');
+  return state;
+};
+
+const setEcoScore = (state, type, score) => {
+  switch (type) {
+    case 'electric':
+      state.ecoElectric = score;
+      break;
+    case 'hybrid':
+      state.ecoHybrid = score;
+      break;
+    case 'bike':
+      state.ecoBike = score;
+      break;
+    case 'transit':
+      state.ecoTransit = score;
+      break;
+    case 'combo':
+      state.ecoCombo = score;
+      break;
+    default:
+    // do nothing
+  }
+  return state;
+};
+
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
 
@@ -99,6 +136,10 @@ export default function reducer(state = initialState, action) {
       };
     case SAVE_ADDYS:
       return { ...saveAddresses(state, payload.home, payload.work) };
+    case PING:
+      return { ...ping(state) };
+    case SET_ECO_SCORE:
+      return { ...setEcoScore(state, payload.type, payload.score) };
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import { Grid, Segment, Image, Container } from 'semantic-ui-react';
+import { Grid, Segment, Image, Container, Header } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
 
@@ -40,8 +40,11 @@ const AboutPage = ({
   return (
     <Fragment>
       <Container
-        style={{ overflowX: 'auto', marginBottom: '6.5%', marginTop: '2%' }}
+        style={{ overflowX: 'auto', marginBottom: '2%', marginTop: '2%' }}
       >
+        <Header as='h1' textAlign='center'>
+          Shifting the Transportation Meta
+        </Header>
         <Segment raised>
           <Grid centered columns={2}>
             <Grid.Column verticalAlign='top' width={6}>
